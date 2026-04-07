@@ -1,0 +1,12 @@
+.DS_Store
+*.DS_Store
+
+# Raw / source photos (kept locally only)
+aden/
+Screenshot*.png
+Screenshot*.jpg
+
+# Reference images downloaded from monetise.com
+assets/monetise-ref/
+assets/iman-*.png
+assets/iman-*.jpg
