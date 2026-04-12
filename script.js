@@ -1,3 +1,11 @@
+/* ══════════════════════════════════════
+   MAO — Script
+   ══════════════════════════════════════ */
+
+/* ── Config ── */
+// Replace with your deployed Google Apps Script URL
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyBGmMN55X7z-pGHGKjY_22d7zHETYSFwz1jVQilzI1UfrSUBLbu7g9BXnEtbxzpk02hg/exec';
+
 /* ── Cursor Glow ── */
 const glow = document.getElementById('cursorGlow');
 if (glow && window.matchMedia('(hover: hover)').matches) {
@@ -18,6 +26,20 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 revealEls.forEach(el => observer.observe(el));
 
+/* ── Form Submission Helper ── */
+function submitToSheet(formData) {
+  if (!APPS_SCRIPT_URL) {
+    console.warn('No Apps Script URL configured — running in demo mode.');
+    return Promise.resolve({ demo: true });
+  }
+  return fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData)
+  });
+}
+
 /* ── Vault Form ── */
 const VAULT_KEY = 'mao-vault-unlocked';
 const vaultForm = document.getElementById('vault-form');
@@ -33,20 +55,24 @@ if (localStorage.getItem(VAULT_KEY) === 'true') unlockVault();
 
 vaultForm?.addEventListener('submit', async e => {
   e.preventDefault();
-  const endpoint = vaultForm.action;
+  const email = vaultForm.querySelector('input[name="email"]').value;
+
   try {
-    if (!endpoint.includes('your-form-id')) {
-      await fetch(endpoint, { method: 'POST', body: new FormData(vaultForm), headers: { Accept: 'application/json' } });
-      vaultFeedback.textContent = 'Unlocked. The documents are yours.';
-    } else {
-      vaultFeedback.textContent = 'Unlocked (demo mode — connect Formspree to capture emails).';
-    }
+    await submitToSheet({
+      form_type: 'vault_unlock',
+      email,
+      source: 'vault_page1'
+    });
+
+    vaultFeedback.textContent = APPS_SCRIPT_URL
+      ? 'Unlocked. The documents are yours.'
+      : 'Unlocked (demo mode — deploy Apps Script to capture emails).';
     vaultFeedback.className = 'vault-feedback success';
     unlockVault();
     vaultForm.reset();
   } catch {
     unlockVault();
-    vaultFeedback.textContent = 'Docs unlocked. Email capture needs a Formspree endpoint.';
+    vaultFeedback.textContent = 'Docs unlocked. Email capture needs Apps Script endpoint.';
     vaultFeedback.className = 'vault-feedback error';
   }
 });
@@ -57,18 +83,37 @@ const applyFeedback = document.getElementById('apply-feedback');
 
 applyForm?.addEventListener('submit', async e => {
   e.preventDefault();
+  const btn = applyForm.querySelector('button[type="submit"]');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
+  const fd = new FormData(applyForm);
+  const data = {
+    form_type: 'beta_application',
+    full_name: fd.get('full_name'),
+    email: fd.get('email'),
+    instagram: fd.get('instagram'),
+    phone: fd.get('phone'),
+    current_status: fd.get('current_status'),
+    income_range: fd.get('income_range'),
+    pain_point: fd.get('pain_point'),
+    why_join: fd.get('why_join'),
+    source: 'page1_apply'
+  };
+
   try {
-    const endpoint = applyForm.action;
-    if (!endpoint.includes('your-form-id')) {
-      await fetch(endpoint, { method: 'POST', body: new FormData(applyForm), headers: { Accept: 'application/json' } });
-      applyFeedback.textContent = "You're on the list. Aden will reach out personally.";
-    } else {
-      applyFeedback.textContent = "Demo submit. Connect Formspree before launch.";
-    }
-    applyFeedback.className = 'vault-feedback success';
-    applyForm.reset();
+    await submitToSheet(data);
+
+    // Store name for page 2 personalization
+    sessionStorage.setItem('mao-applicant-name', data.full_name);
+
+    // Redirect to post-apply page
+    window.location.href = './apply-success.html';
+
   } catch {
-    applyFeedback.textContent = 'Submission failed. Check the form endpoint.';
+    applyFeedback.textContent = 'Submission failed. Please try again.';
     applyFeedback.className = 'vault-feedback error';
+    btn.textContent = 'Submit Application';
+    btn.disabled = false;
   }
 });

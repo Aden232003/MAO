@@ -10,3 +10,14 @@ Screenshot*.jpg
 assets/monetise-ref/
 assets/iman-*.png
 assets/iman-*.jpg
+
+# Private business context (curriculum, post-sale, launch strategy)
+context/
+docx_sources/
+modern_ai_operator_launch_strategy.pdf
+mentor-campaign-brief.*
+generate_mentor_brief_docx.py
+__pycache__/
+
+# Raw VSL source files (web-optimized versions are served from R2)
+VSL*.mp4

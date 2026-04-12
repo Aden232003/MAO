@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deposit Received — MAO_</title>
+  <meta name="description" content="Your deposit has been received. Your application is now in priority review.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <style>
+    .thanks-wrap {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 60px;
+      background: var(--bg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .thanks-wrap::before,
+    .thanks-wrap::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .thanks-wrap::before {
+      width: 500px; height: 500px;
+      background: var(--accent);
+      top: -100px; left: -100px;
+    }
+    .thanks-wrap::after {
+      width: 400px; height: 400px;
+      background: #3a6bff;
+      bottom: -100px; right: -100px;
+      opacity: 0.1;
+    }
+    .thanks-inner {
+      max-width: 560px;
+      position: relative;
+      z-index: 1;
+    }
+    .thanks-check {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      background: rgba(200, 255, 0, 0.1);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+      color: var(--accent);
+      position: relative;
+      animation: thanksIn 0.8s var(--ease) 0.1s both;
+    }
+    .thanks-check::before,
+    .thanks-check::after {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      opacity: 0;
+    }
+    .thanks-check::before {
+      animation: thanksRing 2.4s var(--ease) 0.3s infinite;
+    }
+    .thanks-check::after {
+      animation: thanksRing 2.4s var(--ease) 0.9s infinite;
+    }
+    @keyframes thanksIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes thanksRing {
+      0% { transform: scale(0.92); opacity: 0.8; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+    .thanks-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: 1px solid var(--accent-mid);
+      border-radius: 999px;
+      background: rgba(200, 255, 0, 0.06);
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .thanks-pill-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .thanks-title {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(1.6rem, 4.2vw, 2.6rem);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      color: var(--text);
+    }
+    .thanks-title span {
+      color: var(--accent);
+    }
+    .thanks-sub {
+      color: var(--text-dim);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .thanks-box {
+      margin: 32px 0;
+      padding: 22px 24px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      text-align: left;
+    }
+    .thanks-box-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .thanks-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .thanks-steps li {
+      padding: 10px 0 10px 28px;
+      color: var(--text-dim);
+      font-size: 13px;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      position: relative;
+    }
+    .thanks-steps li:last-child { border-bottom: 0; }
+    .thanks-steps li::before {
+      content: counter(step);
+      counter-increment: step;
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .thanks-steps {
+      counter-reset: step;
+    }
+    .thanks-payment-id {
+      margin-top: 20px;
+      padding: 10px 14px;
+      background: rgba(0,0,0,0.4);
+      border: 1px dashed var(--border);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: none;
+      word-break: break-all;
+    }
+    .thanks-payment-id.visible {
+      display: block;
+    }
+    .thanks-payment-id strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .thanks-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .thanks-footnote {
+      margin-top: 32px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-style: italic;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    @media (max-width: 640px) {
+      .thanks-check {
+        width: 84px; height: 84px;
+      }
+      .thanks-check svg { width: 36px; height: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav class="nav">
+  <span class="nav-brand">MAO<span class="blink">_</span></span>
+  <a href="./index.html" class="nav-cta">← Home</a>
+</nav>
+
+<section class="thanks-wrap">
+  <div class="thanks-inner">
+    <div class="thanks-check">
+      <svg width="52" height="52" viewBox="0 0 24 24" fill="none">
+        <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="thanks-pill">
+      <span class="thanks-pill-dot"></span>
+      <span>Deposit Received</span>
+    </div>
+
+    <h1 class="thanks-title">You're in the <span>priority queue</span>.</h1>
+    <p class="thanks-sub">Your ₹5,000 refundable deposit has been received. Your application has been flagged for priority review.</p>
+
+    <div class="thanks-box">
+      <p class="thanks-box-label">What happens next</p>
+      <ol class="thanks-steps">
+        <li>Aden personally reviews your application within 24 to 48 hours.</li>
+        <li>You'll hear back via email or Instagram DMs either way.</li>
+        <li>If selected, your deposit is credited toward your cohort fee. If not, it's refunded in full (minus the 2 percent gateway fee).</li>
+      </ol>
+    </div>
+
+    <div class="thanks-payment-id" id="payment-id-box">
+      Payment reference: <strong id="payment-id"></strong>
+    </div>
+
+    <div class="thanks-actions">
+      <a href="./index.html" class="btn btn-ghost">← Back to Home</a>
+      <a href="https://instagram.com/aden_gomes" target="_blank" rel="noopener" class="btn btn-primary">DM Aden on Instagram</a>
+    </div>
+
+    <p class="thanks-footnote">If you have any questions, reach out at adengomes50@gmail.com or +91 82911 44684. Keep an eye on your inbox and your Instagram DMs over the next 48 hours.</p>
+  </div>
+</section>
+
+<script>
+  const glow = document.getElementById('cursorGlow');
+  if (glow && window.matchMedia('(hover: hover)').matches) {
+    document.addEventListener('mousemove', e => {
+      glow.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
+    });
+  }
+
+  // Read Razorpay payment ID from URL if present and display it
+  const params = new URLSearchParams(window.location.search);
+  const pid = params.get('razorpay_payment_id') || params.get('payment_id') || params.get('pid');
+  if (pid) {
+    document.getElementById('payment-id').textContent = pid;
+    document.getElementById('payment-id-box').classList.add('visible');
+  }
+</script>
+</body>
+</html>

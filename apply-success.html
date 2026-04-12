@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Received — MAO_</title>
+  <meta name="description" content="Your application has been received. Secure your spot.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./page2.css">
+</head>
+<body>
+
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-brand">MAO<span class="blink">_</span></span>
+</nav>
+
+<!-- CONFIRMATION + VSL (one viewport) -->
+<section class="p2-hero-vsl">
+  <div class="section-inner">
+    <div class="p2-confirm-row">
+      <div class="p2-confirm-pill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Application Received</span>
+      </div>
+      <h1 class="section-title p2-title">You're in the queue, <span id="applicant-name">Operator</span>.</h1>
+      <p class="p2-sub">Watch this before you wait — it could change how you enter the cohort.</p>
+    </div>
+    <div class="vsl-player p2-vsl">
+      <div class="mao-vsl-player" id="vsl2-player">
+        <video class="mvp-video" preload="metadata" playsinline>
+          <source src="https://pub-7c8213b315404b04b5a8852bde0adcfa.r2.dev/VSL-1-web.mp4" type="video/mp4">
+          <track kind="captions" src="./assets/subtitles/vsl-1.vtt" srclang="en" label="English">
+        </video>
+        <div class="mvp-poster" style="background-image: url('./assets/vsl/vsl-1-poster.jpg');">
+          <button class="mvp-big-play" aria-label="Play">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+          </button>
+        </div>
+        <div class="mvp-controls">
+          <div class="mvp-progress">
+            <div class="mvp-progress-watched"></div>
+            <div class="mvp-progress-fill"></div>
+          </div>
+          <button class="mvp-ctrl mvp-play-pause" aria-label="Play/Pause">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          </button>
+          <button class="mvp-ctrl mvp-rewind-30" aria-label="Rewind 30 seconds">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v6h6"/><path d="M3 13a9 9 0 1 0 3-7.7L3 8"/></svg>
+            <span>30</span>
+          </button>
+          <button class="mvp-ctrl mvp-rewind-10" aria-label="Rewind 10 seconds">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v6h6"/><path d="M3 13a9 9 0 1 0 3-7.7L3 8"/></svg>
+            <span>10</span>
+          </button>
+          <div class="mvp-vol-wrap">
+            <button class="mvp-ctrl mvp-mute" aria-label="Mute/Unmute">
+              <svg class="icon-sound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+              <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            </button>
+            <input type="range" class="mvp-vol" min="0" max="1" step="0.05" value="1" aria-label="Volume">
+          </div>
+          <div class="mvp-spacer"></div>
+          <button class="mvp-ctrl mvp-cc" aria-label="Captions">CC</button>
+          <span class="mvp-time">0:00 / 0:00</span>
+          <button class="mvp-ctrl mvp-fs" aria-label="Fullscreen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <a href="#tiers" class="p2-scroll-cue">
+      <span>See the tiers</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section class="section section-dark" id="tiers">
+  <div class="section-inner">
+    <p class="section-label">Early Access Tiers</p>
+    <h2 class="section-title">Same cohort.<br>Different entry points.</h2>
+    <p class="tiers-sub">Every tier gets the full program — 8 weeks live, 3 months post-support, all resources. The only difference is <strong>price</strong>, <strong>community role</strong>, and <strong>how early you claim your seat</strong>.</p>
+
+    <div class="tier-grid">
+      <!-- GENESIS -->
+      <div class="tier-card tier-genesis">
+        <div class="tier-badge">First 5 Seats</div>
+        <h3 class="tier-name">Genesis</h3>
+        <p class="tier-discount">30% off beta pricing</p>
+        <div class="tier-features">
+          <p>Genesis community status</p>
+          <p>Highest priority access to Aden</p>
+          <p>First pick on 1:1 review slots</p>
+          <p>Full 8-week live cohort</p>
+          <p>3 months post-cohort support</p>
+        </div>
+        <p class="tier-note">For operators who don't need convincing.</p>
+      </div>
+
+      <!-- CATALYST -->
+      <div class="tier-card tier-catalyst">
+        <div class="tier-badge">Seats 6–10</div>
+        <h3 class="tier-name">Catalyst</h3>
+        <p class="tier-discount">15% off beta pricing</p>
+        <div class="tier-features">
+          <p>Catalyst community status</p>
+          <p>Priority access to Aden</p>
+          <p>Full 8-week live cohort</p>
+          <p>3 months post-cohort support</p>
+        </div>
+        <p class="tier-note">Strong value. Still early.</p>
+      </div>
+
+      <!-- OPERATOR -->
+      <div class="tier-card tier-operator">
+        <div class="tier-badge">Last 5 Seats</div>
+        <h3 class="tier-name">Operator</h3>
+        <p class="tier-discount">Beta pricing (no discount)</p>
+        <div class="tier-features">
+          <p>Operator community status</p>
+          <p>Full access to Aden via cohort</p>
+          <p>Full 8-week live cohort</p>
+          <p>3 months post-cohort support</p>
+        </div>
+        <p class="tier-note">Still cheaper than it will ever be again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section p2-cta-section">
+  <div class="section-inner p2-cta-inner">
+    <h2 class="section-title">Skip the wait.<br>Or stay in the queue.</h2>
+    <p class="p2-cta-sub">A refundable deposit moves you to the front. If you're not selected, you get it back. No risk.</p>
+    <div class="p2-cta-buttons">
+      <a href="https://rzp.io/rzp/s4Vuhjl" class="btn btn-primary btn-lg" id="btn-deposit" target="_blank" rel="noopener">Pay Refundable Deposit · ₹5,000</a>
+      <button type="button" class="btn btn-ghost btn-lg" id="btn-free">Continue With My Free Application</button>
+    </div>
+    <p class="p2-cta-note">Both paths lead to Aden's review. The deposit just gets you there first.</p>
+  </div>
+</section>
+
+<!-- SUCCESS MODAL (shown when free application button clicked) -->
+<div class="p2-modal" id="success-modal" aria-hidden="true">
+  <div class="p2-modal-backdrop"></div>
+  <div class="p2-modal-box">
+    <div class="p2-modal-check">
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <p class="section-label">All Set</p>
+    <h3 class="p2-modal-title">Your application is in.</h3>
+    <p class="p2-modal-sub">Aden reviews every application personally. Expect a reply within 48 hours on your email or Instagram DMs.</p>
+    <a href="./index.html" class="btn btn-ghost p2-modal-btn">← Back to Home</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="nav-brand">MAO<span class="blink">_</span></span>
+      <p>The Modern AI Operator — by Aden Gomes</p>
+    </div>
+    <p class="footer-copy">&copy; 2026 Aden Gomes. Built with AI.</p>
+  </div>
+</footer>
+
+<script src="./vsl-player.js"></script>
+<script>
+/* Cursor glow */
+const glow = document.getElementById('cursorGlow');
+if (glow && window.matchMedia('(hover: hover)').matches) {
+  document.addEventListener('mousemove', e => {
+    glow.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
+  });
+}
+
+/* Personalize with applicant name */
+const name = sessionStorage.getItem('mao-applicant-name');
+if (name) {
+  const el = document.getElementById('applicant-name');
+  if (el) el.textContent = name.split(' ')[0];
+}
+
+/* Scroll reveal */
+const revealEls = document.querySelectorAll('.section-inner, .tier-grid');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => observer.observe(el));
+
+/* Free application success modal */
+const successModal = document.getElementById('success-modal');
+const freeBtn = document.getElementById('btn-free');
+const closeModal = () => {
+  successModal.classList.remove('open');
+  successModal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+};
+freeBtn?.addEventListener('click', () => {
+  successModal.classList.add('open');
+  successModal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+});
+successModal?.querySelector('.p2-modal-backdrop')?.addEventListener('click', closeModal);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && successModal?.classList.contains('open')) closeModal();
+});
+</script>
+</body>
+</html>
