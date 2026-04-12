@@ -6,6 +6,17 @@
 // Replace with your deployed Google Apps Script URL
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyBGmMN55X7z-pGHGKjY_22d7zHETYSFwz1jVQilzI1UfrSUBLbu7g9BXnEtbxzpk02hg/exec';
 
+/* ── Clarity: capture ref param + UTM tags ── */
+const params = new URLSearchParams(window.location.search);
+const ref = params.get('ref');
+if (ref && typeof clarity === 'function') {
+  clarity('set', 'ref', ref);
+}
+['utm_source', 'utm_medium', 'utm_campaign'].forEach(key => {
+  const val = params.get(key);
+  if (val && typeof clarity === 'function') clarity('set', key, val);
+});
+
 /* ── Cursor Glow ── */
 const glow = document.getElementById('cursorGlow');
 if (glow && window.matchMedia('(hover: hover)').matches) {
@@ -103,6 +114,16 @@ applyForm?.addEventListener('submit', async e => {
 
   try {
     await submitToSheet(data);
+
+    // Tag Clarity session with applicant identity
+    if (typeof clarity === 'function') {
+      clarity('identify', data.email, null, null, data.full_name);
+      clarity('set', 'applicant_name', data.full_name);
+      clarity('set', 'applicant_email', data.email);
+      clarity('set', 'applicant_ig', data.instagram);
+      clarity('set', 'applicant_status', data.current_status);
+      clarity('event', 'application_submitted');
+    }
 
     // Store name for page 2 personalization
     sessionStorage.setItem('mao-applicant-name', data.full_name);

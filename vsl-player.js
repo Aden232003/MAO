@@ -23,6 +23,7 @@ class MAOVslPlayer {
     this.maxWatched = 0;
     this.ccEnabled = true;
     this.hideTimer = null;
+    this.milestones = new Set();
 
     this.init();
   }
@@ -189,21 +190,40 @@ class MAOVslPlayer {
       if (this.progressWatched) this.progressWatched.style.width = watchedPct + '%';
     }
     this.updateTime();
+    this.checkMilestones(t, d);
+  }
+
+  checkMilestones(t, d) {
+    if (d <= 0) return;
+    const pct = (t / d) * 100;
+    [25, 50, 75, 100].forEach(m => {
+      if (pct >= m && !this.milestones.has(m)) {
+        this.milestones.add(m);
+        this.clarityEvent('vsl_' + m + 'pct');
+      }
+    });
+  }
+
+  clarityEvent(name) {
+    if (typeof clarity === 'function') clarity('event', name);
   }
 
   onPlay() {
     this.root.classList.add('is-playing');
     this.root.classList.remove('is-paused');
+    this.clarityEvent('vsl_play');
   }
 
   onPause() {
     this.root.classList.remove('is-playing');
     this.root.classList.add('is-paused');
+    this.clarityEvent('vsl_pause');
   }
 
   onEnded() {
     this.root.classList.remove('is-playing');
     this.root.classList.add('is-ended');
+    this.clarityEvent('vsl_completed');
   }
 
   updateTime() {
