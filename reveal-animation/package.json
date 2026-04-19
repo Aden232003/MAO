@@ -1,0 +1,26 @@
+{
+  "name": "mao-reveal-animation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MAO — 9:16 vertical reveal for Instagram stories. Built with Remotion.",
+  "scripts": {
+    "dev": "remotion studio",
+    "studio": "remotion studio",
+    "build": "remotion render MaoReveal out/mao-reveal.mp4",
+    "build:teaser": "remotion render MaoRevealTeaser out/mao-reveal-teaser.mp4",
+    "still:lockup": "remotion still MaoReveal out/mao-final-lockup.png --frame=198",
+    "upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/google-fonts": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.5.3"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src"]
+}
