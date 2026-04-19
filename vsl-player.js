@@ -170,11 +170,59 @@ class MAOVslPlayer {
   }
 
   toggleFullscreen() {
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    } else {
-      this.root.requestFullscreen?.();
+    // Already fullscreen? exit via whichever vendor path got us in.
+    const fsEl =
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.webkitCurrentFullScreenElement;
+    if (fsEl) {
+      const exit =
+        document.exitFullscreen ||
+        document.webkitExitFullscreen ||
+        document.webkitCancelFullScreen;
+      exit?.call(document);
+      return;
     }
+
+    // iOS Safari only supports fullscreen on the <video> element itself,
+    // via webkitEnterFullscreen(). The native iOS player takes over; our
+    // `seeking` guard still fires so forward-scrubbing stays blocked.
+    if (typeof this.video.webkitEnterFullscreen === 'function' &&
+        !this.root.requestFullscreen) {
+      const enter = () => {
+        try { this.video.webkitEnterFullscreen(); } catch (_) {}
+      };
+      if (this.video.readyState >= 1) enter();
+      else {
+        this.video.addEventListener('loadedmetadata', enter, { once: true });
+        if (this.video.paused && this.video.currentTime === 0) this.video.load();
+      }
+      return;
+    }
+
+    // Android Chrome + desktop: fullscreen the player root so our custom
+    // controls, captions and frame all scale up with the video.
+    const reqRoot =
+      this.root.requestFullscreen ||
+      this.root.webkitRequestFullscreen ||
+      this.root.webkitRequestFullScreen;
+    if (reqRoot) {
+      const p = reqRoot.call(this.root);
+      if (p && typeof p.catch === 'function') {
+        p.catch(() => this.fullscreenVideoFallback());
+      }
+      return;
+    }
+
+    this.fullscreenVideoFallback();
+  }
+
+  fullscreenVideoFallback() {
+    const reqVid =
+      this.video.requestFullscreen ||
+      this.video.webkitRequestFullscreen ||
+      this.video.webkitEnterFullscreen;
+    reqVid?.call(this.video);
   }
 
   onTimeUpdate() {
