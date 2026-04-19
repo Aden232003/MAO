@@ -33,16 +33,99 @@ class MAOVslPlayer {
     this.video.controls = false;
     this.video.playsInline = true;
 
-    // Enable CC by default when track loads
-    const enableTracks = () => {
-      const tracks = this.video.textTracks;
-      for (let i = 0; i < tracks.length; i++) tracks[i].mode = 'showing';
-      if (tracks.length > 0) this.ccBtn?.classList.add('active');
-    };
-    enableTracks();
-    this.video.textTracks.addEventListener?.('addtrack', enableTracks);
+    // Custom caption overlay — fully controllable, immune to iOS caption
+    // accessibility settings.
+    this.captionsEl = document.createElement('div');
+    this.captionsEl.className = 'mvp-captions';
+    this.root.appendChild(this.captionsEl);
+
+    this.cues = [];
+
+    // NUCLEAR APPROACH: detach the <track> element entirely. iOS can't
+    // force-render native captions if there's no track in the DOM. We fetch
+    // and parse the VTT ourselves, then render into .mvp-captions on
+    // timeupdate. Trade-off: iOS native fullscreen won't show captions
+    // either — acceptable since the user's primary complaint was oversized
+    // inline captions.
+    const trackEl = this.video.querySelector(
+      'track[kind="captions"], track[kind="subtitles"]'
+    );
+    if (trackEl) {
+      const vttUrl = trackEl.src || trackEl.getAttribute('src');
+      trackEl.parentNode.removeChild(trackEl);
+      this.loadCues(vttUrl);
+    }
 
     this.bindEvents();
+  }
+
+  loadCues(url) {
+    fetch(url)
+      .then(r => (r.ok ? r.text() : Promise.reject(r.status)))
+      .then(text => {
+        this.cues = this.parseVtt(text);
+        if (this.cues.length > 0) {
+          this.ccBtn?.classList.add('active');
+          this.updateCaption();
+        }
+      })
+      .catch(() => { /* silent — no captions if fetch fails */ });
+  }
+
+  parseVtt(text) {
+    const cues = [];
+    const lines = text.split(/\r?\n/);
+    let i = 0;
+    while (i < lines.length) {
+      const line = lines[i].trim();
+      if (!line || line === 'WEBVTT' || /^NOTE\b/.test(line)) { i++; continue; }
+      // Cues may be preceded by an optional ID line; match the timestamp line.
+      const ts = line.match(
+        /((?:\d+:)?\d+:\d+\.\d+)\s+-->\s+((?:\d+:)?\d+:\d+\.\d+)/
+      );
+      if (ts) {
+        const start = this.parseVttTime(ts[1]);
+        const end = this.parseVttTime(ts[2]);
+        const textLines = [];
+        i++;
+        while (i < lines.length && lines[i].trim()) {
+          textLines.push(lines[i]);
+          i++;
+        }
+        const cueText = textLines
+          .join('\n')
+          .replace(/<\/?[^>]+>/g, '') // strip <v Speaker>, <c.className>, etc.
+          .trim();
+        cues.push({ start, end, text: cueText });
+      }
+      i++;
+    }
+    return cues;
+  }
+
+  parseVttTime(s) {
+    const parts = s.split(':').map(parseFloat);
+    if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+    return parts[0] * 60 + parts[1];
+  }
+
+  updateCaption() {
+    if (!this.captionsEl) return;
+    if (!this.ccEnabled || !this.cues || !this.cues.length) {
+      if (this.captionsEl.textContent) this.captionsEl.textContent = '';
+      return;
+    }
+    const t = this.video.currentTime;
+    let active = null;
+    for (let i = 0; i < this.cues.length; i++) {
+      const c = this.cues[i];
+      if (t >= c.start && t <= c.end) { active = c; break; }
+      if (c.start > t) break; // cues are sorted by start time
+    }
+    const text = active ? active.text : '';
+    if (this.captionsEl.textContent !== text) {
+      this.captionsEl.textContent = text;
+    }
   }
 
   bindEvents() {
@@ -160,13 +243,10 @@ class MAOVslPlayer {
   }
 
   toggleCC() {
-    const tracks = this.video.textTracks;
-    if (tracks.length === 0) return;
+    if (!this.cues || this.cues.length === 0) return;
     this.ccEnabled = !this.ccEnabled;
-    for (let i = 0; i < tracks.length; i++) {
-      tracks[i].mode = this.ccEnabled ? 'showing' : 'hidden';
-    }
     this.ccBtn.classList.toggle('active', this.ccEnabled);
+    this.updateCaption();
   }
 
   toggleFullscreen() {
@@ -238,6 +318,7 @@ class MAOVslPlayer {
       if (this.progressWatched) this.progressWatched.style.width = watchedPct + '%';
     }
     this.updateTime();
+    this.updateCaption();
     this.checkMilestones(t, d);
   }
 
