@@ -1,37 +1,44 @@
 /**
  * MAO — Google Apps Script for Form Submissions
  *
- * SETUP:
- * 1. Go to https://script.google.com → New Project
- * 2. Paste this entire file
- * 3. Click Deploy → New Deployment → Web App
- *    - Execute as: Me
- *    - Who has access: Anyone
- * 4. Copy the deployment URL
- * 5. Paste it into script.js where it says APPS_SCRIPT_URL
+ * RECOVERY FLOW (when the /exec URL returns 403):
+ * 1. Paste this ENTIRE file over everything in the Apps Script editor.
+ * 2. File → Save (⌘S). Confirm no red error indicators in the gutter.
+ * 3. Select function: "doGet" in the top toolbar → Run ▶.
+ *    If prompted: Review permissions → pick adengomes50@gmail.com →
+ *    Advanced → Go to [project] (unsafe) → Allow.
+ *    This re-authorizes Drive + Sheets scopes.
+ * 4. Execution log should show "MAO form endpoint is live." — no red errors.
+ * 5. Deploy → Manage deployments → ✏️ on the active one → Version: "New
+ *    version" → Description: "re-auth YYYY-MM-DD" → Deploy.
+ *    (Creating a NEW version under the same deployment keeps the URL stable.)
+ * 6. Copy the Web App URL (should be the same /exec path you already use).
+ * 7. Paste it into script.js APPS_SCRIPT_URL if it ever changes.
  *
- * This creates two sheets:
- * - "Applications" — from the apply form
- * - "Vault Emails" — from the vault unlock form
+ * Pin the Sheet: once the "MAO Applications & Leads" sheet exists, open it,
+ * copy the ID from its URL (the long string between /d/ and /edit), and
+ * paste it into SPREADSHEET_ID below. This removes the Drive dependency
+ * and makes the script MUCH more resilient — DriveApp scope is the most
+ * common thing Google revokes on inactive personal accounts.
  */
 
-const SPREADSHEET_ID = ''; // Leave blank to auto-create, or paste your Sheet ID
+const SPREADSHEET_ID = ''; // ⇐ paste the Sheet ID once the sheet exists.
 
 function getOrCreateSpreadsheet() {
   if (SPREADSHEET_ID) {
     return SpreadsheetApp.openById(SPREADSHEET_ID);
   }
 
-  // Check if it already exists
+  // Check if it already exists (requires DriveApp scope).
   const files = DriveApp.getFilesByName('MAO Applications & Leads');
   if (files.hasNext()) {
     return SpreadsheetApp.open(files.next());
   }
 
-  // Create new
+  // Create new.
   const ss = SpreadsheetApp.create('MAO Applications & Leads');
 
-  // Set up Applications sheet
+  // Applications sheet
   const appSheet = ss.getActiveSheet();
   appSheet.setName('Applications');
   appSheet.appendRow([
@@ -41,7 +48,7 @@ function getOrCreateSpreadsheet() {
   appSheet.setFrozenRows(1);
   appSheet.getRange('1:1').setFontWeight('bold');
 
-  // Set up Vault Emails sheet
+  // Vault Emails sheet
   const vaultSheet = ss.insertSheet('Vault Emails');
   vaultSheet.appendRow(['Timestamp', 'Email', 'Source']);
   vaultSheet.setFrozenRows(1);
@@ -56,8 +63,8 @@ function doPost(e) {
     const data = JSON.parse(e.postData.contents);
     const ss = getOrCreateSpreadsheet();
 
-    // Exact timestamp in IST (e.g. "2026-04-12 14:32:07 IST")
-    const timestamp = Utilities.formatDate(new Date(), 'Asia/Kolkata', 'yyyy-MM-dd HH:mm:ss') + ' IST';
+    const timestamp =
+      Utilities.formatDate(new Date(), 'Asia/Kolkata', 'yyyy-MM-dd HH:mm:ss') + ' IST';
 
     if (data.form_type === 'vault_unlock') {
       const sheet = ss.getSheetByName('Vault Emails');
@@ -85,15 +92,16 @@ function doPost(e) {
     return ContentService
       .createTextOutput(JSON.stringify({ status: 'ok' }))
       .setMimeType(ContentService.MimeType.JSON);
-
   } catch (err) {
+    // Always log so Executions tab shows what failed.
+    Logger.log('doPost error: ' + err);
     return ContentService
-      .createTextOutput(JSON.stringify({ status: 'error', message: err.toString() }))
+      .createTextOutput(JSON.stringify({ status: 'error', message: String(err) }))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }
 
-function doGet(e) {
+function doGet(_e) {
   return ContentService
     .createTextOutput(JSON.stringify({ status: 'ok', message: 'MAO form endpoint is live.' }))
     .setMimeType(ContentService.MimeType.JSON);

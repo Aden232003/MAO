@@ -37,18 +37,43 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 revealEls.forEach(el => observer.observe(el));
 
-/* ── Form Submission Helper ── */
-function submitToSheet(formData) {
+/* ── Form Submission Helper ──
+   Apps Script web apps return opaque responses under mode:'no-cors' — we
+   can't tell a 403 (dead deployment) from a 200. We health-check first
+   with a CORS GET so we never fake a success redirect on a dead endpoint. */
+async function endpointIsAlive() {
+  if (!APPS_SCRIPT_URL) return false;
+  try {
+    const res = await fetch(APPS_SCRIPT_URL, {
+      method: 'GET',
+      cache: 'no-store',
+      redirect: 'follow',
+    });
+    if (!res.ok) return false;
+    // Apps Script deployments with "Anyone" access redirect to
+    // script.googleusercontent.com and return JSON. A locked deployment
+    // redirects to docs.google.com/accounts → not OK and/or HTML body.
+    const text = await res.text();
+    return /"status"\s*:\s*"ok"/.test(text) || text.trim().startsWith('{');
+  } catch {
+    return false;
+  }
+}
+
+async function submitToSheet(formData) {
   if (!APPS_SCRIPT_URL) {
     console.warn('No Apps Script URL configured — running in demo mode.');
-    return Promise.resolve({ demo: true });
+    return { demo: true };
   }
-  return fetch(APPS_SCRIPT_URL, {
+  // Actual submit: text/plain keeps it a simple request (no preflight)
+  // while Apps Script still receives the JSON via e.postData.contents.
+  await fetch(APPS_SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(formData)
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(formData),
   });
+  return { ok: true };
 }
 
 /* ── Vault Form ── */
@@ -92,11 +117,22 @@ vaultForm?.addEventListener('submit', async e => {
 const applyForm = document.getElementById('apply-form');
 const applyFeedback = document.getElementById('apply-feedback');
 
+function showApplyError(msg) {
+  if (!applyFeedback) return;
+  applyFeedback.innerHTML = msg;
+  applyFeedback.className = 'vault-feedback error';
+}
+
 applyForm?.addEventListener('submit', async e => {
   e.preventDefault();
   const btn = applyForm.querySelector('button[type="submit"]');
+  const originalBtnText = btn.textContent;
   btn.textContent = 'Submitting...';
   btn.disabled = true;
+  if (applyFeedback) {
+    applyFeedback.textContent = '';
+    applyFeedback.className = 'vault-feedback';
+  }
 
   const fd = new FormData(applyForm);
   const data = {
@@ -111,6 +147,21 @@ applyForm?.addEventListener('submit', async e => {
     why_join: fd.get('why_join'),
     source: 'page1_apply'
   };
+
+  // 1. Health-check the endpoint first so we never silently lose a
+  //    submission to a dead deployment.
+  const alive = await endpointIsAlive();
+  if (!alive) {
+    showApplyError(
+      'Submission endpoint is temporarily down. ' +
+      'DM <a href="https://instagram.com/aden_gomes" target="_blank" ' +
+      'style="color:var(--accent);text-decoration:underline;">' +
+      '@aden_gomes</a> on Instagram with “MAO” and we’ll onboard you directly.'
+    );
+    btn.textContent = originalBtnText;
+    btn.disabled = false;
+    return;
+  }
 
   try {
     await submitToSheet(data);
@@ -132,9 +183,13 @@ applyForm?.addEventListener('submit', async e => {
     window.location.href = './apply-success.html';
 
   } catch {
-    applyFeedback.textContent = 'Submission failed. Please try again.';
-    applyFeedback.className = 'vault-feedback error';
-    btn.textContent = 'Submit Application';
+    showApplyError(
+      'Submission failed. Please try again, or DM ' +
+      '<a href="https://instagram.com/aden_gomes" target="_blank" ' +
+      'style="color:var(--accent);text-decoration:underline;">@aden_gomes</a> ' +
+      'on Instagram with “MAO”.'
+    );
+    btn.textContent = originalBtnText;
     btn.disabled = false;
   }
 });
