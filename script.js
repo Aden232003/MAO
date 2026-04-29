@@ -4,7 +4,7 @@
 
 /* ── Config ── */
 // Replace with your deployed Google Apps Script URL
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyBGmMN55X7z-pGHGKjY_22d7zHETYSFwz1jVQilzI1UfrSUBLbu7g9BXnEtbxzpk02hg/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtnnkO9K8EBsvtDwsnWislPgLDuBSZ1Xd7PgsfXJiB7kUadA882lUAHF5IqY9Wou9v2w/exec';
 
 /* ── Clarity: capture ref param + UTM tags ── */
 const params = new URLSearchParams(window.location.search);

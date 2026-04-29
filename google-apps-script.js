@@ -22,7 +22,7 @@
  * common thing Google revokes on inactive personal accounts.
  */
 
-const SPREADSHEET_ID = ''; // ⇐ paste the Sheet ID once the sheet exists.
+const SPREADSHEET_ID = '1FML3ghv97RwZmx3bUwPsrU7uvfDRxuhLtnIOEBgiLgU';
 
 function getOrCreateSpreadsheet() {
   if (SPREADSHEET_ID) {
