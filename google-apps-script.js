@@ -54,8 +54,26 @@ function getOrCreateSpreadsheet() {
   vaultSheet.setFrozenRows(1);
   vaultSheet.getRange('1:1').setFontWeight('bold');
 
+  // Workshop Purchases sheet (Tier 1 = files only, Tier 2 = applicant ticket)
+  const wsSheet = ss.insertSheet('Workshop Purchases');
+  wsSheet.appendRow(['Timestamp', 'Tier', 'Payment ID', 'Type', 'Source']);
+  wsSheet.setFrozenRows(1);
+  wsSheet.getRange('1:1').setFontWeight('bold');
+
   Logger.log('Created spreadsheet: ' + ss.getUrl());
   return ss;
+}
+
+// Lazily create the Workshop Purchases tab on existing sheets that pre-date it.
+function getWorkshopSheet(ss) {
+  let sheet = ss.getSheetByName('Workshop Purchases');
+  if (!sheet) {
+    sheet = ss.insertSheet('Workshop Purchases');
+    sheet.appendRow(['Timestamp', 'Tier', 'Payment ID', 'Type', 'Source']);
+    sheet.setFrozenRows(1);
+    sheet.getRange('1:1').setFontWeight('bold');
+  }
+  return sheet;
 }
 
 function doPost(e) {
@@ -86,6 +104,17 @@ function doPost(e) {
         data.pain_point || '',
         data.why_join || '',
         data.source || 'website'
+      ]);
+    } else if (data.form_type === 'workshop_purchase' || data.form_type === 'applicant_ticket') {
+      // Workshop checkout pings from /workshop-thanks. Tier 1 = working
+      // directory only; Tier 2 = applicant ticket (also unlocks WD).
+      const sheet = getWorkshopSheet(ss);
+      sheet.appendRow([
+        timestamp,
+        data.tier || (data.form_type === 'applicant_ticket' ? 2 : 1),
+        data.payment_id || '',
+        data.form_type,
+        data.source || 'workshop_thanks'
       ]);
     }
 

@@ -16,6 +16,9 @@ class MAOVslPlayer {
     this.volSlider = root.querySelector('.mvp-vol');
     this.ccBtn = root.querySelector('.mvp-cc');
     this.fsBtn = root.querySelector('.mvp-fs');
+    this.speedBtn = root.querySelector('.mvp-speed');
+    this.speeds = [1, 1.25, 1.5, 1.75, 2, 0.75];
+    this.speedIdx = 0;
     this.progressFill = root.querySelector('.mvp-progress-fill');
     this.progressWatched = root.querySelector('.mvp-progress-watched');
     this.timeEl = root.querySelector('.mvp-time');
@@ -24,6 +27,9 @@ class MAOVslPlayer {
     this.ccEnabled = true;
     this.hideTimer = null;
     this.milestones = new Set();
+    // VSL pages block forward seeking; reference content (workshop) opts in
+    // to free seeking via data-allow-seek="true" on the player root.
+    this.allowSeek = root.dataset.allowSeek === 'true';
 
     this.init();
   }
@@ -160,6 +166,9 @@ class MAOVslPlayer {
     // CC toggle
     this.ccBtn?.addEventListener('click', () => this.toggleCC());
 
+    // Playback speed cycle
+    this.speedBtn?.addEventListener('click', () => this.cycleSpeed());
+
     // Fullscreen
     this.fsBtn?.addEventListener('click', e => {
       this.toggleFullscreen();
@@ -178,12 +187,26 @@ class MAOVslPlayer {
     this.video.addEventListener('ended', () => this.onEnded());
     this.video.addEventListener('loadedmetadata', () => this.updateTime());
 
-    // Block forward seeking
+    // Block forward seeking (unless this player opted in with allow-seek)
     this.video.addEventListener('seeking', () => {
+      if (this.allowSeek) return;
       if (this.video.currentTime > this.maxWatched + 0.5) {
         this.video.currentTime = this.maxWatched;
       }
     });
+
+    // When seek is allowed, make the progress bar interactive (click to seek)
+    if (this.allowSeek) {
+      const progress = this.root.querySelector('.mvp-progress');
+      progress?.addEventListener('click', e => {
+        const d = this.video.duration || 0;
+        if (!d) return;
+        const rect = progress.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        this.video.currentTime = d * pct;
+      });
+      progress?.classList.add('mvp-progress-interactive');
+    }
 
     // Keyboard: spacebar toggles play/pause when focused
     this.root.addEventListener('keydown', e => {
@@ -240,6 +263,18 @@ class MAOVslPlayer {
   updateMuteIcon() {
     const muted = this.video.muted || this.video.volume === 0;
     this.muteBtn.classList.toggle('muted', muted);
+  }
+
+  cycleSpeed() {
+    this.speedIdx = (this.speedIdx + 1) % this.speeds.length;
+    const s = this.speeds[this.speedIdx];
+    this.video.playbackRate = s;
+    if (this.speedBtn) {
+      // Trim trailing zero on whole numbers ("1×", not "1.00×")
+      const label = (Number.isInteger(s) ? s : s.toString()).toString();
+      this.speedBtn.textContent = label + '×';
+      this.speedBtn.classList.toggle('active', s !== 1);
+    }
   }
 
   toggleCC() {

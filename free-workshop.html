@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--
+  Free Workshop landing page.
+
+  CONFIGURATION TODO before going live:
+  1. Razorpay payment links (search for `REPLACE-tier`):
+     - Tier 1 (₹1,999): create a Razorpay payment link, set redirect URL to
+       `https://<your-domain>/workshop-thanks?tier=1` and swap the href.
+     - Tier 2 (₹5,125 = ₹5,000 + 2.5% gateway): same — redirect to
+       `/workshop-thanks?tier=2`.
+  2. Working-directory delivery URL (search for `REPLACE-zip-url`) in
+     workshop-thanks.html — point at your hosted zip (R2 / Drive / Dropbox).
+  3. Confirm gateway-fee refund policy with Razorpay account settings before
+     promising it (FAQ + refund-math copy assume the 2.5% is non-refundable).
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Workshop — Build a Paid AI Offer Live · MAO_</title>
+  <meta name="description" content="60-minute workshop. Watch me build a paid AI offer end-to-end — context, landing page, leads, cold email, payment. Walk away with the working directory.">
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=5">
+  <link rel="stylesheet" href="./workshop.css?v=6">
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "waior3g8uq");
+  </script>
+  <!-- Pre-paint unlock: prevents flash of gated content for returning buyers. -->
+  <script>
+    try {
+      if (localStorage.getItem('mao-workshop-unlocked') === 'true' ||
+          localStorage.getItem('mao-applicant-ticket') === 'true') {
+        document.documentElement.dataset.maoUnlocked = 'true';
+      }
+    } catch (_) {}
+  </script>
+  <style>
+    /* Welcome-back is hidden by default; the pre-paint script flips
+       data-mao-unlocked on <html> for returning buyers. */
+    .ws-welcome-back { display: none; }
+    html[data-mao-unlocked="true"] #ws-files,
+    html[data-mao-unlocked="true"] #ws-checkout,
+    html[data-mao-unlocked="true"] #ws-mobile-cta,
+    html[data-mao-unlocked="true"] #ws-nav-cta { display: none !important; }
+    html[data-mao-unlocked="true"] .ws-welcome-back { display: block !important; }
+  </style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-brand">MAO<span class="blink">_</span></span>
+  <a href="#ws-checkout" class="ws-nav-cta" id="ws-nav-cta">
+    <span class="ws-nav-cta-dot" aria-hidden="true"></span>
+    <span class="ws-nav-cta-text-long">Get Workshop Access · </span>
+    <span>₹1,999</span>
+  </a>
+</nav>
+
+<!-- WELCOME BACK (returning buyer) -->
+<section class="ws-welcome-back" id="ws-welcome-back">
+  <div class="section-inner">
+    <div class="ws-welcome-pill">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+      <span>Welcome Back, Operator</span>
+    </div>
+    <h2 class="section-title">Your files are unlocked.</h2>
+    <p class="ws-welcome-sub">The working directory is yours. Same place, same access — every time you come back.</p>
+    <ul class="ws-welcome-files">
+      <li>
+        <a href="https://pub-7c8213b315404b04b5a8852bde0adcfa.r2.dev/workshop-MAO.zip" class="ws-welcome-file" download="workshop-MAO.zip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>workshop-MAO.zip · 38 files · ~34 MB</span>
+          <span class="ws-welcome-file-arrow">↓</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- HERO -->
+<section class="ws-hero" id="ws-hero">
+  <div class="section-inner">
+    <p class="section-label">Free Workshop</p>
+    <h1 class="ws-hero-title">Watch me build a <em>paid AI offer</em> — live, end-to-end.</h1>
+    <p class="ws-hero-sub">Context → landing page → lead list → cold email automation → payment. One workshop. The exact files I built on stream.</p>
+  </div>
+</section>
+
+<!-- VIDEO (uses the same MAOVslPlayer as the index VSL — minimal CC-only chrome) -->
+<section class="section ws-section-video" id="ws-video">
+  <div class="section-inner">
+    <div class="vsl-player ws-vsl-frame">
+      <div class="mao-vsl-player" id="ws-vsl-player" data-allow-seek="true">
+        <video class="mvp-video" preload="metadata" playsinline>
+          <source src="https://pub-7c8213b315404b04b5a8852bde0adcfa.r2.dev/MAO-workshop-web.mp4" type="video/mp4">
+          <track kind="captions" src="./assets/subtitles/workshop.vtt" srclang="en" label="English">
+        </video>
+        <div class="mvp-poster" style="background-image: url('./assets/vsl/workshop-poster.jpg');">
+          <button class="mvp-big-play" aria-label="Play workshop">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+          </button>
+        </div>
+        <div class="mvp-controls">
+          <div class="mvp-progress">
+            <div class="mvp-progress-watched"></div>
+            <div class="mvp-progress-fill"></div>
+          </div>
+          <button class="mvp-ctrl mvp-play-pause" aria-label="Play/Pause">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          </button>
+          <div class="mvp-spacer"></div>
+          <button class="mvp-ctrl mvp-speed" aria-label="Playback speed">1×</button>
+          <button class="mvp-ctrl mvp-cc" aria-label="Captions">CC</button>
+          <span class="mvp-time">0:00 / 0:00</span>
+          <button class="mvp-ctrl mvp-fs" aria-label="Fullscreen">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCROLL CUE — points from video down to the directory so people don't
+     wander past it. -->
+<a href="#ws-files" class="ws-scroll-cue">
+  <span><strong>See what's inside the workshop directory</strong></span>
+  <svg class="ws-scroll-cue-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 5v14M19 12l-7 7-7-7"/>
+  </svg>
+</a>
+
+<!-- WORKING DIRECTORY (locked) -->
+<section class="section section-dark ws-files-section" id="ws-files">
+  <div class="section-inner">
+    <div class="ws-files-header">
+      <p class="section-label">Working Directory</p>
+      <h2 class="section-title">
+        <svg class="ws-lock-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="11" width="16" height="10" rx="2"/>
+          <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+        </svg>
+        The directory behind the workshop.
+      </h2>
+      <p class="ws-files-sub">Every file I built on stream — context, directives, copy, emails, the full landing page. Same structure I keep open in Cursor.</p>
+    </div>
+
+    <div class="ws-tree-card" id="ws-tree-card">
+      <header class="ws-tree-titlebar">
+        <span class="ws-tree-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="ws-tree-titlename">workshop · 38 files · 4 folders</span>
+        <span class="ws-tree-lock">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Locked
+        </span>
+      </header>
+      <div class="ws-tree-body">
+        <div class="ws-tree-row ws-tree-folder" data-depth="0">
+          <span class="ws-tree-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+          <span>workshop/</span>
+        </div>
+        <div class="ws-tree-row ws-tree-folder" data-depth="1">
+          <span class="ws-tree-indent"></span>
+          <span class="ws-tree-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+          <span>context/</span>
+        </div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>Jipsons-Context.m4a</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>Sales_Engine_60_Offer.docx</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>call_notes.m4a</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>call_notes.txt</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>jipson_business_notes.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>jipson_design_prompt.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>jipson_icp_map.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>jipson_landing_page_copy.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>jipson_linkedin.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>jipson_offer_options.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>jipson_signature_offer.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>jipson_value_extraction.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>jipsons_context.txt</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📊</span><span>leads.csv</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>leadsource.txt</span></div>
+
+        <div class="ws-tree-row ws-tree-folder" data-depth="1">
+          <span class="ws-tree-indent"></span>
+          <span class="ws-tree-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+          <span>directives/</span>
+        </div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>00_README.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>01_context_extraction.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>02_transcription_cleanup.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>03_value_extraction.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>04_offer_options.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>05_offer_refinement.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>06_icp_map.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>07_landing_page_copy.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>08_frontend_build.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>09_offer_document.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>10_sales_assets.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>11_content_calendar.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>12_lead_sourcing_strategy.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>13_lead_scraping_workflow.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>14_cold_email_sequence.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>15_personalized_email.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>16_sales_call_script.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>17_ltv_expansion_map.md</span></div>
+
+        <div class="ws-tree-row ws-tree-folder" data-depth="1">
+          <span class="ws-tree-indent"></span>
+          <span class="ws-tree-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+          <span>emails/</span>
+        </div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>cold_email_sequence.md</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>personalized_email.md</span></div>
+
+        <div class="ws-tree-row ws-tree-folder" data-depth="1">
+          <span class="ws-tree-indent"></span>
+          <span class="ws-tree-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+          <span>site/</span>
+        </div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">🌐</span><span>Sales Engine 60.html</span></div>
+        <div class="ws-tree-row ws-tree-file" data-depth="2"><span class="ws-tree-indent"></span><span class="ws-tree-icon">🌐</span><span>index.html</span></div>
+        <div class="ws-tree-row ws-tree-folder" data-depth="2">
+          <span class="ws-tree-indent"></span>
+          <span class="ws-tree-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></span>
+          <span>uploads/</span>
+        </div>
+        <div class="ws-tree-row ws-tree-file" data-depth="3"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>copy_file-1777605064958.md</span></div>
+
+        <div class="ws-tree-row ws-tree-file" data-depth="1"><span class="ws-tree-indent"></span><span class="ws-tree-icon">📄</span><span>joinMAO.txt</span></div>
+      </div>
+      <div class="ws-tree-fade" aria-hidden="true"></div>
+      <span class="ws-tree-meta"><strong>38 files</strong> · ~700 KB</span>
+      <a href="#ws-checkout" class="ws-tree-callout">
+        Unlock — ₹1,999 →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- UNIFIED CHECKOUT — directory + optional refundable enrollment upgrade -->
+<section class="ws-checkout" id="ws-checkout">
+  <div class="section-inner">
+    <div class="ws-checkout-card" id="ws-checkout-card"
+         data-rzp-tier1="https://rzp.io/rzp/mao-workshop"
+         data-rzp-tier2="https://rzp.io/rzp/s4Vuhjl">
+      <div class="ws-checkout-head">
+        <p class="ws-checkout-num" id="ws-checkout-eyebrow">Get The Files</p>
+        <h2 class="ws-checkout-title" id="ws-checkout-title">Get the Working Directory</h2>
+      </div>
+
+      <div class="ws-price-line">
+        <span class="ws-price-strike" id="ws-price-strike">₹1,999</span>
+        <span class="ws-price" id="ws-price">₹1,999</span>
+      </div>
+      <p class="ws-price-tag" id="ws-price-tag">Razorpay · UPI / Cards / EMI supported · One-time, lifetime access</p>
+
+      <ul class="ws-bullets" id="ws-bullets">
+        <li>Full workshop directory — context, directives, copy, emails, full landing page</li>
+        <li>Lifetime access, no subscription</li>
+        <li>Delivered immediately after payment</li>
+        <li class="ws-bullet-upgrade">₹3,000 of your payment applies toward your MAO cohort fee — final price is <strong>Full cohort fee − ₹5,000</strong> when you enroll</li>
+        <li class="ws-bullet-upgrade">Reviewed personally by Aden — skip the cold queue, get a direct response</li>
+        <li class="ws-bullet-upgrade">₹3,000 refundable if you don't enroll before cohort start (working directory portion is non-refundable since you keep it)</li>
+      </ul>
+
+      <!-- Upgrade checkbox: adds the refundable Applicant Ticket on top -->
+      <label class="ws-upgrade" for="ws-upgrade-toggle">
+        <input type="checkbox" id="ws-upgrade-toggle">
+        <span class="ws-upgrade-box" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </span>
+        <span class="ws-upgrade-text">
+          <span class="ws-upgrade-label">Also enroll refundably <span class="ws-upgrade-plus">+ ₹3,000</span></span>
+          <span class="ws-upgrade-desc">Applicant Ticket — ₹3,000 applies to your MAO cohort fee, refundable if you don't enroll before cohort start. Workshop viewers only.</span>
+        </span>
+      </label>
+
+      <!-- Refund math (visible only when upgrade is checked) -->
+      <div class="ws-refund-math">
+        <strong>How the ₹5,125 breaks down:</strong>
+        <ul class="ws-refund-breakdown">
+          <li>₹2,000 — Working Directory <em>(yours to keep)</em></li>
+          <li>₹3,000 — refundable enrollment portion</li>
+          <li>₹125 — 2.5% gateway fee <em>(non-refundable)</em></li>
+        </ul>
+        If you enroll in MAO before cohort start, the full ₹5,000 applies — your cohort fee becomes <strong>Full cohort fee − ₹5,000</strong>. If you decide not to enroll, request a refund before cohort start and we return ₹3,000. You keep the directory either way.
+      </div>
+
+      <a href="https://rzp.io/rzp/mao-workshop"
+         class="btn btn-primary btn-full ws-cta"
+         target="_blank"
+         rel="noopener"
+         id="ws-cta"
+         data-tier="1">
+        <span id="ws-cta-text">Get the Files — ₹1,999</span>
+      </a>
+      <p class="ws-cta-meta" id="ws-cta-meta">Secure checkout via Razorpay. Instant download.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-dark ws-faq" id="ws-faq">
+  <div class="section-inner">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title">A few quick answers.</h2>
+    <div class="ws-faq-list">
+      <details class="ws-faq-item">
+        <summary>What's in the working directory?</summary>
+        <div>
+          <p>The complete folder I built on stream — 38 files across 4 folders, same structure I keep open in Cursor:</p>
+          <ul>
+            <li><strong>context/</strong> — the raw input the workshop runs on: client call recordings + transcripts, business notes, ICP map, value-extraction doc, signature-offer breakdown, landing-page copy, LinkedIn audit, leads CSV. (15 files)</li>
+            <li><strong>directives/</strong> — the 18 numbered Cursor / Claude Code prompts that drive the whole pipeline: context extraction, transcription cleanup, value extraction, offer options + refinement, ICP map, landing-page copy, frontend build, offer doc, sales assets, content calendar, lead sourcing + scraping, cold email + personalization, sales-call script, LTV expansion. (00_README → 17_ltv_expansion_map)</li>
+            <li><strong>emails/</strong> — the cold email sequence + personalized email templates ready to fork. (2 files)</li>
+            <li><strong>site/</strong> — the production-grade landing page output: <code>Sales Engine 60.html</code>, <code>index.html</code>, and <code>uploads/copy_file-1777605064958.md</code> (the copy doc).</li>
+            <li><strong>joinMAO.txt</strong> — the contact channels for Aden.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ws-faq-item">
+        <summary>How does the refundable enrollment work?</summary>
+        <div>
+          <p>If you tick "Also enroll refundably" you pay <strong>₹5,125</strong> via Razorpay. That's ₹2,000 for the working directory + ₹3,000 toward your MAO enrollment + ₹125 gateway fee.</p>
+          <ul>
+            <li>If you enroll in MAO before cohort start, the full ₹5,000 applies — your cohort fee becomes <strong>Full cohort fee − ₹5,000</strong>.</li>
+            <li>If you don't enroll before cohort start, request a refund and we return ₹3,000. You keep the directory (₹2,000) and the gateway fee (₹125) is non-refundable.</li>
+          </ul>
+        </div>
+      </details>
+      <details class="ws-faq-item">
+        <summary>How fast is access?</summary>
+        <div>
+          <p>Immediate. The moment Razorpay confirms your payment, you'll land on a thanks page with the download link. The page also remembers your unlock — you can close the tab and come back here anytime, the files will be waiting.</p>
+        </div>
+      </details>
+      <details class="ws-faq-item">
+        <summary>How do I claim the refund?</summary>
+        <div>
+          <p>DM <a href="https://instagram.com/aden_gomes" target="_blank" rel="noopener">@aden_gomes</a> on Instagram or email <a href="mailto:adengomes50@gmail.com">adengomes50@gmail.com</a> any time before the cohort start date. Reference your Razorpay payment ID. We'll process the ₹3,000 refund within 5 business days.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="nav-brand">MAO<span class="blink">_</span></span>
+      <p>The Modern AI Operator — by Aden Gomes</p>
+    </div>
+    <div class="footer-links">
+      <a href="./index.html">Cohort</a>
+      <a href="https://instagram.com/aden_gomes" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://coldflowagent.com" target="_blank" rel="noopener">ColdFlow Agent</a>
+      <a href="mailto:adengomes50@gmail.com">Email</a>
+    </div>
+    <p class="footer-copy">© 2026 Aden Gomes. Built with AI.</p>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA -->
+<a href="#ws-checkout" class="ws-mobile-cta" id="ws-mobile-cta">Get the Files — ₹1,999</a>
+
+<script src="./vsl-player.js?v=7"></script>
+<script src="./workshop.js?v=4"></script>
+</body>
+</html>

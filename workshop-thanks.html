@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--
+  Post-purchase landing for /free-workshop checkouts.
+
+  Razorpay payment links should redirect here with:
+    ?razorpay_payment_id=XYZ&tier=1   (Working Directory only)
+    ?razorpay_payment_id=XYZ&tier=2   (Applicant Ticket — also unlocks WD)
+
+  CONFIGURATION TODO before going live:
+  - Update WORKSHOP_ZIP_URL below to point at the hosted working-directory zip.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Working Directory Unlocked — MAO_</title>
+  <meta name="description" content="Your workshop files are ready.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css?v=5">
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "waior3g8uq");
+  </script>
+  <style>
+    .wt-wrap {
+      min-height: 100svh;
+      padding: 130px 24px 80px;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    .wt-wrap::before, .wt-wrap::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.13;
+      pointer-events: none;
+    }
+    .wt-wrap::before {
+      width: 480px; height: 480px;
+      background: var(--accent);
+      top: -120px; left: -100px;
+    }
+    .wt-wrap::after {
+      width: 380px; height: 380px;
+      background: #3a6bff;
+      bottom: -80px; right: -80px;
+      opacity: 0.08;
+    }
+    .wt-inner {
+      max-width: 580px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .wt-check {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      background: rgba(200, 255, 0, 0.08);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 26px;
+      color: var(--accent);
+      animation: wtIn 0.7s var(--ease) 0.1s both;
+      position: relative;
+    }
+    .wt-check::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      opacity: 0;
+      animation: wtRing 2.4s var(--ease) infinite;
+    }
+    @keyframes wtIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes wtRing {
+      0% { transform: scale(0.92); opacity: 0.85; }
+      100% { transform: scale(1.32); opacity: 0; }
+    }
+    .wt-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: 1px solid var(--accent-mid);
+      border-radius: 999px;
+      background: rgba(200, 255, 0, 0.06);
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .wt-pill-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .wt-title {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(1.6rem, 4.4vw, 2.4rem);
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+    .wt-title span { color: var(--accent); }
+    .wt-sub {
+      color: var(--text-dim);
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 460px;
+      margin: 0 auto 28px;
+    }
+
+    /* Download list — the actual gated files */
+    .wt-files {
+      display: grid;
+      gap: 10px;
+      margin: 24px 0 28px;
+      text-align: left;
+    }
+    .wt-file {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      transition: all 0.3s var(--ease);
+      text-decoration: none;
+      color: var(--text);
+    }
+    .wt-file:hover {
+      border-color: var(--accent);
+      background: rgba(200, 255, 0, 0.04);
+    }
+    .wt-file-icon {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .wt-file-text { flex: 1; min-width: 0; }
+    .wt-file-name {
+      display: block;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .wt-file-meta {
+      display: block;
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+    .wt-file-arrow {
+      color: var(--accent);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* Refund / next-steps box (Tier 2 only) */
+    .wt-box {
+      display: none;
+      margin: 32px 0 24px;
+      padding: 22px 22px;
+      border: 1px solid var(--accent-mid);
+      background: rgba(200, 255, 0, 0.04);
+      text-align: left;
+    }
+    .wt-box.visible { display: block; }
+    .wt-box-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .wt-box-steps {
+      list-style: none;
+      counter-reset: step;
+      padding: 0;
+    }
+    .wt-box-steps li {
+      counter-increment: step;
+      padding: 10px 0 10px 32px;
+      position: relative;
+      color: var(--text-dim);
+      font-size: 13px;
+      line-height: 1.6;
+      border-bottom: 1px solid rgba(200, 255, 0, 0.1);
+    }
+    .wt-box-steps li:last-child { border-bottom: 0; }
+    .wt-box-steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0; top: 10px;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wt-box strong {
+      color: var(--text);
+    }
+
+    .wt-payment-id {
+      margin-top: 24px;
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.4);
+      border: 1px dashed var(--border);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: none;
+      word-break: break-all;
+      text-align: left;
+    }
+    .wt-payment-id.visible { display: block; }
+    .wt-payment-id strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .wt-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .wt-footnote {
+      margin-top: 28px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-style: italic;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.65;
+    }
+    .wt-footnote a {
+      color: var(--accent);
+      border-bottom: 1px dashed var(--accent-mid);
+    }
+
+    @media (max-width: 640px) {
+      .wt-wrap { padding: 110px 20px 60px; }
+      .wt-check { width: 80px; height: 80px; }
+      .wt-check svg { width: 36px; height: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav class="nav">
+  <span class="nav-brand">MAO<span class="blink">_</span></span>
+  <a href="./free-workshop" class="nav-cta">← Workshop</a>
+</nav>
+
+<section class="wt-wrap">
+  <div class="wt-inner">
+    <div class="wt-check">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+        <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <div class="wt-pill">
+      <span class="wt-pill-dot"></span>
+      <span id="wt-pill-text">Payment Received</span>
+    </div>
+
+    <h1 class="wt-title" id="wt-title">Working directory <span>unlocked</span>.</h1>
+    <p class="wt-sub" id="wt-sub">The files from the workshop are yours. Grab them below — and they'll be here whenever you come back.</p>
+
+    <ul class="wt-files">
+      <li>
+        <a href="https://pub-7c8213b315404b04b5a8852bde0adcfa.r2.dev/workshop-MAO.zip" class="wt-file" id="wt-download-zip" download="workshop-MAO.zip">
+          <div class="wt-file-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+          </div>
+          <div class="wt-file-text">
+            <span class="wt-file-name">workshop-MAO.zip</span>
+            <span class="wt-file-meta">38 files · context, directives, emails, site · ~34 MB</span>
+          </div>
+          <span class="wt-file-arrow">↓</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Tier 2 only: refund window + Aden reach-out expectation -->
+    <div class="wt-box" id="wt-box-tier2">
+      <p class="wt-box-label">What happens next</p>
+      <ol class="wt-box-steps">
+        <li>Aden personally reviews your application within <strong>24–48 hours</strong> and reaches out via email or Instagram DMs.</li>
+        <li>If you enroll before the cohort start date, the full ₹5,000 applies — your <strong>cohort fee becomes Full cohort fee − ₹5,000</strong>.</li>
+        <li>Decide it's not for you? Email or DM Aden before cohort start and we refund ₹3,000. You keep the working directory (₹2,000) and the ₹125 gateway fee is non-refundable.</li>
+      </ol>
+    </div>
+
+    <div class="wt-payment-id" id="wt-payment-id-box">
+      Payment reference: <strong id="wt-payment-id"></strong>
+    </div>
+
+    <div class="wt-actions">
+      <a href="./free-workshop" class="btn btn-ghost">← Back to Workshop</a>
+      <a href="https://instagram.com/aden_gomes" target="_blank" rel="noopener" class="btn btn-primary">DM Aden on Instagram</a>
+    </div>
+
+    <p class="wt-footnote">
+      Questions? Email <a href="mailto:adengomes50@gmail.com">adengomes50@gmail.com</a>
+      or WhatsApp <a href="https://wa.me/918291144684">+91 82911 44684</a>.
+      Bookmark this page — your files are accessible from here for life.
+    </p>
+  </div>
+</section>
+
+<script>
+  /* ── Cursor glow ── */
+  const wtGlow = document.getElementById('cursorGlow');
+  if (wtGlow && window.matchMedia('(hover: hover)').matches) {
+    document.addEventListener('mousemove', e => {
+      wtGlow.style.transform = `translate(${e.clientX - 200}px, ${e.clientY - 200}px)`;
+    });
+  }
+
+  /* ── Read params + decide tier ── */
+  const params = new URLSearchParams(window.location.search);
+  const paymentId =
+    params.get('razorpay_payment_id') ||
+    params.get('payment_id') ||
+    params.get('pid');
+  const tier = params.get('tier') === '2' ? 2 : 1;
+
+  /* ── Surface payment ID if present ── */
+  if (paymentId) {
+    document.getElementById('wt-payment-id').textContent = paymentId;
+    document.getElementById('wt-payment-id-box').classList.add('visible');
+  }
+
+  /* ── Adjust copy based on tier ── */
+  if (tier === 2) {
+    document.getElementById('wt-pill-text').textContent = 'Applicant Ticket Confirmed';
+    document.getElementById('wt-title').innerHTML =
+      'You\'re in for the <span>cohort review</span>.';
+    document.getElementById('wt-sub').textContent =
+      'Your Applicant Ticket is locked in. Aden will personally review your application and reach out within 24–48 hours. The working directory is also yours — download below.';
+    document.getElementById('wt-box-tier2').classList.add('visible');
+  }
+
+  /* ── Set localStorage so /free-workshop shows welcome-back state ── */
+  try {
+    localStorage.setItem('mao-workshop-unlocked', 'true');
+    if (tier === 2) {
+      localStorage.setItem('mao-applicant-ticket', 'true');
+    }
+  } catch (_) { /* private mode etc — ignore */ }
+
+  /* ── Tag Clarity session + log purchase to the same Apps Script that
+        powers the rest of the site (vault/application). Idempotent: we
+        guard with a per-payment-id sessionStorage flag so a refresh on
+        this page doesn't re-log. ── */
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtnnkO9K8EBsvtDwsnWislPgLDuBSZ1Xd7PgsfXJiB7kUadA882lUAHF5IqY9Wou9v2w/exec';
+  const logKey = 'mao-ws-logged-' + (paymentId || 'no-pid');
+  const alreadyLogged = sessionStorage.getItem(logKey) === 'true';
+
+  if (!alreadyLogged) {
+    if (typeof clarity === 'function') {
+      clarity('set', 'workshop_tier', String(tier));
+      if (paymentId) clarity('set', 'workshop_payment_id', paymentId);
+      clarity('event', tier === 2 ? 'applicant_ticket_purchased' : 'workshop_files_purchased');
+    }
+
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({
+        form_type: tier === 2 ? 'applicant_ticket' : 'workshop_purchase',
+        payment_id: paymentId || '',
+        tier,
+        source: 'workshop_thanks'
+      })
+    }).catch(() => { /* opaque response — best-effort */ });
+
+    sessionStorage.setItem(logKey, 'true');
+  }
+</script>
+</body>
+</html>

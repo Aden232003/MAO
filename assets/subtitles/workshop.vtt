@@ -1,0 +1,4183 @@
+WEBVTT
+
+00:00.000 --> 00:07.199
+So, welcoming you to the MAO free workshop, where you get to learn how to build an offer
+
+00:07.199 --> 00:08.199
+live.
+
+00:08.199 --> 00:14.479
+So, I'm going to be taking you over how to build a paid AI offer, starting with some
+
+00:14.479 --> 00:19.680
+context that I have live from one of my community members.
+
+00:19.680 --> 00:25.440
+And we take all that context because I was on a call with this person, and I also got
+
+00:25.440 --> 00:29.559
+a voice note from them later, and I'm also going to be scraping the internet for more
+
+00:29.559 --> 00:33.799
+context, so you'll be able to see how do you do that within my cloud code, or maybe Codex
+
+00:33.799 --> 00:35.159
+if you want to.
+
+00:35.159 --> 00:39.119
+And then we extract that value, we convert that into an offer, create the page, create
+
+00:39.119 --> 00:44.000
+the relevant assets, create relevant leads, make our lead list, look at how to automate
+
+00:44.000 --> 00:48.880
+the cold email sequences, have personalization, and finally, how do you collect cash for things
+
+00:48.880 --> 00:49.880
+like this.
+
+00:49.880 --> 00:53.560
+So, it's a complete step-by-step process, which I'm going to run live right now.
+
+00:53.560 --> 00:58.319
+And this is the core context of MAO, which is, you know, being a modern AI operator is
+
+00:58.319 --> 01:04.959
+building all of these synchronously to your past experience, to your, you know, to the
+
+01:04.959 --> 01:12.440
+model which you are resonant with, and not having any, you know, separate blocks, like
+
+01:12.440 --> 01:16.599
+I had people be, again, I need help on your cold email, I have a website, but that's not
+
+01:16.599 --> 01:20.879
+the point of it, the point is how do you take all of the data in one synchronous pattern
+
+01:20.879 --> 01:23.120
+and build something relevant from scratch.
+
+01:23.120 --> 01:26.879
+So that's what we're going to be exploring right now.
+
+01:26.879 --> 01:32.120
+And sorry if I'm a bit buggy, because I'm on decaf this morning, I've not been having
+
+01:32.120 --> 01:34.319
+a lot of coffee, but let's get to it.
+
+01:34.319 --> 01:39.040
+So let me take you to my cloud code within my cursor.
+
+01:39.040 --> 01:42.160
+So if I can explain to you what this is, we'll actually just close it off, I've made all
+
+01:42.160 --> 01:47.360
+my directives, which is basically prompts, and I will show you what this is.
+
+01:47.360 --> 01:51.959
+Okay, so this is workshop in cursor, basically, what is this, the folder you see on the left
+
+01:51.959 --> 01:55.800
+hand side or the right hand side of your screen, depending on how it mirrors, like it says
+
+01:55.800 --> 02:00.519
+workshop, it says context directives, these are basically folders, like if I say, show
+
+02:00.519 --> 02:04.879
+me in finder, or if you're in windows, it's basically just a folder, right?
+
+02:04.879 --> 02:09.039
+It's the ability to, you know, give have this all open in one working directory, or one
+
+02:09.039 --> 02:10.039
+working folder.
+
+02:10.039 --> 02:12.919
+So I made this for the workshop, which we're going to be exploring right now.
+
+02:12.919 --> 02:17.320
+So it has context, the notes of the call with gypsum, and even some voice notes that he
+
+02:17.320 --> 02:18.720
+sent me.
+
+02:18.720 --> 02:22.399
+And the other thing is, I mean, it's what this PNG right, which explains what we're going
+
+02:22.399 --> 02:25.039
+to be doing right now.
+
+02:25.039 --> 02:29.839
+So it's just for my context, you know, we're going in that synchronous pattern, and then
+
+02:29.839 --> 02:31.199
+there are directives.
+
+02:31.199 --> 02:37.399
+So it's like a kind of IPS to follow and a proven roadmap to follow while you execute
+
+02:37.399 --> 02:39.279
+step by step processes.
+
+02:39.279 --> 02:45.279
+So we'll be executing most of these right now that are relevant towards gypsum context.
+
+02:45.279 --> 02:50.759
+So now we firstly are going to open a new terminal, a terminal is a place where computer
+
+02:50.759 --> 02:54.059
+runs its commands in computer language.
+
+02:54.059 --> 02:58.139
+And now this is where the modern AI leverage comes in is because you can run your commands
+
+02:58.139 --> 02:59.139
+using English.
+
+02:59.139 --> 03:04.339
+Initially, what I had to do is like, I mean, you know, run like a Python file and write
+
+03:04.339 --> 03:12.179
+all of this in Python, or JavaScript, or initial days, people used to do C, objective C, very
+
+03:12.179 --> 03:15.380
+difficult coding languages with no which no one understands.
+
+03:15.380 --> 03:19.259
+But today you and as Python had come in in the day, it was a big thing that a Python
+
+03:19.259 --> 03:22.660
+is almost as close to English or JavaScript is as close to English.
+
+03:22.660 --> 03:27.860
+But today, you have this beast is flawed, or you would even use codecs.
+
+03:27.860 --> 03:31.740
+And what these things do, and you can also use the application versions of this, which
+
+03:31.740 --> 03:32.740
+are also very good.
+
+03:32.740 --> 03:34.139
+And we can explore that down the line.
+
+03:34.139 --> 03:37.699
+But these allow you to write in English, and I like to buy the max plans.
+
+03:37.699 --> 03:43.740
+So I mean, again, I have enough usage available to me, so you always go to max so that it's
+
+03:43.740 --> 03:46.860
+always using the best thinking ability for the AI model.
+
+03:46.860 --> 03:50.259
+And what I'm going to do now is we just give English prompts, and it's going to use tool
+
+03:50.259 --> 03:51.259
+calling.
+
+03:51.259 --> 03:55.380
+And tool calling essentially is it creates its own tools using third parties, or maybe
+
+03:55.380 --> 03:59.179
+even its own tools like one of the tools I made is this path grabber tool you see on
+
+03:59.179 --> 04:03.020
+the top right or top left, I don't know where you see it, but you can see it open.
+
+04:03.020 --> 04:08.139
+So this helps me give enough context while I use my coding agents right in the terminal,
+
+04:08.139 --> 04:09.139
+right.
+
+04:09.139 --> 04:10.639
+So here, this is cursor, we're using one directory.
+
+04:10.639 --> 04:14.880
+But sometimes what you can also do is like just open up a raw terminal, which is a part
+
+04:14.880 --> 04:20.179
+of your system, either in Mac external or the CMD, the command prompt and windows.
+
+04:20.179 --> 04:23.019
+And you can just get up a new coding agent right there.
+
+04:23.019 --> 04:26.339
+And now what you do is you do not have the directory structure, right.
+
+04:26.339 --> 04:30.700
+So what I made for myself is this path grabber tool that allows me to pull context from anywhere.
+
+04:30.700 --> 04:37.380
+So if I want to, like, go to my downloads, and I want to just, you know, have any folder
+
+04:37.380 --> 04:38.380
+that I want to work with.
+
+04:38.380 --> 04:40.220
+So suppose student dashboard, okay, there's nothing here.
+
+04:40.220 --> 04:44.260
+But there's a folder, right, there could be some files here, but assume there's no files,
+
+04:44.260 --> 04:45.260
+there's just a folder.
+
+04:45.260 --> 04:46.260
+So you just click, copy the path of this, right.
+
+04:46.260 --> 04:47.260
+And I don't know if it copied that.
+
+04:47.260 --> 05:04.140
+And you'd be like, insert a dot text file, explaining in brief, the concept of blackhole.
+
+05:04.140 --> 05:08.459
+Something is just to give you some context around how a coding agent works, and how tool
+
+05:08.459 --> 05:12.019
+calling works, and how you can build your own tools and the goals like path grabber
+
+05:12.019 --> 05:13.019
+is something I made.
+
+05:13.179 --> 05:18.019
+The LLM or the coding agent perhaps can make its own tools to create to, you know, process
+
+05:18.019 --> 05:20.019
+different things to track different things.
+
+05:20.019 --> 05:23.500
+So you see it made this random thing that you know, what is a black hole.
+
+05:23.500 --> 05:28.140
+So it's just an example of how you can use this with speed, right in your terminal, but
+
+05:28.140 --> 05:31.500
+we're going to be using it in a working directory for our workshop today.
+
+05:31.500 --> 05:32.500
+So let's start with gypsum.
+
+05:32.500 --> 05:37.820
+So I had this call with gypsum, it's a very, he's a very high value individual, someone
+
+05:37.820 --> 05:42.500
+probably like my entire target audience for the cohort or for my Instagram or for all
+
+05:42.500 --> 05:47.260
+the content I make, are people like me from the past who used to do jobs, and they're
+
+05:47.260 --> 05:48.260
+very good at it.
+
+05:48.260 --> 05:52.579
+They're like, you know, the main zone of focus in their offices, but then they don't get
+
+05:52.579 --> 05:53.579
+enough.
+
+05:53.579 --> 05:56.540
+You know, either they're not getting paid as much as they want, they don't have the
+
+05:56.540 --> 06:00.779
+freedom in life of the both of them, right, which is what I wanted, like I wanted to make
+
+06:00.779 --> 06:04.619
+four lakhs a month if the job was the main thing, but no one would pay that like I was
+
+06:04.619 --> 06:06.100
+making a lakh a month.
+
+06:06.100 --> 06:10.739
+And all I got ahead of that was like 20% of a raise after six months of working and delivering
+
+06:10.739 --> 06:15.019
+industry enterprise level outputs as a one person employee.
+
+06:15.019 --> 06:19.299
+But then I didn't like that and apart the salary part of things, it's also that, you
+
+06:19.299 --> 06:25.899
+know, as an employee, you, you know, you kind of are always stuck with time.
+
+06:25.899 --> 06:31.739
+So like right now I'm free, it's like 7.50 in the morning, I woke up at six, and I wrote
+
+06:31.739 --> 06:40.179
+my journals, I had a nice cup of coffee, my milky decaf, as I said, so I can do these
+
+06:40.179 --> 06:41.179
+things.
+
+06:41.179 --> 06:42.179
+I also did it while I was at the job.
+
+06:42.179 --> 06:45.420
+But the problem with the job was, my entire day was messed up.
+
+06:45.420 --> 06:49.500
+But now after this, I'll do my meditations, I can let this call stretch a bit so that
+
+06:49.500 --> 06:51.899
+I'm giving you enough explanation.
+
+06:51.899 --> 06:55.579
+And I can go to the gym in the between of the day, I can go for a swim in the between
+
+06:55.579 --> 06:56.579
+of the day.
+
+06:56.579 --> 06:59.260
+I mean, we have all this infrastructure around us, there's a pool in my building, there's
+
+06:59.260 --> 07:00.260
+a gym in my building.
+
+07:00.260 --> 07:02.380
+But with the job, it was like, I couldn't use these things.
+
+07:02.380 --> 07:04.459
+I couldn't use my PlayStation five.
+
+07:04.459 --> 07:07.619
+I couldn't, you know, make workshops on the go, I couldn't create content because it's
+
+07:07.619 --> 07:13.260
+so attuned towards having this person sitting on the top of you, who's called a manager.
+
+07:13.260 --> 07:17.420
+And all he will do is, you know, constantly run to you with tasks, which don't make sense
+
+07:17.420 --> 07:18.420
+to you.
+
+07:18.420 --> 07:21.140
+But just for the sake of it, just because he's hired you and he needs to, you know,
+
+07:21.140 --> 07:25.500
+log his, I don't know, hours, he will annoy the fuck out of you.
+
+07:25.500 --> 07:27.540
+And it's not even his fault.
+
+07:27.540 --> 07:29.859
+But it's just a system that doesn't work anymore.
+
+07:29.859 --> 07:31.540
+It's modern slavery.
+
+07:31.540 --> 07:37.100
+And when you have the ability to, you know, use modern AI to and, you know, just articulate
+
+07:37.100 --> 07:39.859
+yourself into something good, which is what I'm going to show you in this workshop is,
+
+07:39.859 --> 07:43.140
+you know, taking these notes and making something so good out of it, being in the business of
+
+07:43.140 --> 07:48.540
+yourself and, you know, not having to do a job ever again, because that's what I did
+
+07:48.540 --> 07:49.619
+for myself.
+
+07:49.619 --> 07:51.220
+So let's start right now.
+
+07:51.220 --> 07:52.940
+So we're going to take these two call notes.
+
+07:52.940 --> 07:55.660
+And what I'm also going to do is we're going to scrape about gypsum.
+
+07:55.660 --> 07:59.980
+Okay, so I'll show you who's gypsum, he's the guy who let me close these extra tabs
+
+07:59.980 --> 08:02.980
+because they're taking away my multitasking capabilities.
+
+08:02.980 --> 08:03.980
+Okay, nice.
+
+08:03.980 --> 08:08.779
+So let's come to Chrome, I have gypsum here.
+
+08:08.779 --> 08:13.220
+So this is the guy who contacted me and I took his permission, we're going to make an
+
+08:13.220 --> 08:15.100
+entire plan for him.
+
+08:15.100 --> 08:18.299
+And let's just look at his contacts.
+
+08:18.299 --> 08:21.059
+He has some great contacts, he's done some stuff.
+
+08:21.059 --> 08:25.100
+He's, you know, closed a lot of deals and all of that he's he's into sales.
+
+08:25.100 --> 08:31.260
+So what we do is we just grab this link and we come here and be like, this is additional
+
+08:31.260 --> 08:49.739
+context for gypsum add it to the context folder and add relevant details that could map onto
+
+08:50.739 --> 09:00.340
+So the context here is that, you know, these AI tools can scrape by themselves.
+
+09:00.340 --> 09:02.940
+And now you'll get get to see an experience of tool calling.
+
+09:02.940 --> 09:10.340
+So you see how it sees the directory where this LSLA, LSLA is a command that allows you
+
+09:10.340 --> 09:11.340
+to see stuff.
+
+09:11.340 --> 09:16.140
+And you can see it's already pulling out the directive from here, which is number five,
+
+09:16.140 --> 09:20.140
+or I think it's number five, right?
+
+09:20.140 --> 09:21.140
+Yeah.
+
+09:21.140 --> 09:26.260
+So it's fetching databases of the prompts given here or the directives given here and
+
+09:26.260 --> 09:27.700
+at the same time also tool calling.
+
+09:27.700 --> 09:32.419
+So like fetch, this is a this is a sort of process.
+
+09:32.419 --> 09:34.460
+So it has a problem.
+
+09:34.460 --> 09:35.460
+And it's so smart, right?
+
+09:35.460 --> 09:38.659
+You see LinkedIn blocked the webfetch, but it also has stealth browser and I'm also going
+
+09:38.659 --> 09:39.659
+to show you some of my skills.
+
+09:39.659 --> 09:43.859
+So if I can just open my skills folder, meanwhile, so Cloud books on skills, you can see this,
+
+09:43.859 --> 09:48.299
+I'll just try to copy this and open this, we'll not just see stealth browser, but we'll
+
+09:48.299 --> 09:49.299
+see agent browser.
+
+09:49.299 --> 09:53.219
+So let me come this, we'll see all the skills, I have multiple skills, I have some of my
+
+09:53.219 --> 09:54.219
+own skills.
+
+09:54.219 --> 09:56.219
+So you could just open this.
+
+09:56.219 --> 10:01.859
+I guess it's using, it's using the skill right now, but I want to show you the skill folder
+
+10:01.859 --> 10:02.859
+as well.
+
+10:02.859 --> 10:06.099
+So that you know, let's see.
+
+10:06.099 --> 10:13.059
+So this is a step to show you the entire folder so that you know, you have enough context
+
+10:13.059 --> 10:16.659
+around skills, because skills are what Cloud runs on.
+
+10:16.659 --> 10:19.059
+It's having multiple bunch of skills.
+
+10:19.059 --> 10:23.580
+And you know, that's what I teach in the last part of even MAO is that, you know, once you're
+
+10:23.580 --> 10:29.380
+done with everything, you make systematized, you know, pipelines, so that things are happening
+
+10:29.380 --> 10:35.340
+on stable, it's happening on a pipeline, it's happening on automation, rather than SOP.
+
+10:35.340 --> 10:36.900
+So that's what a skill is about.
+
+10:36.900 --> 10:41.059
+It takes all these tool calls, that is like, hey, now we fetch this now use this and it
+
+10:41.059 --> 10:44.419
+doesn't pull these things in the between, like this is my focus, you know, I'm not giving
+
+10:44.419 --> 10:45.419
+it any skills.
+
+10:45.419 --> 10:50.700
+But I mean, then it eventually with its thinking abilities knew that hey, let's use stealth
+
+10:50.700 --> 10:51.700
+browser.
+
+10:51.700 --> 10:53.340
+But I think what would be better is the agent browser.
+
+10:53.340 --> 10:57.859
+So we'll give this another minute, so that you're not going to do its thing with stealth
+
+10:57.859 --> 10:58.859
+browser.
+
+10:58.859 --> 11:00.700
+But then I think agent browser would be the better way to go ahead.
+
+11:00.700 --> 11:05.900
+Meanwhile, I'll just try to show you my skill folders and also give you a nuance on skills.
+
+11:05.900 --> 11:07.659
+So here it is.
+
+11:07.659 --> 11:12.460
+Let me just copy this much and put it in this.
+
+11:12.460 --> 11:15.020
+It's not opening up for some reason.
+
+11:15.020 --> 11:19.219
+Okay, I'll just the best thing when you know things don't open up, you just split up a
+
+11:19.219 --> 11:23.179
+new terminal and give it to Claude.
+
+11:23.179 --> 11:32.659
+Because it has tool calling abilities, as I said, so yes, open this, oh my days, open
+
+11:32.659 --> 11:33.659
+this.
+
+11:33.659 --> 11:45.979
+Okay, there you go, then skills.
+
+11:45.979 --> 11:50.340
+Okay, now this is, this is not the right skill folder.
+
+11:50.340 --> 11:54.419
+This is like an external folder I had made for a step.
+
+11:54.419 --> 12:02.140
+So a step is a other AI bot, which you sorry, an AI tool, which you can use to create music.
+
+12:02.619 --> 12:10.580
+Okay, let me just open the Claude skills folder, the path, like, this will give you more understanding
+
+12:10.580 --> 12:11.580
+of how skills work.
+
+12:11.580 --> 12:12.580
+There you go.
+
+12:12.580 --> 12:15.260
+This is what I was trying to show you, like it has all my skills over here, which I use
+
+12:15.260 --> 12:16.940
+on a regular basis.
+
+12:16.940 --> 12:18.500
+I use the wordcell deploy claimable.
+
+12:18.500 --> 12:23.700
+So this has a bunch of tool calls inside of it, which allows you to, you know, directly
+
+12:23.700 --> 12:27.900
+log into your wordcell via CLI, make a link via CLI.
+
+12:27.900 --> 12:31.539
+So once you're done, we'll be using the deployable skill in this workshop.
+
+12:31.539 --> 12:34.539
+Agent browser is what I'm going to use right now, because this thing is not working in
+
+12:34.539 --> 12:35.539
+my opinion.
+
+12:35.539 --> 12:36.539
+Okay.
+
+12:36.539 --> 12:37.539
+Did it work?
+
+12:37.539 --> 12:42.539
+Okay, fuck this, we'll use agent browser.
+
+12:42.539 --> 12:53.539
+You invoke agent browser and browser auth skill, and do not close the browser.
+
+12:54.539 --> 13:08.539
+Instead, split up a new instance, or open up the current active browser.
+
+13:08.539 --> 13:12.539
+So what this does is basically I have two skills, so browser auth is an intellectual
+
+13:12.539 --> 13:13.539
+property, it's my own skill.
+
+13:13.539 --> 13:18.539
+But if I look at, agent browser is more of a public skill that's available to you in
+
+13:18.539 --> 13:19.539
+market.
+
+13:19.539 --> 13:25.539
+And how can you get these skills is by going to skills, skills.sh.
+
+13:25.539 --> 13:28.539
+And you'll see like there are many skills available here.
+
+13:28.539 --> 13:30.539
+So you just need to like, whatever you want, right?
+
+13:30.539 --> 13:34.539
+So like the emotion for editing, you just come in here, emotion best practices, you
+
+13:34.539 --> 13:37.539
+copy this and paste it over there in your terminal.
+
+13:37.539 --> 13:38.539
+Sometimes it doesn't work.
+
+13:38.539 --> 13:40.539
+Sometimes it's like, hey, this is this is not a real thing.
+
+13:40.539 --> 13:41.539
+It hallucinates.
+
+13:41.539 --> 13:46.539
+But you got to be, you know, just tune the model to be like, no, this exists, run the
+
+13:46.539 --> 13:47.539
+command.
+
+13:47.539 --> 13:49.539
+And if it's not running the command, you can also directly run this in your terminal.
+
+13:49.539 --> 13:52.539
+So like, I've been always wanting some skills, right?
+
+13:52.539 --> 13:56.539
+So like there's Google official Google workspace skills like GWS.
+
+13:56.539 --> 14:00.539
+If you could just see, for example, let's say Google Calendar, right?
+
+14:00.539 --> 14:05.539
+This is this is a official Google API skill.
+
+14:05.539 --> 14:10.539
+So if I come to my terminal, oh my days.
+
+14:11.539 --> 14:15.539
+So if I come to my terminal and I run this command, it should actually get that skill
+
+14:15.539 --> 14:18.539
+for me.
+
+14:18.539 --> 14:20.539
+Yes.
+
+14:20.539 --> 14:24.539
+The skills, it's cloning the repository and it's asking me which coding agent do you want
+
+14:24.539 --> 14:25.539
+it for?
+
+14:25.539 --> 14:29.539
+So, of course, I want it for cloud code and I want it globally installed.
+
+14:29.539 --> 14:32.539
+So it should not only be installed on the project directory, right?
+
+14:32.539 --> 14:34.539
+It should not only be installed in the subfolder.
+
+14:34.539 --> 14:37.539
+It should be installed in the entire system in my path.
+
+14:37.539 --> 14:40.539
+That's the part wherein it will apply to everything.
+
+14:40.539 --> 14:45.539
+So whenever I'm in any cloud instance, I can always pull this particular skill for me.
+
+14:45.539 --> 14:50.539
+So I click global and that should get that skill for me.
+
+14:50.539 --> 14:51.539
+Yes.
+
+14:51.539 --> 14:55.539
+And it will get that skill in the global stuff for me so I can access the Google calendar
+
+14:55.539 --> 14:56.539
+skill from here.
+
+14:56.539 --> 15:02.539
+So if I go to cloud and we will just look at the skill, for example.
+
+15:02.539 --> 15:05.539
+So invoke GW as calendar.
+
+15:10.539 --> 15:12.539
+Skill.
+
+15:12.539 --> 15:14.539
+I mean, it's smart enough, but I'd like to give it a context.
+
+15:14.539 --> 15:16.539
+Meanwhile, we can also look at the search it's doing.
+
+15:16.539 --> 15:19.539
+So it's like I need to log in.
+
+15:19.539 --> 15:23.539
+I actually shouldn't ask me to log in because, you know, it's put up a new instance.
+
+15:23.539 --> 15:26.539
+That's the problem.
+
+15:26.539 --> 15:29.539
+Anyways, we'll just get that done.
+
+15:33.539 --> 15:34.539
+It's already a clone.
+
+15:34.539 --> 15:37.539
+I don't need to log in.
+
+15:37.539 --> 15:40.539
+You have one of this instance.
+
+15:40.539 --> 15:43.539
+I'll show you my codex later.
+
+15:43.539 --> 15:46.539
+And you have one of this instance.
+
+15:46.539 --> 15:48.539
+This is.
+
+15:50.539 --> 15:52.539
+It's already logged in.
+
+15:57.539 --> 16:08.539
+OK, I didn't install the right skill or did I install the right skill?
+
+16:08.539 --> 16:11.539
+I didn't install the right skills.
+
+16:11.539 --> 16:16.539
+We'll just, you know, kind of copy this context because it's saying, hey, you didn't get the right skills.
+
+16:16.539 --> 16:18.539
+So I just showed this.
+
+16:18.539 --> 16:20.539
+I did get this.
+
+16:21.539 --> 16:27.539
+While we are doing skills, I want to get this guy's thing done ASAP, because, you know, we're going off topic a lot.
+
+16:27.539 --> 16:28.539
+It's been 10 minutes.
+
+16:28.539 --> 16:32.539
+So let me just get into ultra focus mode now.
+
+16:32.539 --> 16:34.539
+I see you already have the workshop.
+
+16:34.539 --> 16:36.539
+This is this.
+
+16:38.539 --> 16:40.539
+Waiting for you to sign into LinkedIn.
+
+16:40.539 --> 16:42.539
+I'm already on LinkedIn.
+
+16:42.539 --> 16:44.539
+I'm already on LinkedIn.
+
+16:47.539 --> 16:49.539
+Use Cloud for Chrome.
+
+16:51.539 --> 17:01.539
+I mean, just use agent browser and scrape that LinkedIn profile ASAP.
+
+17:01.539 --> 17:07.540
+So it's like this thing annoys you as fuck at times if you know you're not like pushing into its code.
+
+17:07.540 --> 17:13.540
+So you just need to like keep giving it context to like do what it said, what it has to do.
+
+17:13.540 --> 17:14.540
+It's again saying sign up.
+
+17:14.540 --> 17:15.540
+OK, we'll just.
+
+17:19.540 --> 17:20.540
+Control O.
+
+17:24.540 --> 17:25.540
+Allow.
+
+17:25.540 --> 17:26.540
+Now.
+
+17:38.540 --> 17:42.540
+And then finally, you know, it's extracting Apple script jazz.
+
+17:44.540 --> 17:48.540
+Meanwhile, what we also need to do is, you know, like use these two context nodes.
+
+17:48.540 --> 18:01.540
+So we'll just copy this part and be like extract the voice from this to text using Whisper.
+
+18:01.540 --> 18:12.540
+So Whisper is a free code chat GPT or open AI speech to text model, which you can use, not the most accurate, but it's enough to get the job done.
+
+18:13.540 --> 18:19.540
+And add it to context dot text two files.
+
+18:23.540 --> 18:28.540
+So by doing this now, we'll have enough context from his LinkedIn, which should get stored in a while.
+
+18:33.540 --> 18:34.540
+So you see, it's getting all the context from him.
+
+18:34.540 --> 18:38.540
+So it's like he knows the brand strategy thing, the B2B growth based in Bangalore.
+
+18:38.540 --> 18:39.540
+It's a co-founder of his.
+
+18:39.540 --> 18:40.540
+And he had told me he had a.
+
+18:42.540 --> 18:44.540
+You know, real estate kind of business.
+
+18:45.540 --> 18:46.540
+So it's on as well.
+
+18:47.540 --> 18:48.540
+So I did just.
+
+18:49.540 --> 18:50.540
+Get all that context.
+
+18:55.540 --> 18:56.540
+OK, there you go to blockers.
+
+18:56.540 --> 18:57.540
+You know, the US binary is missing.
+
+18:57.540 --> 18:59.540
+The skill wraps this.
+
+19:00.540 --> 19:01.540
+Yes.
+
+19:01.540 --> 19:02.540
+So I have a new MacBook, by the way.
+
+19:03.540 --> 19:13.540
+So I need to always, you know, install some of my things like Google Workspace CLI, because if the system is new, so you need to like it will give you relevant context for each skill.
+
+19:13.540 --> 19:15.540
+So for this skill, you need Google Workspace.
+
+19:16.540 --> 19:19.540
+So as I showed you, I do just copy the relevant stuff you've done, pasted as context.
+
+19:20.540 --> 19:29.540
+And then you'll be like, hey, you may have the skill, but you don't have GWS, which is the relevant tool or the relevant, you know, function needed in order to run this particular skill.
+
+19:30.540 --> 19:32.540
+So and also skill is in the wrong place for cloud.
+
+19:33.540 --> 19:34.540
+It's installed in.
+
+19:35.540 --> 19:36.540
+This is about a lot.
+
+19:36.540 --> 19:37.540
+Good news from this.
+
+19:39.540 --> 19:40.540
+Yeah, also.
+
+19:40.540 --> 19:42.540
+So it also got installed at the wrong place.
+
+19:42.540 --> 19:46.540
+So we also need to say so install skill to the right place.
+
+19:48.540 --> 19:49.540
+Let that happen.
+
+19:50.540 --> 19:51.540
+Gibson, LinkedIn dot MD is ready.
+
+19:51.540 --> 19:52.540
+So there you go.
+
+19:52.540 --> 19:53.540
+We have all his context.
+
+19:54.540 --> 20:00.540
+We have all his roles and structured data that can be used by the LLM now to be converted into an offer.
+
+20:01.540 --> 20:02.540
+So.
+
+20:03.540 --> 20:05.540
+Prebuilt ammunition, offer picks, three productized directions.
+
+20:06.540 --> 20:09.540
+It's also got the offer picks because I have my directives in my folder.
+
+20:10.540 --> 20:16.540
+It's like he knows that I want to, you know, make these offer options, offer refinements based on the directives you already have here.
+
+20:17.540 --> 20:18.540
+So that's great.
+
+20:18.540 --> 20:25.540
+But so then I do this in a very step by step fashion based on what our client or what, you know, the person wants or what you want.
+
+20:25.540 --> 20:30.540
+Like in this case, Gibson wants to do something around, you know, service as a software.
+
+20:30.540 --> 20:40.540
+So high ticket services, but also, you know, using relevant tools to make sure it works for him as a very productized offering rather than a very consulting offering.
+
+20:41.540 --> 20:42.540
+Let's see this.
+
+20:42.540 --> 20:43.540
+Meanwhile.
+
+20:47.540 --> 20:48.540
+They were G.W.S.
+
+20:48.540 --> 20:50.540
+Calendar is getting added to the right place.
+
+20:50.540 --> 20:53.540
+Now, if now you just need to close this once and.
+
+20:54.540 --> 20:55.540
+G.W.S.
+
+20:55.540 --> 20:56.540
+Auth login.
+
+20:57.540 --> 20:59.540
+I can access my Google Calendar from here.
+
+20:59.540 --> 21:00.540
+So if I go control C.
+
+21:02.540 --> 21:03.540
+G.W.S.
+
+21:03.540 --> 21:04.540
+Auth login.
+
+21:06.540 --> 21:07.540
+What happened?
+
+21:07.540 --> 21:08.540
+No auth client.
+
+21:08.540 --> 21:09.540
+OK.
+
+21:09.540 --> 21:10.540
+Run G.W.S.
+
+21:10.540 --> 21:11.540
+Auth setup.
+
+21:14.540 --> 21:15.540
+Just follow the instructions.
+
+21:15.540 --> 21:16.540
+So you go to.
+
+21:23.540 --> 21:25.540
+So I log in with my Google account.
+
+21:25.540 --> 21:26.540
+This is official Google skill.
+
+21:27.540 --> 21:28.540
+That's all you can see.
+
+21:28.540 --> 21:29.540
+It's Google Cloud SDK.
+
+21:29.540 --> 21:30.540
+No, no idea.
+
+21:30.540 --> 21:31.540
+But also you should be a bit.
+
+21:34.540 --> 21:38.540
+Open to it like a bit, you know, on your toes when you're using some open source skills.
+
+21:39.540 --> 21:40.540
+This is made by Google.
+
+21:40.540 --> 21:43.540
+So I can just like, you know, connect some Google projects.
+
+21:43.540 --> 21:44.540
+Look at some APIs.
+
+21:45.540 --> 21:47.540
+So I want the Google Calendar API.
+
+21:48.540 --> 21:49.540
+And then auth credentials.
+
+21:49.540 --> 21:51.540
+I think it's already done, right?
+
+21:52.540 --> 21:53.540
+Auth client ID.
+
+21:53.540 --> 21:54.540
+Copy the client ID.
+
+21:57.540 --> 21:59.540
+I do have a client ID, but.
+
+22:00.540 --> 22:01.540
+You can just leave that for now.
+
+22:10.540 --> 22:11.540
+What about creating a new project?
+
+22:13.540 --> 22:14.540
+Let's call it workshop.
+
+22:20.540 --> 22:22.540
+Workshop because the ID is already in use.
+
+22:22.540 --> 22:23.540
+So let's say workshop 23.
+
+22:25.540 --> 22:26.540
+I could say workshop M.A.O.
+
+22:27.540 --> 22:29.540
+Because the ID is already in use.
+
+22:39.540 --> 22:41.540
+I think let's just tell Claude to do it.
+
+22:43.540 --> 22:44.540
+Claude.
+
+22:44.540 --> 22:45.540
+Yes.
+
+22:47.540 --> 22:48.540
+Use the GWS.
+
+22:49.540 --> 22:50.540
+Skill.
+
+22:51.540 --> 22:52.540
+To run.
+
+22:53.540 --> 22:54.540
+I don't have to set up my calendar.
+
+22:58.540 --> 23:00.540
+OK, so we have context as well now.
+
+23:00.540 --> 23:01.540
+So both the transcripts are saved.
+
+23:02.540 --> 23:04.540
+As you can see, I had a call with this guy.
+
+23:05.540 --> 23:07.540
+It basically used all the skills from.
+
+23:09.540 --> 23:10.540
+What's it called?
+
+23:10.540 --> 23:11.540
+Whisper.
+
+23:11.540 --> 23:12.540
+Because I already have Whisper installed into my system.
+
+23:12.540 --> 23:13.540
+It's a very lightweight thing.
+
+23:16.540 --> 23:17.540
+You can use it for free.
+
+23:17.540 --> 23:18.540
+I think it used my API key as well.
+
+23:18.540 --> 23:20.540
+Because my API key is an environment.
+
+23:21.540 --> 23:22.540
+But there you go.
+
+23:22.540 --> 23:23.540
+So you have enough context now.
+
+23:24.540 --> 23:25.540
+You have enough notes.
+
+23:25.540 --> 23:26.540
+You have the person's LinkedIn.
+
+23:27.540 --> 23:28.540
+So all you have to do now is.
+
+23:30.540 --> 23:31.540
+Take this context.
+
+23:33.540 --> 23:35.540
+Take text, text and the MD file.
+
+23:37.540 --> 23:38.540
+Copy it.
+
+23:38.540 --> 23:39.540
+And.
+
+23:39.540 --> 23:40.540
+Sorry.
+
+23:40.540 --> 23:41.540
+Copy part.
+
+23:42.540 --> 23:43.540
+And paste it here.
+
+23:43.540 --> 23:44.540
+So now.
+
+23:44.540 --> 23:49.540
+The LLM or the coding agent has all the context about what we are or what the person is.
+
+23:50.540 --> 23:51.540
+And what we can do is.
+
+23:52.540 --> 23:54.540
+Now that our context extraction phase is done.
+
+23:55.540 --> 23:56.540
+Transcription cleanup.
+
+23:56.540 --> 23:59.540
+So now you just clean up all of this into some good file.
+
+24:00.540 --> 24:01.540
+So you take this.
+
+24:01.540 --> 24:02.540
+And you paste this here.
+
+24:03.540 --> 24:04.540
+So this it will follow this directive.
+
+24:05.540 --> 24:06.540
+To do it on all the data.
+
+24:06.540 --> 24:07.540
+So take the raw transcript.
+
+24:07.540 --> 24:08.540
+Clean it into a business node.
+
+24:09.540 --> 24:11.540
+And do not make it into marketing assets yet.
+
+24:11.540 --> 24:12.540
+We just want the background.
+
+24:12.540 --> 24:13.540
+We want the skills.
+
+24:13.540 --> 24:14.540
+We want past experiences.
+
+24:14.540 --> 24:15.540
+Offer ideas.
+
+24:15.540 --> 24:16.540
+And we'll make this into a nice file.
+
+24:17.540 --> 24:19.540
+And you know, you can also convert this into a docx skill.
+
+24:19.540 --> 24:20.540
+But we won't do that now.
+
+24:20.540 --> 24:22.540
+We'll do it at the stage of offer options.
+
+24:22.540 --> 24:24.540
+So once we know what offer we're doing around stage five.
+
+24:25.540 --> 24:27.540
+We from there, you know, make like a docx.
+
+24:27.540 --> 24:28.540
+So that that or maybe around.
+
+24:29.540 --> 24:30.540
+Step nine.
+
+24:30.540 --> 24:32.540
+You know, that's when you know you make that very.
+
+24:32.540 --> 24:35.540
+Curated customized offer document, which you showed your clients.
+
+24:36.540 --> 24:37.540
+So that's that.
+
+24:37.540 --> 24:38.540
+Meanwhile, you can also look at skills.
+
+24:39.540 --> 24:42.540
+So you're not yet authenticated to set up calendar authenticate.
+
+24:43.540 --> 24:46.540
+So there's a lot of, you know, step-by-step functioning for skills like Google.
+
+24:47.540 --> 24:49.540
+Because you need to, you know, be very ultra safe.
+
+24:49.540 --> 24:52.540
+You need to give it all the relevant API keys and all these things.
+
+24:52.540 --> 24:53.540
+The client IDs.
+
+24:54.540 --> 24:55.540
+So I'm not going to do that right now.
+
+24:55.540 --> 24:56.540
+But the skill is there.
+
+24:56.540 --> 24:57.540
+You can use these things.
+
+24:57.540 --> 24:59.540
+You can always download your skills from skills.sh.
+
+24:59.540 --> 25:01.540
+And Claude will be able to interact with those skills.
+
+25:01.540 --> 25:03.540
+That was the main point of showing you this.
+
+25:03.540 --> 25:04.540
+I'm going to close this terminal now.
+
+25:04.540 --> 25:08.540
+And we're going to focus on the pure essence of this particular workshop,
+
+25:08.540 --> 25:12.540
+which is to build your offer, build landing pages out of it and take it to the market.
+
+25:12.540 --> 25:14.540
+So also writing emails and stuff.
+
+25:14.540 --> 25:16.540
+So let's just get to that.
+
+25:18.540 --> 25:22.540
+So right now, a coding agent is reading through our context files based on our directives
+
+25:22.540 --> 25:25.540
+and cleaning it for all the fluff, as you can see the prompt on the right.
+
+25:30.540 --> 25:48.540
+That's the thing with MaxMode is that, you know, I want to it just takes a lot of time.
+
+25:48.540 --> 25:49.540
+I want to just see how long we're in on this.
+
+25:49.540 --> 25:51.540
+So we're in 25 minutes and do not get done.
+
+25:51.540 --> 25:53.540
+You know, a lot of work we did.
+
+25:53.540 --> 25:54.540
+We did get some context.
+
+25:54.540 --> 25:56.540
+And I think that's what most people don't even do.
+
+25:56.540 --> 25:58.540
+So we're good there.
+
+25:58.540 --> 26:03.540
+But for my personal level, I think, you know, I just go all around the go all around the place.
+
+26:03.540 --> 26:05.540
+And then, you know, I'm just showing you 10 other things.
+
+26:05.540 --> 26:06.540
+But this is the main thing.
+
+26:06.540 --> 26:10.540
+So in 25 minutes, I could actually, you know, had done the offer document by now.
+
+26:10.540 --> 26:12.540
+So we're going to go really ultra focused right now.
+
+26:12.540 --> 26:13.540
+So it's time to lock in.
+
+26:13.540 --> 26:15.540
+So now it's saying stage two directive is clear.
+
+26:15.540 --> 26:19.540
+So it's following the directive, turning transcripts and the LinkedIn into a structured business note
+
+26:19.540 --> 26:21.540
+without the marketing polish.
+
+26:21.540 --> 26:24.540
+So you're going to have a nice file with all of these notes.
+
+26:24.540 --> 26:26.540
+And we're going to refer that.
+
+26:26.540 --> 26:27.540
+And you don't even have to refer it.
+
+26:27.540 --> 26:33.540
+Like right now, it's just about going from step A to step B to C to D to the final stage.
+
+26:33.540 --> 26:35.540
+Because we're in a time crunch.
+
+26:35.540 --> 26:37.540
+It's just to show you what is possible with speed.
+
+26:37.540 --> 26:38.540
+Of course, we'll go on.
+
+26:38.540 --> 26:44.540
+Like, I want to go into more depth in this, you know, each section of, you know, the outputs we get from the AI.
+
+26:44.540 --> 26:46.540
+And, you know, moderate with your own tinge.
+
+26:46.540 --> 26:48.540
+Like for me, I run Finomatic.
+
+26:48.540 --> 26:53.540
+So, you know, I've made my offer very ultra position towards this.
+
+26:53.540 --> 26:55.540
+And I make my offers even ultra position per client.
+
+26:55.540 --> 26:59.540
+So, like, this is for only finance creators with greater businesses, right?
+
+26:59.540 --> 27:05.540
+So it's like selling them AI rag bots, selling them automations, selling them content, AI content.
+
+27:05.540 --> 27:07.540
+Like I don't position it as AI content.
+
+27:07.540 --> 27:11.540
+I'd rather say chart animations, which sounds more premium and is more premium.
+
+27:11.540 --> 27:14.540
+So I think and then, you know, you connect all your past wins.
+
+27:14.540 --> 27:20.540
+And that's I think the biggest thing is, you know, taking your past case studies, your testimonials and making it into live marketing assets.
+
+27:20.540 --> 27:22.540
+So we're going to explore that for Gibson.
+
+27:22.540 --> 27:26.540
+Right now we have his business notes ready and we're going to open that and read through it.
+
+27:26.540 --> 27:28.540
+So he has three years of experience in.
+
+27:28.540 --> 27:32.540
+He's doing GTM at this company.
+
+27:32.540 --> 27:37.540
+He started his venture with three friends and he's still operating it on the side.
+
+27:37.540 --> 27:38.540
+He has a full corporate job.
+
+27:38.540 --> 27:40.540
+He discovered me on Instagram.
+
+27:40.540 --> 27:44.540
+He doesn't get a lot of fucking context.
+
+27:44.540 --> 27:45.540
+So we have skills.
+
+27:45.540 --> 27:47.540
+And this was my favorite.
+
+27:47.540 --> 27:52.540
+He sold $8000 worth of high ticket programs in AI prompting and all of that.
+
+27:52.540 --> 27:56.540
+So it's like it's just coarse garbage.
+
+27:56.540 --> 27:59.540
+Edtech usually is like coarse garbage.
+
+27:59.540 --> 28:03.540
+Like if you can sell that, it just shows you a level of skill and end to end account cycle.
+
+28:03.540 --> 28:05.540
+So he's done all these other stuff.
+
+28:05.540 --> 28:09.540
+So you see, it has all these things and it will also have his past experience.
+
+28:09.540 --> 28:11.540
+Early sales roles.
+
+28:11.540 --> 28:15.540
+I mean, we need to like it's a real estate firm.
+
+28:15.540 --> 28:18.540
+I remember he had told me this, but I mean, it's fine.
+
+28:18.540 --> 28:19.540
+If it's unclear, it's OK.
+
+28:19.540 --> 28:22.540
+I'm not going to fix that right now because I don't have the guy with me.
+
+28:22.540 --> 28:23.540
+But imagine, right.
+
+28:23.540 --> 28:26.540
+If you had him with me, he would have just been like, hey, this is wrong.
+
+28:26.540 --> 28:28.540
+I just need to add some context here.
+
+28:28.540 --> 28:29.540
+And that's great.
+
+28:29.540 --> 28:31.540
+So current offer ideas in tech and SaaS service is the way to go.
+
+28:31.540 --> 28:33.540
+Subscriptions and products are kind of dead.
+
+28:33.540 --> 28:37.540
+I'm planning to get into consulting where I can consult multiple startups in my own domain.
+
+28:37.540 --> 28:38.540
+Go to market strategies.
+
+28:38.540 --> 28:42.540
+You go in and set up their processes around their CRM and all that stuff.
+
+28:42.540 --> 28:46.540
+You can sell this as an entire thing as a service to certain startups with certain budgets.
+
+28:46.540 --> 28:50.540
+Then you can go for two, three months, automate their entire process and just take your cut and leave.
+
+28:50.540 --> 28:52.540
+This is what Gibson are exactly doing.
+
+28:52.540 --> 28:53.540
+It's quoted that from the call.
+
+28:53.540 --> 28:55.540
+So this is what we want to do.
+
+28:55.540 --> 28:58.540
+So what we do now is do value extraction.
+
+28:58.540 --> 29:04.540
+So we just copy the value extraction directive and say go ahead.
+
+29:04.540 --> 29:07.540
+And also, I think just link this file.
+
+29:08.540 --> 29:13.540
+Copy part and paste.
+
+29:13.540 --> 29:19.540
+So now extract the value from here and give us the top three monetizable directions based on our value extraction directive.
+
+29:19.540 --> 29:24.540
+And then from there, we can either build on all or like, you know, build some offers.
+
+29:24.540 --> 29:28.540
+And I find that offered build our ICP map so that we know who we are going to be reaching out to.
+
+29:28.540 --> 29:36.540
+And then from there, build our landing page, copy and also the landing page, because it hardly takes any time.
+
+29:36.540 --> 29:40.540
+Now, for landing page, I think I'll explain this as fast as possible is that we're going to use two tools.
+
+29:40.540 --> 29:47.540
+So one is a cloud design, which I have with my cloud max, or we can also use a tweak CN, which is another plan.
+
+29:47.540 --> 29:51.540
+So these are two options you have if you're using cloud design.
+
+29:51.540 --> 29:53.540
+This is just a design I made for my cohort.
+
+29:53.540 --> 29:57.540
+It's that for me, people are going to have a lot of access to tooling.
+
+29:57.540 --> 30:01.540
+I want it to be more of a software and, you know, a gamified experience rather than just a normal course.
+
+30:01.540 --> 30:03.540
+That's why it's going to be live.
+
+30:03.540 --> 30:04.540
+It's going to have a tool.
+
+30:04.540 --> 30:06.540
+It's going to have a week by week implementation.
+
+30:06.540 --> 30:08.540
+So that's why I made an app for this using cloud design.
+
+30:08.540 --> 30:11.540
+I mean, the app is yet to be formed, but the design is in place.
+
+30:11.540 --> 30:14.540
+So it's more of community and step by step gamified learning.
+
+30:14.540 --> 30:16.540
+But I'm also going to make a design for gypsum over here.
+
+30:16.540 --> 30:20.540
+But another free mode of, you know, using designs is tweak CN.
+
+30:20.540 --> 30:22.540
+So this is based on chat CN.
+
+30:22.540 --> 30:28.540
+If any one of you from tech backgrounds know the go to chat CN repository, which tweaks CN is based upon.
+
+30:28.540 --> 30:33.540
+So you have multiple presets over here that, you know, you can just copy the entire code first.
+
+30:33.540 --> 30:41.540
+If I just like, you know, look at different, you know, presets that look very good.
+
+30:41.540 --> 30:45.540
+I mean, there's dark mode, there's bright mode.
+
+30:45.540 --> 30:49.540
+And all you have to do is just take this code from here, copy this code and give it to your LLM.
+
+30:49.540 --> 30:51.540
+So you give it to GPT or you give it not.
+
+30:51.540 --> 30:57.540
+I'd say Codex because, you know, coding agents are way superior to like LLMs because, you know,
+
+30:57.540 --> 31:00.540
+they have tool calling as I explained to the start.
+
+31:00.540 --> 31:03.540
+I mean, it's good I took you through that because, you know, you have enough context now.
+
+31:03.540 --> 31:08.540
+But you can also like, I mean, there is some presets, right?
+
+31:08.540 --> 31:16.540
+So like if I generate 43 themes, there you go.
+
+31:16.540 --> 31:20.540
+So you go random themes, you'll get some nice themes over here that, you know, Sydney or brutalism.
+
+31:20.540 --> 31:21.540
+This looks so beautiful.
+
+31:21.540 --> 31:28.540
+So all you need to do is just copy this code, copy it and give it to your coding agent and it will make something out of it using that exact design language.
+
+31:28.540 --> 31:35.540
+And what you can also do is like, you know, just make a new file here and be like style CSS and just paste that over here.
+
+31:35.540 --> 31:41.540
+So this is exactly the current the kind of style that, you know, is being used to, you know, create this sort of a design.
+
+31:41.540 --> 31:43.540
+So anything that you make on your website will follow this design.
+
+31:43.540 --> 31:44.540
+But then this is very basic.
+
+31:44.540 --> 31:46.540
+I mean, it's still it looks really good.
+
+31:46.540 --> 31:47.540
+I'll be honest with you.
+
+31:47.540 --> 31:48.540
+I like the way this is looking.
+
+31:48.540 --> 31:53.540
+And you can also like go in here, modify it, go in and generate something with the LLM attached in it.
+
+31:53.540 --> 31:54.540
+But this is paid.
+
+31:54.540 --> 31:59.540
+I'd rather use my cloud design skill here and come up with a fresh design for Gibson.
+
+31:59.540 --> 32:07.540
+So let's just come out of this to the main cloud design page and set up a design system.
+
+32:07.540 --> 32:09.540
+Not a design system.
+
+32:09.540 --> 32:11.540
+I actually just want to.
+
+32:11.540 --> 32:14.540
+Yeah, I'm going to call this workshop.
+
+32:14.540 --> 32:15.540
+Workshop.
+
+32:15.540 --> 32:19.540
+And, you know, and we create a high fidelity design.
+
+32:19.540 --> 32:22.540
+And all I need to do is, you know, add in some context down here.
+
+32:22.540 --> 32:23.540
+OK, there you go.
+
+32:23.540 --> 32:27.540
+So it's taken all of this and converted it into three directions.
+
+32:27.540 --> 32:31.540
+So one is a sales engine script, which is a 60 day fractional GTM installed for pre-series.
+
+32:31.540 --> 32:39.540
+A B2B SaaS founders at three to eight lakhs or two to five lakhs a month retainer, which is going to be the signature offer.
+
+32:39.540 --> 32:43.540
+The other thing is, you know, you can do an inbox audit or an outbound install in 14 days.
+
+32:43.540 --> 32:46.540
+He he has a certain thing that he told me about Gmail account.
+
+32:46.540 --> 32:48.540
+So that's his personal IP.
+
+32:49.540 --> 32:56.540
+Gmail accounts and, you know, create these inbox audits and outbound installs, which, you know, many people would like to have.
+
+32:56.540 --> 33:03.540
+So like founders or companies like the place where he works at, he can install this for them and like one to two lakhs.
+
+33:03.540 --> 33:07.540
+And, you know, show them that here and run it for like a month or two weeks even.
+
+33:07.540 --> 33:09.540
+So this is a 37 on 50.
+
+33:09.540 --> 33:11.540
+But it it works.
+
+33:11.540 --> 33:13.540
+It's a cheaper deliverable and it upsells into it.
+
+33:13.540 --> 33:17.540
+So you can use this offer and you can deliver this offer out of that.
+
+33:17.540 --> 33:20.540
+And then the last thing is founder led to systematize sales.
+
+33:20.540 --> 33:24.540
+So premium 90 day program for any founder selling five lakh plus deals.
+
+33:24.540 --> 33:29.540
+OK, the founder led 12 month expansion play.
+
+33:29.540 --> 33:35.540
+So I don't exactly know what this does, but we can actually come to this file and have a look at it.
+
+33:35.540 --> 33:46.540
+So you can sell cold outbound sales processes, demo to close coaching, vertical SaaS, high ticket sales, outbound diagnostics.
+
+33:46.540 --> 33:48.540
+So this is more of consulting, right?
+
+33:48.540 --> 33:51.540
+Outbound diagnostics, but he should not sell a SaaS.
+
+33:51.540 --> 33:53.540
+He definitely wasn't doesn't want to do SaaS.
+
+33:53.540 --> 33:55.540
+He doesn't want to be a brand.
+
+33:55.540 --> 33:57.540
+He doesn't want to do all these things.
+
+33:57.540 --> 34:02.540
+U.S. priced offers without testimonials has zero published external testimonials.
+
+34:02.540 --> 34:05.540
+I mean, this is a bit biased now.
+
+34:05.540 --> 34:06.540
+I'll be honest.
+
+34:06.540 --> 34:10.540
+He can actually sell U.S. priced offers.
+
+34:10.540 --> 34:13.540
+It's not a big deal because he has the relevant testimonials.
+
+34:13.540 --> 34:16.540
+It's just about framing those testimonials in the context.
+
+34:16.540 --> 34:18.540
+Right. So we look at that as well.
+
+34:18.540 --> 34:20.540
+So these are some of his stuff.
+
+34:20.540 --> 34:22.540
+He sold five crore deals.
+
+34:22.540 --> 34:23.540
+Nice.
+
+34:23.540 --> 34:27.540
+So now what we do is we will move to the next step.
+
+34:27.540 --> 34:28.540
+Yes.
+
+34:28.540 --> 34:34.540
+Let's get offered options.
+
+34:34.540 --> 34:37.540
+Around direction.
+
+34:38.540 --> 34:43.540
+So we're going to be sticking to the 40 and 50 score.
+
+34:43.540 --> 34:45.540
+I like this sales engine sprint.
+
+34:45.540 --> 34:49.540
+It's like a two month install for like he can charge three lakhs or maybe even one lakh to start with.
+
+34:49.540 --> 34:51.540
+This is going to be a signature offer.
+
+34:51.540 --> 34:53.540
+And the other things could also be like base offers.
+
+34:53.540 --> 34:59.540
+Like if someone doesn't it's not affordable for someone, he can, you know, sort of give them offer B is what I like.
+
+34:59.540 --> 35:02.540
+I didn't understand offers yet, but probably Egyptian would understand that.
+
+35:02.540 --> 35:10.540
+So offer B is what we take in and, you know, convert into offer a once, you know, you're working enough with offer B because offer B is a cheaper deliverable.
+
+35:10.540 --> 35:14.540
+It's an easier implementation because you can do it within two weeks to a month.
+
+35:14.540 --> 35:16.540
+But this will take you at least two months of installation.
+
+35:16.540 --> 35:18.540
+Right. And it's a it's a larger pricing.
+
+35:18.540 --> 35:21.540
+So it kind of warms up your client while you're doing that.
+
+35:21.540 --> 35:29.540
+So you let this culminate over time.
+
+35:29.540 --> 35:32.540
+Let me just take a look at our context file.
+
+35:32.540 --> 35:37.540
+You saw my skills. I like to give all my skills to all my dear friends.
+
+35:37.540 --> 35:40.540
+OK, so we're at we're at extract right now.
+
+35:40.540 --> 35:44.540
+We're coming into offers. So we're kind of almost there right now.
+
+35:44.540 --> 35:51.540
+We're at offer options. By the time our offer document is done, I think we can also do that after the landing page.
+
+35:51.540 --> 35:54.540
+Because once we know our offer, we can actually directly go ahead on and build our landing page.
+
+35:54.540 --> 35:59.540
+And looking at the time, we're in at thirty five, thirty six minutes in the last 10 minutes.
+
+35:59.540 --> 36:03.540
+You've got a lot of work done is what you could say. We've got the heavy lifting done.
+
+36:03.540 --> 36:07.540
+And I think it's time to like start putting out some real stuff into the world.
+
+36:07.540 --> 36:11.540
+And I think the landing page is that first thing right when you put it off into the world.
+
+36:11.540 --> 36:26.540
+So let's just get this done is have stage for the product as offer options are getting ready.
+
+36:26.540 --> 36:29.540
+OK, stage four or five products as offer options in Direction A.
+
+36:29.540 --> 36:33.540
+So that's more fun, right? Because now you have one direction, which is a signature offer.
+
+36:33.540 --> 36:38.540
+And it's going to have like five different variations of that. So let's have a look at this.
+
+36:38.540 --> 36:44.540
+And, you know, when you have a problem, I also give you another trick is when you have a problem with, you know, making stuff work.
+
+36:44.540 --> 36:50.540
+What you can do is go to GPT and use the image.
+
+36:50.540 --> 36:56.540
+Or actually, wait, let's just let's just do it here.
+
+36:56.540 --> 37:03.540
+So create an image. And what we're going to do is take these five offers and we're going to give it as context to this GPT in image mode.
+
+37:03.540 --> 37:08.540
+Because GPT image is now very, you know, professional with text.
+
+37:08.540 --> 37:15.540
+It can really embed or rendered for photos with text and create this sort of visual graphic motion.
+
+37:15.540 --> 37:24.540
+Not a motion, but a visual graphic that helps you understand different stuff.
+
+37:24.540 --> 37:32.540
+You also need an ICB, right? A part of the offer is also getting your ICB rights and knowing who to reach out to, not just what to reach out to.
+
+37:33.540 --> 37:38.540
+So the 60 day audit, this is the flagship, as we already know, it's going to give it to us in the LLM output.
+
+37:38.540 --> 37:42.540
+So let's just close these folders and, you know, keep it really nice and clean.
+
+37:42.540 --> 37:48.540
+So, yep, the 60 day audit engine, 4 to 8 lakhs, 21 day outbound activation converts into offer one.
+
+37:48.540 --> 37:59.540
+The embed sales export, 3.5 to 5 lakhs a month, three month minimum, premium backend retainer, founder sales OS, this much per seat.
+
+37:59.540 --> 38:04.540
+This is more like a cohort. So he can even sell something like how I'm doing MAO because he has enough skill.
+
+38:04.540 --> 38:10.540
+He can sell a cohort as well. But I think the best for him would be, you know, starting this right away off the block.
+
+38:10.540 --> 38:16.540
+But we're going to go here and we're going to copy these offers.
+
+38:16.540 --> 38:24.540
+And. It's also giving you the launch date, right, like how fast do you execute on these.
+
+38:24.540 --> 38:45.540
+Let's. So we just put this here, generate an image of this base offer being distributed.
+
+38:46.540 --> 38:58.540
+Five offers, five directions to give us better understanding of what's being.
+
+38:58.540 --> 39:03.540
+Of what's to be done. So in this method, you can have more of a visual.
+
+39:03.540 --> 39:09.540
+If you're a visual learner, you can have an understanding of how these offers kind of, you know, move on to different things.
+
+39:09.540 --> 39:12.540
+But now we're soon going to go to the next stage is offer refinement.
+
+39:12.540 --> 39:16.540
+So. It's already given the recommendation, pick offer one.
+
+39:16.540 --> 39:24.540
+So, yes, let's do offer one and move ahead with offer refinement.
+
+39:24.540 --> 39:30.540
+And also what I'm going to do now is going to teach you parallel agents or sub agents.
+
+39:30.540 --> 39:43.540
+So. I'm also going to take ICP and map the ICP using a parallel agent.
+
+39:43.540 --> 39:49.540
+I think this is not the best way to go ahead, because, you know, the problem with the parallel agent is.
+
+39:49.540 --> 39:54.540
+I mean, the problem with the ICP is only once you're done with your offer refinement, can you do that?
+
+39:54.540 --> 40:01.540
+So what we do is we map the landing page copy rather than, you know, going ahead with the.
+
+40:01.540 --> 40:08.540
+Or we'll just let this happen one day, one at a time. We can do the landing page copy and the.
+
+40:08.540 --> 40:13.540
+Yeah, front end built together, I think, or the landing page copy in the offer document, because they will already know our offer.
+
+40:13.540 --> 40:19.540
+So then these two things will do a parallel agents. For now, let's just let's move ahead with offer refinement.
+
+40:19.540 --> 40:24.540
+Let's do offer one and offer refinement. Meanwhile, we can also look at GPT, make our image.
+
+40:24.540 --> 40:34.540
+So this takes a nice amount of time to look at the image. And it's using thinking 5.5 usually takes a good amount of time.
+
+40:34.540 --> 40:39.540
+My MacBook is as hot. That's amazing. It's getting good amount of use.
+
+40:39.540 --> 40:44.540
+So there you go. So this is more of a visual understanding of how these the base offer converts into five offers.
+
+40:44.540 --> 40:50.540
+If you don't want to see everything, you just use this asset. Right. So it's like base offer install a repeatable B2B sales engine.
+
+40:50.540 --> 40:54.540
+This your ICP and GTM clarity. And then you go and do the outbound stuff.
+
+40:54.540 --> 40:57.540
+Then you also have your playbook for demo to close. He's good with sales calls.
+
+40:57.540 --> 41:02.540
+So I know you have like a script that he uses pipeline ops and all this training and handoff.
+
+41:02.540 --> 41:06.540
+It's a very systematic service that, you know, high ticket and you can have like tools around it.
+
+41:06.540 --> 41:13.540
+So you can like how I'm I'm building out my workshop software or I build out like client software as well.
+
+41:13.540 --> 41:18.540
+So like the other ad board or like a scripting terminal I make for my clients where they can put their YouTube videos.
+
+41:18.540 --> 41:23.540
+So it gives me that higher advantage. Right. When someone hires me as a operator, they're not just hiring me.
+
+41:23.540 --> 41:27.540
+They're hiring my IPs, my pipelines, even in the cohort. Right. You're hiring not only me.
+
+41:27.540 --> 41:31.540
+You're not only getting like tuitions from me, you're getting the entire pipeline.
+
+41:31.540 --> 41:36.540
+You're getting an entire, you know, like an entire software community.
+
+41:36.540 --> 41:42.540
+Like all of these things are IPs by themselves, their intellectual properties by themselves that, you know, lead on to value.
+
+41:42.540 --> 41:46.540
+So, yeah. And then it's broken down into multiple offers. So it's like you have the 21 day.
+
+41:46.540 --> 41:50.540
+So this is a bit of a lower, you know, commitment.
+
+41:50.540 --> 41:53.540
+You have the 60 day, which is the main commitment that we want to go ahead with.
+
+41:53.540 --> 41:57.540
+Or you have the embedded operator, which is like a retainer sort of thing.
+
+41:57.540 --> 42:04.540
+So you go for like three months or the vertical SAS thing, which is sort of, I think, a premium buy for two months.
+
+42:04.540 --> 42:07.540
+And then the cohort, which is another thing like you can charge very heavy for.
+
+42:07.540 --> 42:13.540
+I think this is more of a later thing. I think the best thing to go on is for the 60 day sales engine install.
+
+42:13.540 --> 42:21.540
+So that's that. We are now getting into our stage five, which is refining the offer to get it into a client ready signature offer.
+
+42:21.540 --> 42:26.540
+And we're also going to be using our docket skill at the end of this.
+
+42:26.540 --> 42:29.540
+Let me just. And then we'll also make our website once this is done.
+
+42:29.540 --> 42:36.540
+So we won't use the landing page copy directive right now because we already have our signature offer in place.
+
+42:36.540 --> 42:42.540
+So we'll just open this up. I install a working B2B sales system in 60 days.
+
+42:42.540 --> 42:46.540
+Your founder stops being the sales team. Nice. Who it is for?
+
+42:46.540 --> 42:53.540
+We also have the ICP in here, but we're going to go a bit more into it.
+
+42:53.540 --> 42:58.540
+So there you go, you have all of this in place, the guarantees in place, the upsells are in place.
+
+42:58.540 --> 43:07.540
+And from here, all you need to know is, yep, go ahead and get the ICP, the ICP.
+
+43:07.540 --> 43:10.540
+And what I'm going to do right now is I'm I'm going short on time.
+
+43:10.540 --> 43:13.540
+I think we're already at the 45 minute mark at this point. Right.
+
+43:13.540 --> 43:17.540
+We're at 43. Let's just go ahead and go fast. OK.
+
+43:17.540 --> 43:21.540
+So this will only work with Opus four point six, not seven.
+
+43:21.540 --> 43:26.540
+So the model will be a bit dumber, not very dumb. It's just point one of a difference in the version.
+
+43:26.540 --> 43:29.540
+So we're going to toggle this on and this is extra usage.
+
+43:29.540 --> 43:34.540
+So I have like 80 dollars of extra usage, I think. So, yes.
+
+43:34.540 --> 43:41.540
+Map out ICP and build.
+
+43:41.540 --> 43:45.540
+No, we won't get build the offer doc. We first map out the ICP.
+
+43:45.540 --> 43:52.540
+So let's just come to the. What did I want?
+
+43:52.540 --> 43:58.540
+Yeah, I did. That's cool. India only at launch global from day one or global.
+
+43:58.540 --> 44:05.540
+OK, but I also need to be like. One minute, restore conversation.
+
+44:05.540 --> 44:18.540
+So it's asking some questions. We'll answer this honestly. We want to go 70 percent international and 30 percent Indian.
+
+44:18.540 --> 44:30.540
+But only top paying clients in India and vertical open ICP or pin to professional services, open ICP.
+
+44:30.540 --> 44:36.540
+So you can go anywhere. Actually, we'll go for a pinned and pinned ICP so that, you know, it's a bit more funneled.
+
+44:36.540 --> 44:44.540
+It's a bit more exact to, you know, how the, you know, Gibson or that guy's working right now or how you are working right now.
+
+44:44.540 --> 44:52.540
+It should be like, you know, your first client should be like just accurate on point so that, you know, whatever questions you're asked on the sales call, you can just hit on it.
+
+44:52.540 --> 44:58.540
+Network leverage for launch list or stay anonymous until proof network leverage definitely works.
+
+44:58.540 --> 45:05.540
+Network leverage is an added advantage.
+
+45:05.540 --> 45:22.540
+But. OK, so now we're on fast mode, so they should work a bit more faster than you see, it's already creating tokens because it's costing money to do this.
+
+45:22.540 --> 45:29.540
+But it's like 20x. So when I use my cloud plan, I essentially am paying like just a few cents.
+
+45:29.540 --> 45:37.540
+It's like it's very cheap. It's very subsidized. But when we use stuff like extra usage or API calls, they are very expensive.
+
+45:37.540 --> 45:48.540
+Right. Like it's this much. That's very expensive. But when you're using the subscription, like I was just using my subscription before this on a better model for the speed was less.
+
+45:48.540 --> 45:55.540
+It would cost me like a fraction of that subsidized. That's the concept of buying these plans out and not the APIs.
+
+45:55.540 --> 46:04.540
+But then sometimes you buy APIs for speed. So it's it's a mixed thing. I didn't have to buy it because, you know, I just had my I had, you know, some extra credits for free.
+
+46:04.540 --> 46:10.540
+I think they gave me a hundred credits for free. So they were. So we finally got an ICP US and Canada.
+
+46:10.540 --> 46:17.540
+Isn't that OK? What we will do now is. Let us look at.
+
+46:18.540 --> 46:27.540
+So we're not going to build content today, we're not going to build our sales assets today. What we have to mainly do is get our landing page.
+
+46:27.540 --> 46:45.540
+ESP schema is locked with 18 columns. OK. Need sourcing. OK, we will do one thing now.
+
+46:45.540 --> 47:06.540
+We will create our landing page, copy. Landing page, copy, copy and the offered up, which will be client facing client facing and.
+
+47:06.540 --> 47:25.540
+You know. Using the rocket skill. With the pricing and different tax, the ICP can buy onto.
+
+47:25.540 --> 47:45.540
+And also. Once done, move ahead to creating a design language design prompt for our, you know, for our website and save it in a file.
+
+47:45.540 --> 48:05.540
+Save it into a .md file to which will be. So what we're essentially doing here is making a sort of design language that I'm going to give into this and make a fresh, I mean, I already made the fresh project is what I think.
+
+48:05.540 --> 48:27.540
+So it is your workshop. I mean, so now it's going to make a random copy. And what we will say is landing, copy and offer doc can be done parallelly using sub slash agents.
+
+48:27.540 --> 48:37.540
+So this gives us more speed because we're going to be doing it simultaneously. At the same time, I also want to see how much, you know, my cloud usage is at the point, the extra usage.
+
+48:37.540 --> 48:46.540
+Because, you know, I come to settings that I don't use it a lot. If you come to usage. So you see, it's barely anything like this is the 11000 rupee a month plan.
+
+48:46.540 --> 48:56.540
+It's also 2000 rupee a month plan that you can easily, you know, use. It has the same features. Only difference is it gets over fast. So you see my cloud, my extra usage is getting over very fast.
+
+48:56.540 --> 49:03.540
+So I was like at 20 or 25 dollars. I'm already at 31 dollars. And I kept this at 80. I have only 70 dollars remaining. And this was free for me.
+
+49:03.540 --> 49:15.540
+But, yep. So two agents are running in parallel. So if you look down here, it's having two agents do these processes. And then once those are done, it will write the cloud design prompt based on the stuff.
+
+49:15.540 --> 49:21.540
+Actually, I should have made it write the design prompt also parallelly. But that's fine. Let's just, you know, take its time.
+
+49:22.540 --> 49:30.540
+OK, there you go. Something's ready. Our landing page copy is ready. I installed a working B2B sales engine in 60 days. So I found a stop doing this.
+
+49:30.540 --> 49:38.540
+I mean, I'll be honest with you. I don't like this. The sub headline is not good. So we once that's the concept of working with me is that, you know, I like to change it.
+
+49:38.540 --> 49:44.540
+I like it. It'll be more outcome focused. It's going to be like this is not a good outcome. Like you're out. This is for a cheap company.
+
+49:44.540 --> 49:55.540
+But then when you're working with Fortune 500, so not even Fortune 500, but decent, you know, hundred million dollar companies or million dollar companies, right over there, this could help.
+
+49:55.540 --> 50:03.540
+But I'd say it should still be around, you know, something that's more solid, like, hey, we'll add on 50000 dollars or we'll save you 50000 dollars, something like that.
+
+50:03.540 --> 50:13.540
+Now we have our DocX ready as well somewhere, which I cannot see because I'm blind. Offered doc on text. OK, it's just created, I think. There you go.
+
+50:13.540 --> 50:20.540
+So we do this and find it. I already have. It's opening in text because it's not there.
+
+50:20.540 --> 50:25.540
+And again, this is also not very well designed because, you know, it doesn't have my design language IP.
+
+50:25.540 --> 50:32.540
+That's fine. What we do is we go to Docs and we open a fresh document and we just need to append that over here.
+
+50:32.540 --> 50:42.540
+So you go file or rather insert, I think, not a file and. Open and you just drag and drop that folder.
+
+50:42.540 --> 50:51.540
+So sales engine offered up and this is all you need to do, right? This is all you need to do on your calls is like just scroll through this, share your screen and just explain this.
+
+50:51.540 --> 50:56.540
+Right. So you can just do this. Who is this for? Like this has to be client facing.
+
+50:56.540 --> 51:01.540
+Again, I don't think this needs to come here when it's client facing. So a lot of edits need to come in.
+
+51:01.540 --> 51:07.540
+But it's way more easier. You can add some graphics. So like you create some graphics from Claude.
+
+51:07.540 --> 51:15.540
+Oh, sorry. GPT engine and use those graphics in these documents. And yeah, like you make your offer.
+
+51:15.540 --> 51:24.540
+You tell them what you're going to deliver to them, what we build, the processes, the phases, the timelines, all of these things, the deliverables, the pricings of different things.
+
+51:24.540 --> 51:28.540
+And, you know, this is like, hey, this will be more discounted for you. But then you like it's more expensive.
+
+51:28.540 --> 51:31.540
+But, you know, you're getting all of these things over here and you have like a guarantee.
+
+51:31.540 --> 51:35.540
+So like I'll also give you a 50 percent refund if it doesn't work or like I'll give you five.
+
+51:35.540 --> 51:40.540
+I'll guarantee you five qualified people or I'll, you know, work with you until you get the qualified thing.
+
+51:40.540 --> 51:45.540
+You have the scope. So it's like this is a very ultra professional dog that would cost you at least more than an hour.
+
+51:45.540 --> 51:49.540
+And then, you know, it's a very step by step process. It's like you have your onboarding call.
+
+51:49.540 --> 51:55.540
+We diagnose this, this ready to talk. And I mean, you could directly email this to your prospects.
+
+51:55.540 --> 52:00.540
+It's like more of a, you know, personalized invite to, you know, getting onboarded.
+
+52:00.540 --> 52:04.540
+Or you can actually like explain it to them on a call and build it that way.
+
+52:05.540 --> 52:12.540
+That's one thing. So now I think the landing page design should also be done by now because we're doing it on speed.
+
+52:12.540 --> 52:18.540
+By the way, how long are we in? We're in 52 minutes. I think by one hour we should have our website up.
+
+52:19.540 --> 52:23.540
+So let us come to design. Now we take this, copy this.
+
+52:23.540 --> 52:37.540
+Do not revise the design. Do not mention colors or styles.
+
+52:37.540 --> 53:06.540
+Just the feel, the premiumness and aesthetic and vibe and lead on the design agent to create this, you know, professional software like high ticket service.
+
+53:08.540 --> 53:19.540
+It should feel fast, but it's an operator like this, more of a sort of, you know, what do I say?
+
+53:19.540 --> 53:23.540
+It's more of a paradox, right? We're creating not SAS in the general sense.
+
+53:23.540 --> 53:28.540
+We're creating SAS in the new sense, which is service as a software rather than software as a service.
+
+53:28.540 --> 53:32.540
+Because that's how you position to make more high ticket lines. Right.
+
+53:32.540 --> 53:38.540
+And that's what gives you more freedom and gives you more ownership, more IP, more authority.
+
+53:38.540 --> 53:46.540
+So let's just get off of the design. It's just going to strip off everything.
+
+53:46.540 --> 53:51.540
+And the prompt now leads to an entirely on the feel and vibe.
+
+53:51.540 --> 53:58.540
+So now all you need to do is copy this.
+
+53:59.540 --> 54:04.540
+It should feel like this. So now what we do is just come to a cloud design. So the offer doc is ready.
+
+54:04.540 --> 54:10.540
+We just paste this here and we run it.
+
+54:10.540 --> 54:15.540
+While this is running, what I'm going to do is move on to the next step, which is personal.
+
+54:15.540 --> 54:29.540
+So now we have our leads. Right. So our ICB create a prompt to source leads for our ICB.
+
+54:29.540 --> 54:51.540
+Along with the ICB doc or ICB MB being a path referenced and make the lead agent save it to sheets to CSV via the prompt.
+
+54:51.540 --> 54:59.540
+Also. Get name for name.
+
+54:59.540 --> 55:05.540
+And let's just do 20 minutes. OK, so we're going to get only 20 leads.
+
+55:05.540 --> 55:12.540
+Don't do any of this. Only create a prompt.
+
+55:12.540 --> 55:19.540
+Call it. Lead source dot text.
+
+55:19.540 --> 55:23.540
+So we take this problem and we're going to put it into codecs.
+
+55:23.540 --> 55:28.540
+Because as you can see, I escape my leads via codecs. Meanwhile, we can update our codecs.
+
+55:28.540 --> 55:36.540
+Because, you know, there is an update and it's getting a bit warm.
+
+55:36.540 --> 55:40.540
+OK, there you go. Now we have our lead source. So we are going to just open this up.
+
+55:40.540 --> 55:47.540
+Copy this. Copy and close and get started.
+
+55:47.540 --> 55:50.540
+And my email is already connected to codecs. You can connect so many things.
+
+55:50.540 --> 55:54.540
+Let me just queue this. I'm going to do it at high.
+
+55:54.540 --> 56:00.540
+I mean, wait a minute. Oh, my days. Don't waste my time.
+
+56:00.540 --> 56:05.540
+I couldn't set it up at fast because the Google calendar came up.
+
+56:05.540 --> 56:10.540
+OK, let's just give it access to Google calendar because, you know, it's asking for it.
+
+56:10.540 --> 56:13.540
+You know, the best part is meanwhile you have 10 things happening parallelly.
+
+56:13.540 --> 56:18.540
+So you're not that sad to do a few things manually that, you know, could seem like you're wasting time.
+
+56:18.540 --> 56:24.540
+But it's like, yeah, it's not a big deal. So see what I actually had to do is just come here and put speed at 1.5.
+
+56:24.540 --> 56:30.540
+So it's a bit faster. The map is pretty crisp. This shit is loading.
+
+56:30.540 --> 56:38.540
+I'm going to close it. Where is our design? OK, the copy file isn't in the project.
+
+56:38.540 --> 56:43.540
+Let me ask the user. OK, Claude has some questions. Upload the copy file.
+
+56:43.540 --> 56:47.540
+OK, yeah, I'll just give it a landing page. Copy, copy, copy.
+
+56:47.540 --> 56:56.540
+So we come to downloads. We go to work. We go to our workshop and we go to the copy file.
+
+56:57.540 --> 57:02.540
+So you see how it creates an entire thing. Geometric sans only. Cool.
+
+57:02.540 --> 57:10.540
+And accent color, pure white, warm off, nipper white. Terminal-ish? Nah, I think gypsum goes with pure white.
+
+57:10.540 --> 57:17.540
+Or actually gypsum goes with a bit of the electric blue vibe. Dark, near black, true black, slightly warm charcoal.
+
+57:17.540 --> 57:23.540
+Hero headline, massive single block. Massive headline, you are the sales problem, damn, that's amazing.
+
+57:23.540 --> 57:30.540
+Four cards, process, vertical timeline with phase install, horizontal stepper on the page.
+
+57:30.540 --> 57:37.540
+Three side-by-side cards, decide for me. Credibility, six card grid, which tweaks should I expose?
+
+57:42.540 --> 57:47.540
+That's his option, I don't mind for that. Real CTA URLs, we don't have anything as of now.
+
+57:47.540 --> 57:52.540
+What you can do is, I have gypsum, so I'll go to gypsum verges.
+
+57:52.540 --> 58:01.540
+So we just copy his page, his LinkedIn, which would be the CTA, and that's it.
+
+58:01.540 --> 58:05.540
+Anything else? Nah, go ahead and make the design.
+
+58:05.540 --> 58:11.540
+So once the design is done, all you do is just download the design and rebuild the landing page using that design.
+
+58:12.540 --> 58:17.540
+Meanwhile, this is getting our leads, and I think we had, what else?
+
+58:19.540 --> 58:22.540
+We had two things we created here, right?
+
+58:22.540 --> 58:27.540
+The landing page copy, I don't know what the copy is, but I think it's not the best, not the worst.
+
+58:27.540 --> 58:32.540
+I mean, I'd have to add my piece to it, but I think the goal here is just showing you the power of Claude,
+
+58:32.540 --> 58:37.540
+showing you the power of the step-by-step process that you can do with AI while you're building your business with AI.
+
+58:37.540 --> 58:39.540
+So right now we're at step four.
+
+58:39.540 --> 58:44.540
+And I mean, you could say step five as well, right, because you have your audit document and everything.
+
+58:44.540 --> 58:46.540
+So we're at step six as well.
+
+58:46.540 --> 58:49.540
+We're doing multiple things together, and step seven is not that far,
+
+58:49.540 --> 58:52.540
+because once you have the emails, all you need to do is draft out some things,
+
+58:52.540 --> 58:54.540
+and then it's all about going to the sales call.
+
+58:54.540 --> 58:58.540
+So there you go, the lead source is already done.
+
+58:58.540 --> 59:04.540
+So right now it's searching the web for a lot of stuff, so you can see it's taking its time.
+
+59:04.540 --> 59:08.540
+It will do its stuff, but there are also other connectors you can build.
+
+59:08.540 --> 59:11.540
+Meanwhile, our design is getting written.
+
+59:11.540 --> 59:16.540
+I want to put my laptop's charger off because it's getting very hot.
+
+59:16.540 --> 59:17.540
+How long are we in?
+
+59:17.540 --> 59:26.540
+So we are officially going to be one hour in, in the next 40 seconds, 37 seconds, 36, 35.
+
+59:26.540 --> 59:32.540
+I don't know, map that out, but I hope this all is getting recorded well and good high quality.
+
+59:32.540 --> 59:44.540
+We're in the first of May, creating some good stuff for our community.
+
+59:44.540 --> 59:49.540
+Okay, allow full access.
+
+59:49.540 --> 59:51.540
+You should always give full access.
+
+59:51.540 --> 59:52.540
+I give cloud bypass permissions.
+
+59:52.540 --> 59:56.540
+I give this full access because, you know, it's just amazing.
+
+59:56.540 --> 59:58.540
+I've got enough verified candidate material now.
+
+59:58.540 --> 01:00:02.540
+A few companies that look tempting are getting dropped off because of their current LinkedIn headcount,
+
+01:00:02.540 --> 01:00:05.540
+which keeps the finalists tighter, even if it costs some easy volume.
+
+01:00:05.540 --> 01:00:07.540
+Cool.
+
+01:00:07.540 --> 01:00:13.540
+Okay, okay, okay.
+
+01:00:13.540 --> 01:00:16.540
+I'm also going to show you how do you put this in the email side.
+
+01:00:16.540 --> 01:00:21.540
+So let it take its time.
+
+01:00:21.540 --> 01:00:36.540
+The web search quota, yes, allow.
+
+01:00:36.540 --> 01:00:41.540
+Another thing is, you know, when you don't get emails, you can take the first name, the second name, first name,
+
+01:00:41.540 --> 01:00:47.540
+surname, the company domain and make these pattern maps like you run a lot of permutation combinations.
+
+01:00:47.540 --> 01:00:49.540
+A very simple Python script I create.
+
+01:00:49.540 --> 01:00:50.540
+I'm not going to do that now.
+
+01:00:50.540 --> 01:00:56.540
+But in case it's not like you cannot get leads, emails, that's one process.
+
+01:00:56.540 --> 01:01:02.540
+Then there are many tools that contact out, I think, Apollo and many lead databases as well.
+
+01:01:02.540 --> 01:01:07.540
+So like I found a one one point two billion lead list, one point two billion leads.
+
+01:01:07.540 --> 01:01:12.540
+If you have this, all you need to do is just, you know, data mine, mining your data.
+
+01:01:12.540 --> 01:01:16.540
+Is that going in on and knowing your ICP and just cleaning this entire data set up.
+
+01:01:16.540 --> 01:01:18.540
+So this is something I found on the Internet.
+
+01:01:18.540 --> 01:01:19.540
+It's not mine.
+
+01:01:19.540 --> 01:01:21.540
+I just found it.
+
+01:01:21.540 --> 01:01:23.540
+But we have our to do's updated.
+
+01:01:23.540 --> 01:01:25.540
+This is going to take some time, I think.
+
+01:01:25.540 --> 01:01:37.540
+I hope it doesn't take like I think once it gets its to do's in place, you know, just goes hard on and creates everything.
+
+01:01:37.540 --> 01:01:39.540
+Tool calling.
+
+01:01:39.540 --> 01:01:45.540
+Public verified stuff.
+
+01:01:45.540 --> 01:01:52.540
+I'm using a lightweight public search pages now to clean up the remaining LinkedIn companies and avoid inventing URLs.
+
+01:01:52.540 --> 01:02:16.540
+OK.
+
+01:02:16.540 --> 01:02:20.540
+The faster part for design would be just use this when you're starting out.
+
+01:02:20.540 --> 01:02:24.540
+But I mean, I don't think I'm any slow either ways.
+
+01:02:24.540 --> 01:02:28.540
+These are all professional IPs.
+
+01:02:28.540 --> 01:02:29.540
+Let's get this done.
+
+01:02:29.540 --> 01:02:32.540
+Yes.
+
+01:02:32.540 --> 01:02:46.540
+Where is Codex auto reviewing auto reviewing.
+
+01:02:46.540 --> 01:02:48.540
+Let us look at our plan and see if we can do anything.
+
+01:02:48.540 --> 01:02:59.540
+Meanwhile, yeah, what we can do now is because we have time, we can create our emails.
+
+01:03:00.540 --> 01:03:21.540
+So we'll do is just.
+
+01:03:21.540 --> 01:03:49.540
+It's called email sequence and personalized.
+
+01:03:49.540 --> 01:03:51.540
+It also makes it a new folder.
+
+01:03:51.540 --> 01:03:53.540
+And there you go.
+
+01:03:53.540 --> 01:03:55.540
+Can't fix this 20,000 emails.
+
+01:03:55.540 --> 01:03:57.540
+These are your email subject lines.
+
+01:03:57.540 --> 01:03:59.540
+And these are your emails.
+
+01:03:59.540 --> 01:04:03.540
+So you also have like a bit of personalization on mass outreach.
+
+01:04:03.540 --> 01:04:08.540
+And you can also have like pure personalized outreach, which is going to be with personalization.
+
+01:04:09.540 --> 01:04:20.540
+So this can be like, you know, as per that particular client or that particular organization.
+
+01:04:21.540 --> 01:04:22.540
+How's our design?
+
+01:04:22.540 --> 01:04:23.540
+OK, there you go.
+
+01:04:23.540 --> 01:04:24.540
+We have our design.
+
+01:04:24.540 --> 01:04:26.540
+Finally, these are tweaks.
+
+01:04:26.540 --> 01:04:28.540
+A B2B SAS has a sales problem.
+
+01:04:28.540 --> 01:04:32.540
+You are the sales for a strategy called the founder sales.
+
+01:04:32.540 --> 01:04:35.540
+You hired an SDR that cost you $50,000 a year.
+
+01:04:35.540 --> 01:04:39.540
+You can go email out.
+
+01:04:39.540 --> 01:04:42.540
+OK, nice design language looks very professional.
+
+01:04:42.540 --> 01:04:47.540
+Looks gives us that, you know, software as a service.
+
+01:04:47.540 --> 01:04:49.540
+But it actually services a software vibe.
+
+01:04:49.540 --> 01:04:51.540
+It gives you the pipeline build.
+
+01:04:51.540 --> 01:04:52.540
+Why me?
+
+01:04:52.540 --> 01:04:54.540
+I mean, you can have some photos of gypsum here.
+
+01:04:54.540 --> 01:04:57.540
+So what I'm going to do now is I like how this has come out.
+
+01:04:57.540 --> 01:05:08.540
+What we can do is have a light mode as well.
+
+01:05:08.540 --> 01:05:10.540
+You should just go to LinkedIn.
+
+01:05:10.540 --> 01:05:12.540
+LinkedIn not working.
+
+01:05:12.540 --> 01:05:14.540
+Put the wrong link.
+
+01:05:14.540 --> 01:05:17.540
+Again, he was.
+
+01:05:17.540 --> 01:05:35.540
+Let's just have that light mode and good network.
+
+01:05:36.540 --> 01:06:00.540
+I should have added fast.
+
+01:06:00.540 --> 01:06:06.540
+The front end skill is we're going to deploy this site again.
+
+01:06:06.540 --> 01:06:14.540
+And the versatile deployable skill.
+
+01:06:14.540 --> 01:06:17.540
+So once this shows, it's like a function.
+
+01:06:17.540 --> 01:06:19.540
+It's like, hey, this is invoked.
+
+01:06:19.540 --> 01:06:23.540
+So that's a sign that, you know, wait, why are you making stuff?
+
+01:06:23.540 --> 01:06:26.540
+No.
+
+01:06:26.540 --> 01:06:33.540
+This.
+
+01:06:33.540 --> 01:06:39.540
+Just invoke the versatile skill.
+
+01:06:39.540 --> 01:06:49.540
+Not build anything.
+
+01:06:50.540 --> 01:06:56.540
+And coding agents and prompts is that, you know, it starts building stuff based on the directives.
+
+01:06:56.540 --> 01:06:57.540
+Right.
+
+01:06:57.540 --> 01:06:58.540
+Like the skill.
+
+01:06:58.540 --> 01:07:01.540
+So, like, front end skill has mentioned in it, you know, build this in this way.
+
+01:07:01.540 --> 01:07:04.540
+So it takes that context and assumes that it is telling me to build.
+
+01:07:04.540 --> 01:07:09.540
+But no, I don't want to get paid because I wanted to, you know, first have my website into like my design into it.
+
+01:07:09.540 --> 01:07:12.540
+I design language.
+
+01:07:12.540 --> 01:07:16.540
+What just happened?
+
+01:07:43.540 --> 01:07:45.540
+I'm tired.
+
+01:07:45.540 --> 01:07:49.540
+Actually, I'm having a lot of fun, to be honest, because it's all being done with AI.
+
+01:07:49.540 --> 01:07:54.540
+I can get very excited doing this for someone or many people.
+
+01:07:54.540 --> 01:07:57.540
+And imagine doing this live in a cohort over eight weeks.
+
+01:07:57.540 --> 01:07:58.540
+Oh, my God.
+
+01:07:58.540 --> 01:08:00.540
+The kind of offers I'm going to build with this is going to be wild.
+
+01:08:00.540 --> 01:08:03.540
+And I have such skillful individuals already.
+
+01:08:03.540 --> 01:08:05.540
+And we have seven people already.
+
+01:08:05.540 --> 01:08:08.540
+And we're like top of the game.
+
+01:08:08.540 --> 01:08:12.540
+I'm going to build some great businesses and sell it to some great people.
+
+01:08:12.540 --> 01:08:15.540
+And that's going to lead to a lot of testimonials.
+
+01:08:15.540 --> 01:08:18.540
+It's going to lead to a lot of, like, numbers.
+
+01:08:18.540 --> 01:08:20.540
+It's like collective values.
+
+01:08:20.540 --> 01:08:21.540
+Oh, my days.
+
+01:08:21.540 --> 01:08:22.540
+Just look at this, man.
+
+01:08:22.540 --> 01:08:24.540
+Look at this.
+
+01:08:24.540 --> 01:08:25.540
+Look at the bright side.
+
+01:08:25.540 --> 01:08:26.540
+Like, I love this.
+
+01:08:26.540 --> 01:08:29.540
+I like this even more than the right page.
+
+01:08:29.540 --> 01:08:37.540
+So I think this landing page thing is so simple.
+
+01:08:37.540 --> 01:08:39.540
+Really nice.
+
+01:08:39.540 --> 01:08:41.540
+Great.
+
+01:08:41.540 --> 01:08:42.540
+So I am directly going to install this.
+
+01:08:42.540 --> 01:08:46.540
+It wants to verify.
+
+01:08:46.540 --> 01:08:49.540
+Cloud design is the beast.
+
+01:08:49.540 --> 01:08:57.540
+So we're going to download this and, you know, put this into our thing here.
+
+01:08:57.540 --> 01:08:58.540
+And we are.
+
+01:08:58.540 --> 01:08:59.540
+Okay, there you go.
+
+01:08:59.540 --> 01:09:00.540
+We have our leads as well.
+
+01:09:00.540 --> 01:09:03.540
+So I think a few emails will be missing, but you'll have a lot of people.
+
+01:09:03.540 --> 01:09:05.540
+So you have funding.
+
+01:09:05.540 --> 01:09:07.540
+You have your estimates.
+
+01:09:07.540 --> 01:09:09.540
+And I think the emails.
+
+01:09:09.540 --> 01:09:10.540
+Where is the email?
+
+01:09:10.540 --> 01:09:14.540
+Do we have emails or not?
+
+01:09:14.540 --> 01:09:15.540
+Okay.
+
+01:09:15.540 --> 01:09:16.540
+You also have personalization.
+
+01:09:16.540 --> 01:09:19.540
+There's a lot of stuff.
+
+01:09:19.540 --> 01:09:21.540
+See, so it's not got us the emails, but I'll be honest with you.
+
+01:09:21.540 --> 01:09:24.540
+Getting emails ain't that difficult.
+
+01:09:24.540 --> 01:09:26.540
+So.
+
+01:09:26.540 --> 01:09:27.540
+Quick.
+
+01:09:27.540 --> 01:09:28.540
+There's no blank.
+
+01:09:28.540 --> 01:09:37.540
+So emails are blank.
+
+01:09:37.540 --> 01:09:38.540
+That's fine.
+
+01:09:38.540 --> 01:09:40.540
+It's not that difficult to find an email.
+
+01:09:40.540 --> 01:09:42.540
+So you have your leads.
+
+01:09:42.540 --> 01:09:47.540
+What I can do is.
+
+01:09:47.540 --> 01:09:49.540
+It wouldn't be that difficult to get an email.
+
+01:09:49.540 --> 01:09:50.540
+Just scrape the site.
+
+01:09:50.540 --> 01:09:53.540
+But what we do is we just download this to cloud.
+
+01:09:53.540 --> 01:09:55.540
+Open in folder.
+
+01:09:55.540 --> 01:09:56.540
+It's already here.
+
+01:09:56.540 --> 01:09:58.540
+So we just copy path.
+
+01:09:58.540 --> 01:10:01.540
+Grab file path.
+
+01:10:01.540 --> 01:10:03.540
+I'm going to close this.
+
+01:10:03.540 --> 01:10:04.540
+I'm going to close this.
+
+01:10:04.540 --> 01:10:06.540
+And we're going to look at our limits.
+
+01:10:06.540 --> 01:10:08.540
+So we use 22% of our design limits.
+
+01:10:08.540 --> 01:10:12.540
+And extra spend isn't that much as of yet.
+
+01:10:12.540 --> 01:10:15.540
+It's just $30.
+
+01:10:15.540 --> 01:10:18.540
+What?
+
+01:10:18.540 --> 01:10:19.540
+$50?
+
+01:10:19.540 --> 01:10:22.540
+Speed costs a lot of money, man.
+
+01:10:22.540 --> 01:10:24.540
+It was $30 just now you saw.
+
+01:10:24.540 --> 01:10:29.540
+So anyways.
+
+01:10:29.540 --> 01:10:32.540
+Use a sub-agent.
+
+01:10:32.540 --> 01:10:34.540
+To source emails.
+
+01:10:34.540 --> 01:10:37.540
+We are scraping.
+
+01:10:37.540 --> 01:10:39.540
+There's these sites.
+
+01:10:39.540 --> 01:10:41.540
+For these people.
+
+01:10:41.540 --> 01:10:44.540
+And add to the CSV.
+
+01:10:44.540 --> 01:10:46.540
+Also parallelly.
+
+01:10:47.540 --> 01:10:49.540
+Use the design.
+
+01:10:49.540 --> 01:10:51.540
+Language.
+
+01:10:51.540 --> 01:10:53.540
+In.
+
+01:10:53.540 --> 01:10:54.540
+Copy path.
+
+01:10:54.540 --> 01:10:57.540
+So the email zip that I got from cloud design.
+
+01:10:57.540 --> 01:11:04.540
+And.
+
+01:11:04.540 --> 01:11:07.540
+The context overall.
+
+01:11:07.540 --> 01:11:09.540
+To build.
+
+01:11:09.540 --> 01:11:10.540
+A lean.
+
+01:11:10.540 --> 01:11:12.540
+Lightweight.
+
+01:11:12.540 --> 01:11:13.540
+Landing page.
+
+01:11:13.540 --> 01:11:15.540
+With animations.
+
+01:11:15.540 --> 01:11:17.540
+And.
+
+01:11:17.540 --> 01:11:18.540
+Design.
+
+01:11:18.540 --> 01:11:21.540
+With animations.
+
+01:11:21.540 --> 01:11:25.540
+Functional.
+
+01:11:25.540 --> 01:11:31.540
+And mobile responsive.
+
+01:11:31.540 --> 01:11:32.540
+Deployed.
+
+01:11:32.540 --> 01:11:33.540
+To.
+
+01:11:33.540 --> 01:11:34.540
+Purcell.
+
+01:11:34.540 --> 01:11:39.540
+Anything I'm missing?
+
+01:11:39.540 --> 01:11:49.540
+I think we're good.
+
+01:11:49.540 --> 01:11:52.540
+I think speed is just so valuable, right?
+
+01:11:52.540 --> 01:11:53.540
+You buy SSDs.
+
+01:11:53.540 --> 01:11:57.540
+Like I have this SSD I use on my phone and my laptop for my content.
+
+01:11:57.540 --> 01:11:58.540
+It's 256 gigs.
+
+01:11:58.540 --> 01:11:59.540
+It's so fast.
+
+01:11:59.540 --> 01:12:00.540
+Like you can use it.
+
+01:12:00.540 --> 01:12:02.540
+Sort of, you know.
+
+01:12:02.540 --> 01:12:04.540
+You could use a pen drive on your phone.
+
+01:12:04.540 --> 01:12:06.540
+You could use a hard drive, right?
+
+01:12:06.540 --> 01:12:07.540
+Like an.
+
+01:12:07.540 --> 01:12:08.540
+HDD.
+
+01:12:08.540 --> 01:12:09.540
+It's cheaper.
+
+01:12:09.540 --> 01:12:10.540
+And it's.
+
+01:12:10.540 --> 01:12:11.540
+I mean more space.
+
+01:12:11.540 --> 01:12:12.540
+But.
+
+01:12:12.540 --> 01:12:13.540
+This is just speed, right?
+
+01:12:13.540 --> 01:12:14.540
+You pay way more for this.
+
+01:12:14.540 --> 01:12:15.540
+Like this.
+
+01:12:15.540 --> 01:12:16.540
+Costs as much as this.
+
+01:12:16.540 --> 01:12:17.540
+Not.
+
+01:12:17.540 --> 01:12:18.540
+Not that much.
+
+01:12:18.540 --> 01:12:19.540
+But.
+
+01:12:19.540 --> 01:12:20.540
+I mean.
+
+01:12:20.540 --> 01:12:21.540
+This is very expensive now.
+
+01:12:21.540 --> 01:12:22.540
+This fucking thing is.
+
+01:12:22.540 --> 01:12:23.540
+Appreciated over time.
+
+01:12:23.540 --> 01:12:24.540
+But.
+
+01:12:24.540 --> 01:12:25.540
+Speed is all.
+
+01:12:25.540 --> 01:12:26.540
+I'm all in for speed.
+
+01:12:26.540 --> 01:12:27.540
+So you have your two local agents.
+
+01:12:27.540 --> 01:12:29.540
+So you're also building your site.
+
+01:12:29.540 --> 01:12:31.540
+I think the site should get created faster.
+
+01:12:31.540 --> 01:12:33.540
+It's going to fetch all the websites.
+
+01:12:33.540 --> 01:12:34.540
+Do you know?
+
+01:12:34.540 --> 01:12:35.540
+Find email addresses.
+
+01:12:35.540 --> 01:12:36.540
+I just need one email address.
+
+01:12:36.540 --> 01:12:37.540
+Right.
+
+01:12:37.540 --> 01:12:38.540
+So that I can show you how to.
+
+01:12:38.540 --> 01:12:39.540
+You know.
+
+01:12:39.540 --> 01:12:40.540
+Use the cloud.
+
+01:12:40.540 --> 01:12:41.540
+Or the Gmail.
+
+01:12:41.540 --> 01:12:42.540
+Skill.
+
+01:12:42.540 --> 01:12:43.540
+And.
+
+01:12:43.540 --> 01:12:44.540
+In codecs.
+
+01:12:44.540 --> 01:12:45.540
+And send out.
+
+01:12:45.540 --> 01:12:46.540
+Draft an email.
+
+01:12:46.540 --> 01:12:47.540
+Right there.
+
+01:12:47.540 --> 01:12:48.540
+And.
+
+01:12:48.540 --> 01:12:50.540
+We also have a landing page.
+
+01:12:50.540 --> 01:12:51.540
+Being done.
+
+01:12:51.540 --> 01:12:52.540
+Which should get saved.
+
+01:12:52.540 --> 01:12:53.540
+Somewhere.
+
+01:12:53.540 --> 01:12:54.540
+Here.
+
+01:12:54.540 --> 01:12:55.540
+What's this?
+
+01:12:55.540 --> 01:12:56.540
+Copy as well.
+
+01:12:57.540 --> 01:12:59.540
+So.
+
+01:12:59.540 --> 01:13:00.540
+We're.
+
+01:13:00.540 --> 01:13:01.540
+And 13 minutes.
+
+01:13:01.540 --> 01:13:02.540
+I think this code.
+
+01:13:02.540 --> 01:13:03.540
+Or this.
+
+01:13:03.540 --> 01:13:04.540
+This.
+
+01:13:04.540 --> 01:13:05.540
+Is gonna be.
+
+01:13:05.540 --> 01:13:06.540
+A big lesson.
+
+01:13:06.540 --> 01:13:07.540
+For everyone.
+
+01:13:07.540 --> 01:13:08.540
+Who doesn't use agents.
+
+01:13:08.540 --> 01:13:09.540
+That you.
+
+01:13:09.540 --> 01:13:10.540
+Know.
+
+01:13:10.540 --> 01:13:11.540
+You can do so much with.
+
+01:13:11.540 --> 01:13:12.540
+In just 1 hour.
+
+01:13:12.540 --> 01:13:13.540
+And 13 minutes.
+
+01:13:13.540 --> 01:13:14.540
+I.
+
+01:13:14.540 --> 01:13:15.540
+Think this one.
+
+01:13:15.540 --> 01:13:16.540
+Is going to be.
+
+01:13:16.540 --> 01:13:17.540
+Very cool.
+
+01:13:17.540 --> 01:13:18.540
+You know.
+
+01:13:18.540 --> 01:13:19.540
+But.
+
+01:13:19.540 --> 01:13:20.540
+What's.
+
+01:13:20.540 --> 01:13:21.540
+Writing code.
+
+01:13:21.540 --> 01:13:22.540
+And.
+
+01:13:22.540 --> 01:13:23.540
+People.
+
+01:13:23.540 --> 01:13:24.540
+Doing.
+
+01:13:24.540 --> 01:13:25.540
+The machine.
+
+01:13:25.540 --> 01:13:26.540
+So.
+
+01:13:26.540 --> 01:13:27.540
+I think.
+
+01:13:27.540 --> 01:13:28.540
+This is going to be.
+
+01:13:28.540 --> 01:13:29.540
+A big lesson.
+
+01:13:29.540 --> 01:13:30.540
+For everyone.
+
+01:13:30.540 --> 01:13:31.540
+Who doesn't use agents.
+
+01:13:31.540 --> 01:13:32.540
+That you.
+
+01:13:32.540 --> 01:13:33.540
+Know.
+
+01:13:33.540 --> 01:13:34.540
+You can do so much with.
+
+01:13:34.540 --> 01:13:35.540
+In just 1 hour.
+
+01:13:35.540 --> 01:13:36.540
+And 13 minutes.
+
+01:13:36.540 --> 01:13:37.540
+I think this one.
+
+01:13:37.540 --> 01:13:38.540
+Is going to be.
+
+01:13:38.540 --> 01:13:39.540
+Very cool.
+
+01:13:39.540 --> 01:13:40.540
+You know.
+
+01:13:40.540 --> 01:13:41.540
+But.
+
+01:13:41.540 --> 01:13:42.540
+What's.
+
+01:13:42.540 --> 01:13:43.540
+Writing code.
+
+01:13:43.540 --> 01:13:44.540
+And 13 minutes.
+
+01:13:44.540 --> 01:13:45.540
+I think this one.
+
+01:13:45.540 --> 01:13:46.540
+Is going to be.
+
+01:13:46.540 --> 01:13:47.540
+Very cool.
+
+01:13:47.540 --> 01:13:48.540
+You know.
+
+01:13:48.540 --> 01:13:49.540
+But.
+
+01:13:49.540 --> 01:13:50.540
+This is going to be.
+
+01:13:50.540 --> 01:13:51.540
+A big lesson.
+
+01:13:51.540 --> 01:13:52.540
+For everyone.
+
+01:13:52.540 --> 01:13:53.540
+Who doesn't use agents.
+
+01:13:53.540 --> 01:13:54.540
+That you.
+
+01:14:24.660 --> 01:14:25.660
+Know.
+
+01:14:25.660 --> 01:14:26.660
+But.
+
+01:14:26.660 --> 01:14:27.660
+You.
+
+01:14:27.660 --> 01:14:28.660
+Get.
+
+01:14:28.660 --> 01:14:29.660
+To be operator.
+
+01:14:29.660 --> 01:14:30.660
+With file lives.
+
+01:14:30.660 --> 01:14:31.660
+You get.
+
+01:14:31.660 --> 01:14:32.660
+The accountability dashboard.
+
+01:14:32.660 --> 01:14:33.660
+You get.
+
+01:14:33.660 --> 01:14:34.660
+To run Email systems.
+
+01:14:34.660 --> 01:14:35.660
+With me.
+
+01:14:35.660 --> 01:14:36.660
+My pipelines.
+
+01:14:36.660 --> 01:14:37.660
+In a step by step.
+
+01:14:37.660 --> 01:14:38.660
+8 week process.
+
+01:14:38.660 --> 01:14:39.660
+With 3 months of.
+
+01:14:39.660 --> 01:14:40.660
+Asynchronous.
+
+01:14:40.660 --> 01:14:41.660
+Execution.
+
+01:14:41.660 --> 01:14:42.660
+So you'll have access.
+
+01:14:42.660 --> 01:14:43.660
+To me.
+
+01:14:43.660 --> 01:14:44.660
+For 2 months.
+
+01:14:44.660 --> 01:14:45.660
+Live.
+
+01:14:45.660 --> 01:14:46.660
+Plus 3 months.
+
+01:14:46.660 --> 01:14:47.660
+Of asynchronous.
+
+01:14:47.660 --> 01:14:48.660
+Like.
+
+01:14:48.660 --> 01:14:49.660
+Every.
+
+01:14:49.660 --> 01:14:50.660
+Every weekend.
+
+01:14:50.660 --> 01:14:51.660
+Saturday.
+
+01:14:51.660 --> 01:14:52.660
+Sunday.
+
+01:14:52.660 --> 01:14:53.660
+We're going to.
+
+01:14:53.660 --> 01:14:54.660
+It's going to be a lot of.
+
+01:14:54.660 --> 01:14:55.660
+It's going to be a good amount of work.
+
+01:14:55.660 --> 01:14:56.660
+But.
+
+01:14:56.660 --> 01:14:57.660
+Fairly with AI.
+
+01:14:57.660 --> 01:14:58.660
+So it's going to be very efficient.
+
+01:14:58.660 --> 01:14:59.660
+You have all my 8 IPs.
+
+01:14:59.660 --> 01:15:00.660
+Going in a step by step process.
+
+01:15:00.660 --> 01:15:01.660
+With.
+
+01:15:01.660 --> 01:15:02.660
+You know.
+
+01:15:02.660 --> 01:15:03.660
+That last agent phase.
+
+01:15:03.660 --> 01:15:04.660
+When you know.
+
+01:15:04.660 --> 01:15:05.660
+You're delivering.
+
+01:15:05.660 --> 01:15:06.660
+You may get clients.
+
+01:15:06.660 --> 01:15:07.660
+You learn to ship with me.
+
+01:15:07.660 --> 01:15:08.660
+And also you know.
+
+01:15:08.660 --> 01:15:09.660
+Automating your stuff.
+
+01:15:09.660 --> 01:15:10.660
+Into SOPs.
+
+01:15:10.660 --> 01:15:11.660
+Systematic operating procedures.
+
+01:15:11.660 --> 01:15:12.660
+And you know.
+
+01:15:12.660 --> 01:15:13.660
+Just.
+
+01:15:13.660 --> 01:15:14.660
+Having it go for you.
+
+01:15:14.660 --> 01:15:15.660
+While you know.
+
+01:15:15.660 --> 01:15:16.660
+You're just.
+
+01:15:16.660 --> 01:15:17.660
+The person you are.
+
+01:15:17.660 --> 01:15:18.660
+We go through the business engine.
+
+01:15:18.660 --> 01:15:19.660
+The tech engine.
+
+01:15:19.660 --> 01:15:20.660
+The content engine.
+
+01:15:20.660 --> 01:15:21.660
+Different engines.
+
+01:15:21.660 --> 01:15:22.660
+Because you know.
+
+01:15:22.660 --> 01:15:23.660
+You can.
+
+01:15:23.660 --> 01:15:24.660
+You can build your own offer.
+
+01:15:24.660 --> 01:15:25.660
+Like.
+
+01:15:25.660 --> 01:15:26.660
+I've made more than 40 lakhs.
+
+01:15:26.660 --> 01:15:27.660
+From this model.
+
+01:15:27.660 --> 01:15:28.660
+Last 3 years.
+
+01:15:28.660 --> 01:15:29.660
+Working an average of 4 hours a day.
+
+01:15:29.660 --> 01:15:30.660
+Sometimes more or less.
+
+01:15:30.660 --> 01:15:31.660
+But.
+
+01:15:31.660 --> 01:15:32.660
+The average is what matters.
+
+01:15:32.660 --> 01:15:33.660
+Right.
+
+01:15:33.660 --> 01:15:34.660
+Because you get to live a very big life of freedom.
+
+01:15:34.660 --> 01:15:35.660
+These are some.
+
+01:15:35.660 --> 01:15:36.660
+Of the settlement reports.
+
+01:15:36.660 --> 01:15:37.660
+Screenshots.
+
+01:15:37.660 --> 01:15:38.660
+You can see it's a lot of money.
+
+01:15:38.660 --> 01:15:39.660
+That you know.
+
+01:15:39.660 --> 01:15:40.660
+Can change your life.
+
+01:15:40.660 --> 01:15:41.660
+You don't need a job.
+
+01:15:41.660 --> 01:15:42.660
+After doing this.
+
+01:15:42.660 --> 01:15:43.660
+And it's based on basic thesis.
+
+01:15:43.660 --> 01:15:44.660
+Right.
+
+01:15:44.660 --> 01:15:45.660
+It's.
+
+01:15:45.660 --> 01:15:46.660
+The world started with craftsmanship.
+
+01:15:46.660 --> 01:15:47.660
+Then came in technology.
+
+01:15:47.660 --> 01:15:48.660
+And right now.
+
+01:15:48.660 --> 01:15:49.660
+One person can use technology.
+
+01:15:49.660 --> 01:15:50.660
+And add craftsmanship.
+
+01:15:50.660 --> 01:15:51.660
+And you know.
+
+01:15:51.660 --> 01:15:52.660
+It's.
+
+01:15:52.660 --> 01:15:53.660
+Aesthetic to it.
+
+01:15:53.660 --> 01:15:54.660
+Right.
+
+01:15:54.660 --> 01:15:55.660
+Like.
+
+01:15:55.660 --> 01:15:56.660
+I'm doing over here.
+
+01:15:56.660 --> 01:15:57.660
+And there you go.
+
+01:15:57.660 --> 01:15:58.660
+We have a landing vision.
+
+01:15:58.660 --> 01:15:59.660
+So.
+
+01:15:59.660 --> 01:16:00.660
+Let me just get the link.
+
+01:16:00.660 --> 01:16:01.660
+Open.
+
+01:16:01.660 --> 01:16:02.660
+So.
+
+01:16:02.660 --> 01:16:03.660
+There you go.
+
+01:16:03.660 --> 01:16:04.660
+Is that a glitch.
+
+01:16:04.660 --> 01:16:05.660
+Oh.
+
+01:16:05.660 --> 01:16:06.660
+There is a glitch on this.
+
+01:16:06.660 --> 01:16:07.660
+Let me check.
+
+01:16:07.660 --> 01:16:08.660
+I don't see anything on the site.
+
+01:16:08.660 --> 01:16:09.660
+Okay.
+
+01:16:09.660 --> 01:16:10.660
+So we got our leads as well.
+
+01:16:10.660 --> 01:16:15.799
+So what I'm going to do is.
+
+01:16:15.799 --> 01:16:17.240
+Close this.
+
+01:16:17.240 --> 01:16:19.759
+Where are our leads.
+
+01:16:19.759 --> 01:16:26.419
+Fuck the leads for now.
+
+01:16:26.419 --> 01:16:29.100
+It constructed.
+
+01:16:29.100 --> 01:16:31.000
+This is.
+
+01:16:31.000 --> 01:16:38.040
+This is the actual project.
+
+01:16:38.040 --> 01:16:39.040
+This is the actual process.
+
+01:16:39.040 --> 01:16:42.819
+You can construct leads and have an email verifier connected.
+
+01:16:42.819 --> 01:16:45.339
+That's what we'll be exploring as well in my cohort.
+
+01:16:45.339 --> 01:16:55.339
+So meanwhile, I need to fix the app 46 KB.
+
+01:16:55.339 --> 01:17:01.339
+There's nothing showing on the app.
+
+01:17:01.339 --> 01:17:08.339
+No text, no tables.
+
+01:17:08.339 --> 01:17:26.339
+Anyway, let me do one thing, let me open this.
+
+01:17:26.339 --> 01:17:44.939
+OK, this is the one that deployed the wrong one.
+
+01:17:44.939 --> 01:17:47.899
+So these are some hallucinations the LLM does, but it's good, right?
+
+01:17:47.899 --> 01:17:48.899
+It's doing its stuff.
+
+01:17:48.899 --> 01:17:50.259
+You just need to know how to navigate these things.
+
+01:17:50.259 --> 01:18:08.500
+No text on deploy as you deployed index.html, which is empty, but you need to deploy this.
+
+01:18:08.500 --> 01:18:17.819
+OK, meanwhile, what I'm going to do ASAP, this is very sexy, right, already nice, nice,
+
+01:18:17.819 --> 01:18:23.580
+nice, nice, nice, nice, nice, nice, very nice.
+
+01:18:23.580 --> 01:18:29.100
+So what I'm going to do is where's the lead list on text?
+
+01:18:29.100 --> 01:18:30.100
+Is this the one?
+
+01:18:30.100 --> 01:18:32.660
+Yes, this has the emails as well.
+
+01:18:32.660 --> 01:18:44.220
+So now what we do is we copy parts, close this, come to codecs and close this as well.
+
+01:18:44.220 --> 01:19:01.259
+And then we added the emails and now using a mix of writing frameworks from what you
+
+01:19:01.259 --> 01:19:03.140
+have to do is give it the email copies.
+
+01:19:03.140 --> 01:19:13.740
+So we come down to emails, we copy these two parts and we paste it here from your draft
+
+01:19:14.259 --> 01:19:21.100
+draft all emails to my inbox and I will just show you my inbox also so that you know that
+
+01:19:21.100 --> 01:19:26.620
+it's empty to my drafts, to my Gmail, to my Gmail drafts.
+
+01:19:26.620 --> 01:19:30.060
+OK, so we come to my Gmail drafts.
+
+01:19:30.060 --> 01:19:31.060
+You can see it's empty.
+
+01:19:31.060 --> 01:19:36.459
+It's just some email called confirmation and some other, you know, drafts that I made.
+
+01:19:36.459 --> 01:19:41.779
+But what we're also going to do is optimize the speed.
+
+01:19:42.580 --> 01:19:43.459
+High is fine.
+
+01:19:43.459 --> 01:19:46.700
+GPD 5.5 writes very well.
+
+01:19:46.700 --> 01:19:53.859
+One more thing is that, you know, I really want no em dashes in the copy.
+
+01:19:53.859 --> 01:20:12.740
+Use any other grammatical tool and listicles or line spacing or whatever to make it feel human.
+
+01:20:12.740 --> 01:20:20.140
+So we send this and the thing is, basically, I don't want these em dashes because AI has,
+
+01:20:20.140 --> 01:20:21.819
+you know, bastardized the use of em dashes.
+
+01:20:21.819 --> 01:20:25.779
+It becomes really difficult to for anyone to show it as like, you know, hey, this is
+
+01:20:25.779 --> 01:20:29.540
+like not an em dash.
+
+01:20:29.540 --> 01:20:32.100
+The cloud design version is now deployed.
+
+01:20:32.419 --> 01:20:36.580
+OK. Open this.
+
+01:20:40.060 --> 01:20:41.459
+So we have a site ready as well.
+
+01:20:42.459 --> 01:20:57.020
+Your strategy called out 16 install works and you get an operator.
+
+01:20:57.580 --> 01:20:58.500
+What do you get?
+
+01:21:02.299 --> 01:21:08.100
+Nice. All I want to do is go to my word cell and, you know, like change the label because
+
+01:21:08.100 --> 01:21:11.859
+it looks shit. It's basically this, right?
+
+01:21:14.379 --> 01:21:15.459
+Why isn't it claimable?
+
+01:21:39.100 --> 01:21:41.459
+I can claim it on my word cells.
+
+01:21:41.819 --> 01:21:43.419
+So that's what I want to do.
+
+01:21:45.299 --> 01:21:48.020
+Speed optimized for speed.
+
+01:21:49.740 --> 01:21:51.779
+OK, I got the frameworks.
+
+01:21:51.779 --> 01:21:53.100
+The first batch of drafts is ready.
+
+01:21:53.419 --> 01:21:55.140
+Creating drafts. OK, there you go.
+
+01:21:55.140 --> 01:21:57.060
+The drafts are in Gmail. So this is called speed.
+
+01:21:57.220 --> 01:21:58.620
+There you go. Everything's in Gmail.
+
+01:21:58.979 --> 01:22:00.060
+So, you know, this is the last one.
+
+01:22:00.060 --> 01:22:01.580
+Now you have before founding.
+
+01:22:01.859 --> 01:22:03.060
+Hey, Hakeem saw this.
+
+01:22:03.459 --> 01:22:05.100
+I installed B2B says this is this.
+
+01:22:05.100 --> 01:22:08.220
+And you can also have like your follow ups like you have a sheet tracker follow up.
+
+01:22:08.220 --> 01:22:10.020
+So this is how, you know, you get all of this.
+
+01:22:10.660 --> 01:22:12.259
+You see how personalized all of this is.
+
+01:22:12.700 --> 01:22:14.299
+Right. You see how real it feels.
+
+01:22:14.299 --> 01:22:15.939
+Like, does this look like I'm not at all.
+
+01:22:16.580 --> 01:22:18.859
+That's the power of all of these two links.
+
+01:22:20.379 --> 01:22:24.939
+And you can literally build dashboards around this, have it, you know, check stuff for you
+
+01:22:24.939 --> 01:22:30.580
+so that you're not just sending mails and not just sending first mail, but you're actually
+
+01:22:30.580 --> 01:22:34.859
+also tracking follow up, tracking reply rates, tracking conversions, all of these things
+
+01:22:34.859 --> 01:22:37.020
+where they are. So that's your sales part.
+
+01:22:37.060 --> 01:22:44.500
+So if you look at our graphic or site is ready now, let me just check this out.
+
+01:22:46.060 --> 01:22:47.060
+There you go. This is fixed.
+
+01:22:48.299 --> 01:22:49.580
+And I love it.
+
+01:22:50.020 --> 01:22:53.500
+It's deployed to market and you have your emails in place as well.
+
+01:22:53.779 --> 01:22:55.060
+Customized, personalized.
+
+01:22:55.500 --> 01:22:57.660
+And all you go from here is just get your sales script.
+
+01:22:57.779 --> 01:23:01.180
+You just need to follow your sales script, send out a thousand emails.
+
+01:23:01.259 --> 01:23:06.859
+And as I was showing you, my operator document on preview is that, you know, you do
+
+01:23:06.859 --> 01:23:09.299
+everything with AI, right? It's the same business fundamentals.
+
+01:23:09.339 --> 01:23:13.220
+Only thing like even the worst case scenario, you get one client after sending out a
+
+01:23:13.220 --> 01:23:16.819
+thousand emails. And if it's something like this, you could sell for a thousand dollars
+
+01:23:16.819 --> 01:23:19.580
+minimum. Like for Gibson, it's going to be five lakhs or whatever.
+
+01:23:19.580 --> 01:23:20.979
+So even one client changes his life.
+
+01:23:21.259 --> 01:23:22.459
+And that's the worst case scenario.
+
+01:23:22.500 --> 01:23:24.620
+The best case scenario is like a three percent reply rate.
+
+01:23:25.060 --> 01:23:28.060
+What these are, these are numbers I've ran by at six percent reply rate, five percent
+
+01:23:28.060 --> 01:23:29.859
+reply rate. And this is without personalization.
+
+01:23:30.700 --> 01:23:34.620
+You have personalization, you're going to see anywhere between 10 to 15 percent of
+
+01:23:34.620 --> 01:23:38.020
+reply rates and that one client is going to be like five lakhs.
+
+01:23:38.100 --> 01:23:40.899
+Imagine getting 10 clients and being like 50 lakhs to a crore.
+
+01:23:41.299 --> 01:23:42.379
+So that's the model.
+
+01:23:43.339 --> 01:23:47.020
+I think we've done all of our work over here that we sought out to go through.
+
+01:23:47.540 --> 01:23:50.100
+And let me just review it.
+
+01:23:52.819 --> 01:23:56.979
+Let me just review it from our context image.
+
+01:23:57.020 --> 01:23:59.419
+So workshop. Let's close all the other stuff.
+
+01:24:00.859 --> 01:24:05.580
+So we can see that we went on and I'm also going to see the time.
+
+01:24:05.779 --> 01:24:09.180
+I mean, if you watch this at one point, it says one hour, one hour, 24 minutes, we're
+
+01:24:09.180 --> 01:24:11.060
+watching at one point to one point five X.
+
+01:24:11.500 --> 01:24:13.180
+You can literally see it in an hour.
+
+01:24:13.500 --> 01:24:17.540
+We made an entire business right from the input all the way to cash.
+
+01:24:17.540 --> 01:24:19.500
+I mean, we didn't sell anything yet.
+
+01:24:19.540 --> 01:24:20.939
+Like, of course, you need to package.
+
+01:24:20.939 --> 01:24:22.339
+And I give you an idea of this.
+
+01:24:22.339 --> 01:24:23.580
+But there's step seven.
+
+01:24:23.939 --> 01:24:25.140
+You have it all in place.
+
+01:24:25.580 --> 01:24:27.899
+This is more of like it's going to take some refinement.
+
+01:24:27.899 --> 01:24:29.379
+It's going to take some packaging skills.
+
+01:24:29.859 --> 01:24:32.100
+And, you know, of course, you need clients for cash.
+
+01:24:32.100 --> 01:24:34.859
+We're not going to send emails because that's Jibson's job to do.
+
+01:24:35.259 --> 01:24:37.060
+But there's a lot of enrichment.
+
+01:24:37.060 --> 01:24:39.819
+There's a lot of refinement that needs to be happening in all of these phases.
+
+01:24:39.819 --> 01:24:41.819
+So that's exactly what I do with M.A.O.
+
+01:24:42.299 --> 01:24:45.100
+And that's what I've been talking about for the longest.
+
+01:24:45.540 --> 01:24:47.939
+So if you're interested, you can join M.A.O.
+
+01:24:47.979 --> 01:24:50.180
+And you have your middle seats available.
+
+01:24:50.339 --> 01:24:52.939
+Also, if you're going for the thirty five thousand plan, it's not that bad because,
+
+01:24:52.939 --> 01:24:55.899
+you know, you can make your ROI with just one client that you close.
+
+01:24:56.299 --> 01:25:01.419
+And if you want to join DM me on Instagram or you can also email me.
+
+01:25:01.459 --> 01:25:04.979
+So I'll just write these details over here somewhere on the screen
+
+01:25:05.580 --> 01:25:08.299
+so that it is easy for you to access.
+
+01:25:08.859 --> 01:25:10.819
+So if you want to join M.A.O.
+
+01:25:10.899 --> 01:25:13.500
+Let me close all of this and make a new file.
+
+01:25:13.660 --> 01:25:15.779
+It'll be like join M.A.O.
+
+01:25:16.220 --> 01:25:20.939
+.txt and close this and bring this to the main screen.
+
+01:25:21.700 --> 01:25:28.859
+You can DM on Instagram at the rate Aiden underscore Gomes
+
+01:25:29.419 --> 01:25:38.939
+or you can email at Aiden Gomes 50 at the rate gmail.com
+
+01:25:38.939 --> 01:25:47.580
+or you can WhatsApp at plus nine one eight two nine one one four four six eight four.
+
+01:25:47.580 --> 01:25:48.819
+So this is my details.
+
+01:25:48.819 --> 01:25:50.779
+If you want to join M.A.O., you can do this.
+
+01:25:51.060 --> 01:25:54.979
+And if you want these files, I'll try to attach it somewhere or maybe make it like,
+
+01:25:55.140 --> 01:25:56.419
+you know, accessible to all.
+
+01:25:56.500 --> 01:25:57.779
+Right. I got to send that to Gibson.
+
+01:25:58.259 --> 01:25:59.779
+But that's it for the workshop.
+
+01:25:59.859 --> 01:26:01.740
+Thank you for joining.
+
+01:26:01.740 --> 01:26:06.180
+You saw the essentials of how to build a business from scratch with my processes,
+
+01:26:06.180 --> 01:26:06.939
+with my IPs.
+
+01:26:06.939 --> 01:26:08.459
+And I mean, it's still not there.
+
+01:26:08.500 --> 01:26:09.540
+It's still not the best.
+
+01:26:09.580 --> 01:26:10.700
+There's a lot of iterations.
+
+01:26:10.700 --> 01:26:11.700
+There's a lot of refinement.
+
+01:26:11.700 --> 01:26:15.259
+This is just a very concise version of, you know, three to five months of all the work
+
+01:26:15.259 --> 01:26:18.180
+I do that helps me get like one client that has changed my life for me.
+
+01:26:18.180 --> 01:26:20.180
+Right. I mean, I have multiple clients I've worked with.
+
+01:26:20.180 --> 01:26:24.979
+And this is like this is the one model that, you know, I've kept iterating on through
+
+01:26:24.979 --> 01:26:26.100
+different frameworks.
+
+01:26:26.100 --> 01:26:27.859
+I used to sell content services.
+
+01:26:27.899 --> 01:26:30.299
+Now, I services a mix of those.
+
+01:26:30.540 --> 01:26:31.939
+And I think that's what keeps you set.
+
+01:26:31.939 --> 01:26:33.100
+You're setting yourself apart.
+
+01:26:33.459 --> 01:26:38.299
+And, you know, I don't like job proof because you don't need to work a job anymore.
+
+01:26:38.299 --> 01:26:43.859
+You build and you stop going from you need something or you're asking for something to
+
+01:26:43.859 --> 01:26:45.379
+the phase where you're telling something.
+
+01:26:45.779 --> 01:26:50.140
+And the age of AI and agents, it's not going to be who gets hired.
+
+01:26:50.140 --> 01:26:51.779
+It's about who gets selected.
+
+01:26:51.779 --> 01:26:55.220
+And when you build your stuff in this orchestrated manner.
+
+01:26:55.220 --> 01:26:57.740
+Right. It's obvious that you're going to be selected.
+
+01:26:57.740 --> 01:26:58.819
+Why is my antenna up?
+
+01:26:59.620 --> 01:27:00.700
+But yeah, that's it for this one.
+
+01:27:01.180 --> 01:27:04.259
+You can join MAO or you can use this data, build your own business.
+
+01:27:04.259 --> 01:27:06.580
+Reach out to me. Give me updates on how it's going for you.
+
+01:27:06.899 --> 01:27:08.259
+Thank you for watching this till the end.
+
+01:27:09.299 --> 01:27:10.140
+See you in the next one.

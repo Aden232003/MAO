@@ -259,6 +259,25 @@
       Payment reference: <strong id="payment-id"></strong>
     </div>
 
+    <!-- Workshop-zip download (visible only when this deposit was triggered
+         from /free-workshop — the workshop page sets a localStorage flag
+         before redirecting users here). -->
+    <div class="workshop-bonus" id="workshop-bonus" style="display:none; margin: 28px 0; padding: 22px 24px; border: 1px solid var(--accent); background: rgba(200,255,0,0.05); text-align: left;">
+      <p style="font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; font-weight: 600;">Workshop bonus — included with your deposit</p>
+      <a href="https://pub-7c8213b315404b04b5a8852bde0adcfa.r2.dev/workshop-MAO.zip"
+         download="workshop-MAO.zip"
+         style="display: flex; align-items: center; gap: 14px; padding: 14px 18px; border: 1px solid var(--border); background: var(--surface); text-decoration: none; color: var(--text); transition: all 0.3s var(--ease);">
+        <span style="width: 36px; height: 36px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--accent); flex-shrink: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </span>
+        <span style="flex: 1;">
+          <span style="display: block; font-family: var(--mono); font-size: 13px; font-weight: 600;">workshop-MAO.zip</span>
+          <span style="display: block; font-size: 11px; color: var(--text-dim); letter-spacing: 0.04em;">38 files · context, directives, emails, site · ~34 MB</span>
+        </span>
+        <span style="color: var(--accent); font-size: 18px;">↓</span>
+      </a>
+    </div>
+
     <div class="thanks-actions">
       <a href="./index.html" class="btn btn-ghost">← Back to Home</a>
       <a href="https://instagram.com/aden_gomes" target="_blank" rel="noopener" class="btn btn-primary">DM Aden on Instagram</a>
@@ -283,6 +302,19 @@
     document.getElementById('payment-id').textContent = pid;
     document.getElementById('payment-id-box').classList.add('visible');
   }
+
+  // If the deposit came from /free-workshop, ALSO surface the workshop zip
+  // and persist the workshop-unlock flag so the workshop page treats this
+  // user as a returning buyer.
+  try {
+    if (localStorage.getItem('mao-workshop-via-deposit') === '1') {
+      document.getElementById('workshop-bonus').style.display = 'block';
+      localStorage.setItem('mao-workshop-unlocked', 'true');
+      localStorage.setItem('mao-applicant-ticket', 'true');
+      // One-shot — clear the trigger so refreshes don't keep re-firing.
+      localStorage.removeItem('mao-workshop-via-deposit');
+    }
+  } catch (_) { /* private mode */ }
 </script>
 </body>
 </html>
