@@ -1,3 +1,15 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/files",
+      "destination": "https://pub-7c8213b315404b04b5a8852bde0adcfa.r2.dev/workshop-MAO.zip",
+      "permanent": false
+    },
+    {
+      "source": "/workshop",
+      "destination": "/free-workshop",
+      "permanent": false
+    }
+  ]
 }
