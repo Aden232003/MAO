@@ -24,7 +24,7 @@ class MAOVslPlayer {
     this.timeEl = root.querySelector('.mvp-time');
 
     this.maxWatched = 0;
-    this.ccEnabled = true;
+    this.ccEnabled = root.dataset.ccDefault !== 'off';
     this.hideTimer = null;
     this.milestones = new Set();
     // VSL pages block forward seeking; reference content (workshop) opts in
@@ -71,7 +71,7 @@ class MAOVslPlayer {
       .then(text => {
         this.cues = this.parseVtt(text);
         if (this.cues.length > 0) {
-          this.ccBtn?.classList.add('active');
+          if (this.ccEnabled) this.ccBtn?.classList.add('active');
           this.updateCaption();
         }
       })
