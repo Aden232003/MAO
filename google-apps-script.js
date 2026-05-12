@@ -1,5 +1,5 @@
 /**
- * MAO — Google Apps Script for Form Submissions
+ * MAO / Google Apps Script for Form Submissions
  *
  * RECOVERY FLOW (when the /exec URL returns 403):
  * 1. Paste this ENTIRE file over everything in the Apps Script editor.
@@ -8,7 +8,7 @@
  *    If prompted: Review permissions → pick adengomes50@gmail.com →
  *    Advanced → Go to [project] (unsafe) → Allow.
  *    This re-authorizes Drive + Sheets scopes.
- * 4. Execution log should show "MAO form endpoint is live." — no red errors.
+ * 4. Execution log should show "MAO form endpoint is live." with no red errors.
  * 5. Deploy → Manage deployments → ✏️ on the active one → Version: "New
  *    version" → Description: "re-auth YYYY-MM-DD" → Deploy.
  *    (Creating a NEW version under the same deployment keeps the URL stable.)
@@ -18,7 +18,7 @@
  * Pin the Sheet: once the "MAO Applications & Leads" sheet exists, open it,
  * copy the ID from its URL (the long string between /d/ and /edit), and
  * paste it into SPREADSHEET_ID below. This removes the Drive dependency
- * and makes the script MUCH more resilient — DriveApp scope is the most
+ * and makes the script MUCH more resilient. DriveApp scope is the most
  * common thing Google revokes on inactive personal accounts.
  */
 
@@ -76,6 +76,38 @@ function getWorkshopSheet(ss) {
   return sheet;
 }
 
+// Lazily create the anonymous cohort feedback tab. Schema is deliberately
+// minimal: timestamp + session number + 8 answer fields. No identifier
+// columns. Do not append IP, referrer, name, or email here for any reason.
+function getFeedbackSheet(ss) {
+  let sheet = ss.getSheetByName('Session Feedback');
+  if (!sheet) {
+    sheet = ss.insertSheet('Session Feedback');
+    sheet.appendRow([
+      'Timestamp',
+      'Session',
+      'Q1 Overall (1-10)',
+      'Q2 Most Valuable',
+      'Q3 Unclear or Slow',
+      'Q4 Money Confidence (1-10)',
+      'Q5 Why That Number',
+      'Q6 Where Stuck',
+      'Q7 More Of / Less Of',
+      'Q8 Anything Else'
+    ]);
+    sheet.setFrozenRows(1);
+    sheet.getRange('1:1').setFontWeight('bold');
+    sheet.setColumnWidth(1, 170);
+    sheet.setColumnWidth(2, 80);
+    sheet.setColumnWidth(3, 90);
+    for (let col = 4; col <= 10; col++) {
+      if (col === 6) { sheet.setColumnWidth(col, 90); continue; }
+      sheet.setColumnWidth(col, 280);
+    }
+  }
+  return sheet;
+}
+
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
@@ -115,6 +147,22 @@ function doPost(e) {
         data.payment_id || '',
         data.form_type,
         data.source || 'workshop_thanks'
+      ]);
+    } else if (data.form_type === 'cohort_feedback') {
+      // Anonymous post-session feedback. Do NOT add identifier fields here.
+      // The submitting page POSTs answers only; no name, email, or IP.
+      const sheet = getFeedbackSheet(ss);
+      sheet.appendRow([
+        timestamp,
+        data.session || '',
+        data.q1_overall || '',
+        data.q2_valuable || '',
+        data.q3_unclear || '',
+        data.q4_confidence || '',
+        data.q5_why || '',
+        data.q6_stuck || '',
+        data.q7_more_less || '',
+        data.q8_else || ''
       ]);
     }
 
