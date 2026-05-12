@@ -24,6 +24,12 @@
 
 const SPREADSHEET_ID = '1FML3ghv97RwZmx3bUwPsrU7uvfDRxuhLtnIOEBgiLgU';
 
+// Anonymous cohort feedback lives in its OWN spreadsheet, completely
+// separate from leads/applications. Operator confusion risk is the reason:
+// feedback should never be mixed with identified rows. If this ID is empty,
+// feedback submissions will throw and never be silently written to leads.
+const FEEDBACK_SPREADSHEET_ID = '1ZTJv1K-RYQijDza3-El3S6uqnIkwPOUaRC8qc3Lk6x4';
+
 function getOrCreateSpreadsheet() {
   if (SPREADSHEET_ID) {
     return SpreadsheetApp.openById(SPREADSHEET_ID);
@@ -76,13 +82,18 @@ function getWorkshopSheet(ss) {
   return sheet;
 }
 
-// Lazily create the anonymous cohort feedback tab. Schema is deliberately
-// minimal: timestamp + session number + 8 answer fields. No identifier
-// columns. Do not append IP, referrer, name, or email here for any reason.
-function getFeedbackSheet(ss) {
-  let sheet = ss.getSheetByName('Session Feedback');
+// Anonymous cohort feedback writes to a DEDICATED spreadsheet, not the
+// leads sheet. Schema is deliberately minimal: timestamp + session label +
+// 8 answer fields. No identifier columns. Do not append IP, referrer,
+// name, or email here for any reason.
+function getFeedbackSheet() {
+  const ss = SpreadsheetApp.openById(FEEDBACK_SPREADSHEET_ID);
+  let sheet = ss.getSheetByName('Responses');
   if (!sheet) {
-    sheet = ss.insertSheet('Session Feedback');
+    // First-run: pave the default Sheet1 into our Responses tab with headers.
+    sheet = ss.getSheets()[0];
+    sheet.setName('Responses');
+    sheet.clear();
     sheet.appendRow([
       'Timestamp',
       'Session',
@@ -98,7 +109,7 @@ function getFeedbackSheet(ss) {
     sheet.setFrozenRows(1);
     sheet.getRange('1:1').setFontWeight('bold');
     sheet.setColumnWidth(1, 170);
-    sheet.setColumnWidth(2, 80);
+    sheet.setColumnWidth(2, 90);
     sheet.setColumnWidth(3, 90);
     for (let col = 4; col <= 10; col++) {
       if (col === 6) { sheet.setColumnWidth(col, 90); continue; }
@@ -149,9 +160,9 @@ function doPost(e) {
         data.source || 'workshop_thanks'
       ]);
     } else if (data.form_type === 'cohort_feedback') {
-      // Anonymous post-session feedback. Do NOT add identifier fields here.
-      // The submitting page POSTs answers only; no name, email, or IP.
-      const sheet = getFeedbackSheet(ss);
+      // Anonymous post-session feedback. Writes to the SEPARATE feedback
+      // spreadsheet, never to leads. Do NOT add identifier fields here.
+      const sheet = getFeedbackSheet();
       sheet.appendRow([
         timestamp,
         data.session || '',
