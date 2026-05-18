@@ -11,10 +11,11 @@ const WS_KEYS = {
 };
 
 /* ── Convex lead endpoint ──
-   Paste the HTTP Actions URL from `npx convex dev` (looks like
-   https://<deployment>.convex.site). Leave empty during local development —
-   the form will still unlock the video, the lead just won't be saved. */
-const CONVEX_URL = '';
+   Production HTTP Actions URL. Project: mao-leads (team: aden-gomes).
+   Dashboard: https://dashboard.convex.dev/t/aden-gomes/mao-leads/frugal-bee-879
+   To rotate: `cd backend && CONVEX_DEPLOY_KEY=<key> npx convex deploy`.
+   If empty/unreachable, the form still unlocks locally — never blocks a viewer. */
+const CONVEX_URL = 'https://frugal-bee-879.convex.site';
 
 /* ── Cursor glow (mirrors index.html) ── */
 const wsGlow = document.getElementById('cursorGlow');
