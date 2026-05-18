@@ -42,6 +42,53 @@
   margin: 0 auto;
 }
 
+/* ── Value-add line: "+ System Letters from Aden" ──
+   Lime marker swatch behind the phrase. Reads as a confident proof point,
+   not a CTA. The plus glyph anchors it as a benefit, not a requirement. */
+.ws-hero-bonus {
+  margin: 14px auto 0;
+  max-width: 580px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  justify-content: center;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text);
+  text-align: left;
+}
+.ws-hero-bonus-plus {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.ws-hero-bonus-text {
+  flex: 1;
+}
+.ws-hero-mark {
+  background: var(--accent);
+  color: #000;
+  padding: 2px 8px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  border-radius: 0;
+  /* Hairline lime glow so the swatch reads as illuminated, not flat. */
+  box-shadow: 0 0 22px rgba(200, 255, 0, 0.22);
+}
+@media (max-width: 640px) {
+  .ws-hero-bonus {
+    font-size: 12px;
+    padding: 0 4px;
+    gap: 8px;
+  }
+  .ws-hero-bonus-plus { font-size: 16px; }
+  .ws-hero-mark { padding: 1px 6px; }
+}
+
 /* ── Kill all section-inner reveal animations on the workshop page.
    The user should never have to wait for content to fade in — every
    block must be visible the moment it scrolls into view. ── */
@@ -955,4 +1002,167 @@
     padding: 8px 12px;
     font-size: 10px;
   }
+}
+
+/* ══════════════════════════════════════
+   LEAD GATE — email + phone overlay on the workshop video poster.
+   Sits absolutely over .ws-vsl-frame. Pre-paint script removes it for
+   viewers who already submitted, so there is no flash.
+   ══════════════════════════════════════ */
+.ws-vsl-frame { position: relative; }
+
+.ws-lead-gate {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(8, 10, 4, 0.78);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  backdrop-filter: blur(10px) saturate(120%);
+  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+}
+
+.ws-lead-gate.is-out {
+  opacity: 0;
+  transform: scale(1.01);
+  pointer-events: none;
+}
+
+.ws-lead-form {
+  width: min(420px, 100%);
+  background: rgba(10, 10, 10, 0.92);
+  border: 1px solid rgba(200, 255, 0, 0.18);
+  padding: 26px 26px 22px;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(200, 255, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ws-lead-eyebrow {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.ws-lead-title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 2.3vw, 1.5rem);
+  line-height: 1.15;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.ws-lead-sub {
+  margin: 0 0 4px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.ws-lead-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ws-lead-field > span {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ws-lead-field input {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 8px 0;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  transition: border-color 0.2s var(--ease);
+}
+.ws-lead-field input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+.ws-lead-field input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.ws-lead-submit {
+  margin-top: 8px;
+  background: var(--accent);
+  color: #000;
+  border: 1px solid var(--accent);
+  padding: 13px 18px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+  box-shadow: 0 0 28px rgba(200, 255, 0, 0.22);
+}
+.ws-lead-submit:hover:not(:disabled) {
+  background: #000;
+  color: var(--accent);
+  box-shadow: 0 0 36px rgba(200, 255, 0, 0.32);
+}
+.ws-lead-submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.ws-lead-meta {
+  margin: 4px 0 0;
+  font-size: 10.5px;
+  line-height: 1.45;
+  color: var(--text-muted);
+  text-align: center;
+  font-family: var(--mono);
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 640px) {
+  /* Mobile: form is taller than the 16:9 video frame, so detach the gate
+     from the frame and stack it inline. The video player is hidden until
+     unlock — submit triggers the data attribute that reveals it. */
+  html:not([data-mao-workshop-watched="true"]) .ws-vsl-frame .mao-vsl-player {
+    display: none;
+  }
+  .ws-lead-gate {
+    position: static;
+    inset: auto;
+    padding: 0;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .ws-lead-form {
+    padding: 20px 18px 18px;
+    gap: 10px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .ws-lead-title { font-size: 1.05rem; }
+  .ws-lead-sub { font-size: 11.5px; }
+  .ws-lead-field input { font-size: 13.5px; padding: 7px 0; }
+  .ws-lead-submit { padding: 12px 14px; font-size: 11px; }
+  .ws-lead-meta { font-size: 9.5px; }
 }

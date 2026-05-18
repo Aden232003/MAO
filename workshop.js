@@ -6,8 +6,15 @@
 
 const WS_KEYS = {
   workshop: 'mao-workshop-unlocked',
-  applicantTicket: 'mao-applicant-ticket'
+  applicantTicket: 'mao-applicant-ticket',
+  watched: 'mao-workshop-watched'
 };
+
+/* ── Convex lead endpoint ──
+   Paste the HTTP Actions URL from `npx convex dev` (looks like
+   https://<deployment>.convex.site). Leave empty during local development —
+   the form will still unlock the video, the lead just won't be saved. */
+const CONVEX_URL = '';
 
 /* ── Cursor glow (mirrors index.html) ── */
 const wsGlow = document.getElementById('cursorGlow');
@@ -159,4 +166,80 @@ cta?.addEventListener('click', () => {
   if (typeof clarity === 'function') {
     clarity('event', 'workshop_checkout_click_tier_' + tier);
   }
+});
+
+/* ══════════════════════════════════════
+   LEAD GATE — email + phone before the video plays
+   Posts to Convex HTTP action /lead. If CONVEX_URL is empty or the request
+   fails, we still unlock locally — never block someone from watching because
+   our backend is down.
+   ══════════════════════════════════════ */
+const leadGate    = document.getElementById('ws-lead-gate');
+const leadForm    = document.getElementById('ws-lead-form');
+const leadSubmit  = document.getElementById('ws-lead-submit');
+const leadBtnText = document.getElementById('ws-lead-submit-text');
+const leadMeta    = document.getElementById('ws-lead-meta');
+
+function unlockWorkshop() {
+  try { localStorage.setItem(WS_KEYS.watched, 'true'); } catch (_) {}
+  document.documentElement.dataset.maoWorkshopWatched = 'true';
+  if (leadGate) leadGate.classList.add('is-out');
+  // After the fade animation, remove from layout entirely so the player
+  // controls (poster, big play button) are fully interactive.
+  setTimeout(() => { if (leadGate) leadGate.style.display = 'none'; }, 420);
+  // Auto-start playback for an immediate-gratification feel.
+  const bigPlay = document.querySelector('#ws-vsl-player .mvp-big-play');
+  setTimeout(() => bigPlay?.click(), 320);
+}
+
+async function postLead(payload) {
+  if (!CONVEX_URL) return { ok: false, skipped: true };
+  try {
+    const res = await fetch(CONVEX_URL.replace(/\/$/, '') + '/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    return { ok: res.ok };
+  } catch (_) {
+    return { ok: false };
+  }
+}
+
+leadForm?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  if (!leadSubmit) return;
+  const fd = new FormData(leadForm);
+  const email = String(fd.get('email') || '').trim();
+  const phone = String(fd.get('phone') || '').trim();
+  if (!email.includes('@') || email.length < 5) {
+    if (leadMeta) leadMeta.textContent = 'That email doesn’t look right — try again.';
+    return;
+  }
+  if (phone.replace(/[^0-9]/g, '').length < 7) {
+    if (leadMeta) leadMeta.textContent = 'Phone needs at least 7 digits, with country code.';
+    return;
+  }
+
+  leadSubmit.disabled = true;
+  if (leadBtnText) leadBtnText.textContent = 'Unlocking…';
+
+  const result = await postLead({
+    email,
+    phone,
+    source: 'free_workshop'
+  });
+
+  if (typeof clarity === 'function') {
+    clarity('event', 'workshop_lead_submit');
+    clarity('set', 'lead_email', email);
+  }
+
+  // Backend may be down; still unlock locally. A future visit will re-attempt
+  // if they clear localStorage.
+  if (!result.ok && !result.skipped && leadMeta) {
+    leadMeta.textContent = 'Saved locally. Unlocking the workshop anyway.';
+  }
+
+  unlockWorkshop();
 });

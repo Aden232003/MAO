@@ -24,16 +24,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css?v=5">
-  <link rel="stylesheet" href="./workshop.css?v=7">
+  <link rel="stylesheet" href="./workshop.css?v=9">
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "waior3g8uq");
   </script>
-  <!-- Pre-paint unlock: prevents flash of gated content for returning buyers. -->
+  <!-- Pre-paint unlock: prevents flash of gated content for returning buyers
+       and flash of gate for viewers who already submitted email + phone. -->
   <script>
     try {
       if (localStorage.getItem('mao-workshop-unlocked') === 'true' ||
           localStorage.getItem('mao-applicant-ticket') === 'true') {
         document.documentElement.dataset.maoUnlocked = 'true';
+      }
+      if (localStorage.getItem('mao-workshop-watched') === 'true') {
+        document.documentElement.dataset.maoWorkshopWatched = 'true';
       }
     } catch (_) {}
   </script>
@@ -44,6 +48,8 @@
     html[data-mao-unlocked="true"] #ws-files,
     html[data-mao-unlocked="true"] #ws-checkout { display: none !important; }
     html[data-mao-unlocked="true"] .ws-welcome-back { display: block !important; }
+    /* Lead gate hides itself once the viewer has submitted. No flash. */
+    html[data-mao-workshop-watched="true"] #ws-lead-gate { display: none !important; }
   </style>
 </head>
 <body>
@@ -81,7 +87,14 @@
   <div class="section-inner">
     <p class="section-label">Free Workshop</p>
     <h1 class="ws-hero-title">Watch me build a <em>paid AI offer</em> — live, end-to-end.</h1>
-    <p class="ws-hero-sub">Context → landing page → lead list → cold email → payment. Press play. Free to watch, no signup.</p>
+    <p class="ws-hero-sub">Context → landing page → lead list → cold email → payment. The full flow on stream.</p>
+    <p class="ws-hero-bonus">
+      <span class="ws-hero-bonus-plus">+</span>
+      <span class="ws-hero-bonus-text">
+        <mark class="ws-hero-mark">System Letters from Aden</mark>
+        — weekly playbooks for building with AI, sent to your inbox.
+      </span>
+    </p>
   </div>
 </section>
 
@@ -89,6 +102,28 @@
 <section class="section ws-section-video" id="ws-video">
   <div class="section-inner">
     <div class="vsl-player ws-vsl-frame">
+      <!-- LEAD GATE — overlays the poster until viewer submits email + phone.
+           Pre-paint script flips html[data-mao-workshop-watched] for returning
+           viewers to skip this entirely. -->
+      <div class="ws-lead-gate" id="ws-lead-gate">
+        <form class="ws-lead-form" id="ws-lead-form" novalidate>
+          <p class="ws-lead-eyebrow">Watch + Subscribe</p>
+          <h3 class="ws-lead-title">Where should we send the Letters?</h3>
+          <p class="ws-lead-sub">Drop your email + number — the workshop unlocks and the System Letters start arriving.</p>
+          <label class="ws-lead-field">
+            <span>Email</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="you@email.com">
+          </label>
+          <label class="ws-lead-field">
+            <span>Phone (with country code)</span>
+            <input type="tel" name="phone" autocomplete="tel" required placeholder="+91 98xxxxxxx">
+          </label>
+          <button type="submit" class="ws-lead-submit" id="ws-lead-submit">
+            <span id="ws-lead-submit-text">Unlock the workshop →</span>
+          </button>
+          <p class="ws-lead-meta" id="ws-lead-meta">Free workshop + weekly Letters. One-click unsubscribe, your number is just for cohort updates.</p>
+        </form>
+      </div>
       <div class="mao-vsl-player" id="ws-vsl-player" data-allow-seek="true" data-cc-default="off">
         <video class="mvp-video" preload="metadata" playsinline>
           <source src="https://pub-7c8213b315404b04b5a8852bde0adcfa.r2.dev/MAO-workshop-web.mp4" type="video/mp4">
@@ -359,6 +394,6 @@
 </footer>
 
 <script src="./vsl-player.js?v=8"></script>
-<script src="./workshop.js?v=5"></script>
+<script src="./workshop.js?v=6"></script>
 </body>
 </html>
