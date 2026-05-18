@@ -50,6 +50,15 @@
     html[data-mao-unlocked="true"] .ws-welcome-back { display: block !important; }
     /* Lead gate hides itself once the viewer has submitted. No flash. */
     html[data-mao-workshop-watched="true"] #ws-lead-gate { display: none !important; }
+    /* Paid-side content is hidden until the lead gate is cleared (or the
+       viewer is a returning buyer). No flash because this rule sits inline
+       in <head> and the pre-paint script has already set the data attrs. */
+    html:not([data-mao-workshop-watched="true"]):not([data-mao-unlocked="true"]) .ws-scroll-cue,
+    html:not([data-mao-workshop-watched="true"]):not([data-mao-unlocked="true"]) #ws-files,
+    html:not([data-mao-workshop-watched="true"]):not([data-mao-unlocked="true"]) #ws-checkout,
+    html:not([data-mao-workshop-watched="true"]):not([data-mao-unlocked="true"]) #ws-faq {
+      display: none !important;
+    }
   </style>
 </head>
 <body>

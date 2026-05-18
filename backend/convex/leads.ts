@@ -36,3 +36,18 @@ export const list = query({
       .take(100);
   },
 });
+
+import { internalMutation as removeMutation } from "./_generated/server";
+
+export const removeByEmail = removeMutation({
+  args: { email: v.string() },
+  handler: async (ctx, { email }) => {
+    const row = await ctx.db
+      .query("workshopLeads")
+      .withIndex("by_email", (q) => q.eq("email", email.trim().toLowerCase()))
+      .first();
+    if (!row) return { deleted: 0 };
+    await ctx.db.delete(row._id);
+    return { deleted: 1, id: row._id };
+  },
+});
