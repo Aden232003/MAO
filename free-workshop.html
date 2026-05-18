@@ -24,7 +24,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css?v=5">
-  <link rel="stylesheet" href="./workshop.css?v=6">
+  <link rel="stylesheet" href="./workshop.css?v=7">
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "waior3g8uq");
   </script>
@@ -42,9 +42,7 @@
        data-mao-unlocked on <html> for returning buyers. */
     .ws-welcome-back { display: none; }
     html[data-mao-unlocked="true"] #ws-files,
-    html[data-mao-unlocked="true"] #ws-checkout,
-    html[data-mao-unlocked="true"] #ws-mobile-cta,
-    html[data-mao-unlocked="true"] #ws-nav-cta { display: none !important; }
+    html[data-mao-unlocked="true"] #ws-checkout { display: none !important; }
     html[data-mao-unlocked="true"] .ws-welcome-back { display: block !important; }
   </style>
 </head>
@@ -55,11 +53,6 @@
 <!-- NAV -->
 <nav class="nav">
   <span class="nav-brand">MAO<span class="blink">_</span></span>
-  <a href="#ws-checkout" class="ws-nav-cta" id="ws-nav-cta">
-    <span class="ws-nav-cta-dot" aria-hidden="true"></span>
-    <span class="ws-nav-cta-text-long">Get Workshop Access · </span>
-    <span>₹1,999</span>
-  </a>
 </nav>
 
 <!-- WELCOME BACK (returning buyer) -->
@@ -88,7 +81,7 @@
   <div class="section-inner">
     <p class="section-label">Free Workshop</p>
     <h1 class="ws-hero-title">Watch me build a <em>paid AI offer</em> — live, end-to-end.</h1>
-    <p class="ws-hero-sub">Context → landing page → lead list → cold email automation → payment. One workshop. The exact files I built on stream.</p>
+    <p class="ws-hero-sub">Context → landing page → lead list → cold email → payment. Press play. Free to watch, no signup.</p>
   </div>
 </section>
 
@@ -131,7 +124,7 @@
 <!-- SCROLL CUE — points from video down to the directory so people don't
      wander past it. -->
 <a href="#ws-files" class="ws-scroll-cue">
-  <span><strong>See what's inside the workshop directory</strong></span>
+  <span><strong>The files I built on stream</strong></span>
   <svg class="ws-scroll-cue-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 5v14M19 12l-7 7-7-7"/>
   </svg>
@@ -237,9 +230,6 @@
       </div>
       <div class="ws-tree-fade" aria-hidden="true"></div>
       <span class="ws-tree-meta"><strong>38 files</strong> · ~700 KB</span>
-      <a href="#ws-checkout" class="ws-tree-callout">
-        Unlock — ₹1,999 →
-      </a>
     </div>
   </div>
 </section>
@@ -251,8 +241,8 @@
          data-rzp-tier1="https://rzp.io/rzp/mao-workshop"
          data-rzp-tier2="https://rzp.io/rzp/s4Vuhjl">
       <div class="ws-checkout-head">
-        <p class="ws-checkout-num" id="ws-checkout-eyebrow">Get The Files</p>
-        <h2 class="ws-checkout-title" id="ws-checkout-title">Get the Working Directory</h2>
+        <p class="ws-checkout-num" id="ws-checkout-eyebrow">Optional</p>
+        <h2 class="ws-checkout-title" id="ws-checkout-title">If you want the files, they're here.</h2>
       </div>
 
       <div class="ws-price-line">
@@ -368,10 +358,7 @@
   </div>
 </footer>
 
-<!-- MOBILE STICKY CTA -->
-<a href="#ws-checkout" class="ws-mobile-cta" id="ws-mobile-cta">Get the Files — ₹1,999</a>
-
 <script src="./vsl-player.js?v=8"></script>
-<script src="./workshop.js?v=4"></script>
+<script src="./workshop.js?v=5"></script>
 </body>
 </html>

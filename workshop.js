@@ -89,27 +89,27 @@ const RZP_TIER_2 = card?.dataset.rzpTier2;
 
 const VIEWS = {
   1: {
-    eyebrow:   'Get The Files',
-    title:     'Get the Working Directory',
+    eyebrow:   'Optional',
+    title:     "If you want the files, they're here.",
     priceMain: '₹1,999',
     priceTag:  'Razorpay · UPI / Cards / EMI supported · One-time, lifetime access',
-    ctaText:   'Get the Files — ₹1,999',
+    ctaText:   'Download the directory — ₹1,999',
     ctaHref:   RZP_TIER_1,
     ctaMeta:   'Secure checkout via Razorpay. Instant download.',
     navCta:    '₹1,999',
-    mobileCta: 'Get the Files — ₹1,999',
+    mobileCta: 'Download the directory — ₹1,999',
     upgraded:  false
   },
   2: {
-    eyebrow:   'Files + Refundable Enrollment',
-    title:     'Get the Directory + Applicant Ticket',
+    eyebrow:   'Optional + Refundable Enrollment',
+    title:     'Directory + Applicant Ticket',
     priceMain: '₹5,000',
     priceTag:  '+ 2.5% gateway · ₹5,125 charged at checkout · ₹3,000 refundable for 30 days',
-    ctaText:   'Get Files + Enroll Refundably — ₹5,000',
+    ctaText:   'Download + Enroll Refundably — ₹5,000',
     ctaHref:   RZP_TIER_2,
     ctaMeta:   'Secure checkout via Razorpay. Instant access + Aden reaches out.',
     navCta:    '₹5,000',
-    mobileCta: 'Get Files + Enroll — ₹5,000',
+    mobileCta: 'Download + Enroll — ₹5,000',
     upgraded:  true
   }
 };

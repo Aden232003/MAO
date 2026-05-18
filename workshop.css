@@ -626,8 +626,21 @@
   color: var(--accent);
 }
 
-.ws-cta {
+/* Quiet the checkout CTA: outline-only, no lime fill. The workshop is
+   the gift; the directory is an optional add. */
+.ws-cta.btn.btn-primary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
   margin-bottom: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+.ws-cta.btn.btn-primary:hover {
+  background: transparent;
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: none;
 }
 
 .ws-cta-meta {
