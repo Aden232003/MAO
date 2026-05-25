@@ -119,6 +119,50 @@ function getFeedbackSheet() {
   return sheet;
 }
 
+// Foundation Weekend debrief — 12 questions, separate tab in the same
+// feedback spreadsheet. Same privacy rules as getFeedbackSheet: no
+// identifier columns, ever.
+function getFoundationDebriefSheet() {
+  const ss = SpreadsheetApp.openById(FEEDBACK_SPREADSHEET_ID);
+  let sheet = ss.getSheetByName('Foundation Debrief');
+  if (!sheet) {
+    sheet = ss.insertSheet('Foundation Debrief');
+    sheet.appendRow([
+      'Timestamp',
+      'Session',
+      'Q1 Landed (1-10)',
+      'Q2 Last Time Like This',
+      'Q3 AI Operating System',
+      'Q4 Money Confidence (1-10)',
+      'Q5 Life Clarity (1-10)',
+      'Q6 June Structure',
+      'Q7 Shifted Moment',
+      'Q8 Hardest To Push Through',
+      'Q9 Pace',
+      'Q10 Change For Next',
+      'Q11 Must Keep',
+      'Q12 Anything Else'
+    ]);
+    sheet.setFrozenRows(1);
+    sheet.getRange('1:1').setFontWeight('bold');
+    sheet.setColumnWidth(1, 170);
+    sheet.setColumnWidth(2, 200);
+    sheet.setColumnWidth(3, 90);
+    sheet.setColumnWidth(4, 240);
+    sheet.setColumnWidth(5, 280);
+    sheet.setColumnWidth(6, 90);
+    sheet.setColumnWidth(7, 90);
+    sheet.setColumnWidth(8, 280);
+    sheet.setColumnWidth(9, 320);
+    sheet.setColumnWidth(10, 280);
+    sheet.setColumnWidth(11, 200);
+    sheet.setColumnWidth(12, 280);
+    sheet.setColumnWidth(13, 280);
+    sheet.setColumnWidth(14, 320);
+  }
+  return sheet;
+}
+
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
@@ -174,6 +218,26 @@ function doPost(e) {
         data.q6_stuck || '',
         data.q7_more_less || '',
         data.q8_else || ''
+      ]);
+    } else if (data.form_type === 'foundation_debrief') {
+      // Foundation Weekend debrief from /feedback-2. Same privacy rules as
+      // cohort_feedback: separate spreadsheet, no identifier fields.
+      const sheet = getFoundationDebriefSheet();
+      sheet.appendRow([
+        timestamp,
+        data.session || '',
+        data.q1_landed || '',
+        data.q2_last_time || '',
+        data.q3_ai_os || '',
+        data.q4_money_confidence || '',
+        data.q5_life_clarity || '',
+        data.q6_june_structure || '',
+        data.q7_shifted_moment || '',
+        data.q8_hardest || '',
+        data.q9_pace || '',
+        data.q10_change || '',
+        data.q11_keep || '',
+        data.q12_else || ''
       ]);
     }
 
