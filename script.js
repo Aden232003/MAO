@@ -2,9 +2,12 @@
    MAO — Script
    ══════════════════════════════════════ */
 
-/* ── Config ── */
-// Replace with your deployed Google Apps Script URL
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtnnkO9K8EBsvtDwsnWislPgLDuBSZ1Xd7PgsfXJiB7kUadA882lUAHF5IqY9Wou9v2w/exec';
+/* ── Config ──
+   Form submissions go to Convex (deployment: frugal-bee-879, "mao-leads").
+   Dashboard: https://dashboard.convex.dev/t/aden-gomes/mao-leads/frugal-bee-879
+   Routes: POST /apply (beta application) · POST /vault (doc-vault email).
+   Migrated off Google Apps Script / Sheets, which silently 403'd on scope revokes. */
+const CONVEX_URL = 'https://frugal-bee-879.convex.site';
 
 /* ── Clarity: capture ref param + UTM tags ── */
 const params = new URLSearchParams(window.location.search);
@@ -37,44 +40,33 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.15 });
 revealEls.forEach(el => observer.observe(el));
 
-/* ── Form Submission Helper ──
-   Apps Script web apps return opaque responses under mode:'no-cors' — we
-   can't tell a 403 (dead deployment) from a 200. We health-check first
-   with a CORS GET so we never fake a success redirect on a dead endpoint. */
+/* ── Form Submission (Convex) ──
+   Convex returns real CORS JSON, so unlike the old Apps Script endpoint we can
+   trust res.ok directly — no opaque no-cors responses, no health-check guesswork.
+   form_type routes to the matching HTTP route on the deployment. */
+const CONVEX_ROUTE = { vault_unlock: '/vault', beta_application: '/apply' };
+
 async function endpointIsAlive() {
-  if (!APPS_SCRIPT_URL) return false;
   try {
-    const res = await fetch(APPS_SCRIPT_URL, {
-      method: 'GET',
-      cache: 'no-store',
-      redirect: 'follow',
-    });
-    if (!res.ok) return false;
-    // Apps Script deployments with "Anyone" access redirect to
-    // script.googleusercontent.com and return JSON. A locked deployment
-    // redirects to docs.google.com/accounts → not OK and/or HTML body.
-    const text = await res.text();
-    return /"status"\s*:\s*"ok"/.test(text) || text.trim().startsWith('{');
+    const res = await fetch(CONVEX_URL + '/apply', { method: 'OPTIONS', cache: 'no-store' });
+    return res.ok || res.status === 204;
   } catch {
     return false;
   }
 }
 
-async function submitToSheet(formData) {
-  if (!APPS_SCRIPT_URL) {
-    console.warn('No Apps Script URL configured — running in demo mode.');
-    return { demo: true };
-  }
-  // Actual submit: text/plain keeps it a simple request (no preflight)
-  // while Apps Script still receives the JSON via e.postData.contents.
-  await fetch(APPS_SCRIPT_URL, {
+async function submitToConvex(formData) {
+  const path = CONVEX_ROUTE[formData.form_type] || '/apply';
+  const res = await fetch(CONVEX_URL + path, {
     method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(formData),
   });
-  return { ok: true };
+  if (!res.ok) throw new Error('Convex submit failed: ' + res.status);
+  return res.json();
 }
+// Back-compat alias so existing call sites keep working.
+const submitToSheet = submitToConvex;
 
 /* ── Vault Form ── */
 const VAULT_KEY = 'mao-vault-unlocked';
@@ -100,9 +92,7 @@ vaultForm?.addEventListener('submit', async e => {
       source: 'vault_page1'
     });
 
-    vaultFeedback.textContent = APPS_SCRIPT_URL
-      ? 'Unlocked. The documents are yours.'
-      : 'Unlocked (demo mode — deploy Apps Script to capture emails).';
+    vaultFeedback.textContent = 'Unlocked. The documents are yours.';
     vaultFeedback.className = 'vault-feedback success';
     unlockVault();
     vaultForm.reset();
